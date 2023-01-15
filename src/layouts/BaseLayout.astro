@@ -1,6 +1,7 @@
 ---
 import { siteConfig } from '../util/siteConfig'
-
+import Navigation from '@components/navigation.astro'
+import Footer from '@components/footer.astro'
 export interface Props{
     title: string,
     description?:string
@@ -65,6 +66,7 @@ const currentAbsoluteLink=`https://<change>${url}`
     <link rel='icon' href='/manifest/favicon.ico' type='image/x-icon' />
 </head>
 <body>
-    
+    <Navigation />
+    <Footer/>
 </body>
 </html>

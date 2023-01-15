@@ -1,0 +1,46 @@
+---
+---
+
+<div class='bg-blue-900 text-white py-5 sm:py-8'>
+  <nav class='container flex items-center justify-between'>
+    <a class='font-medium text-lg flex items-center text-white' href='/'>
+      <span class='ml-3'>Junior Jobs</span>
+    </a>
+
+    <!-- Desktop navigation items -->
+    <ul class='hidden sm:flex space-x-5'>
+
+      <li>
+        <a href='/about/' class='text-white-400 hover:text-gray-400'>About</a>
+      </li>
+    </ul>
+
+    <!-- Mobile Navigation Button -->
+    <button
+      class='text-white-400 hover:text-gray-50 block sm:hidden cursor-pointer'
+      aria-label='Menu'
+      show-mobile-nav
+    >
+    </button>
+
+    <!-- Mobile Navigation Items -->
+    <div
+      class='fixed top-0 bottom-0 left-0 right-0 z-40 bg-slate-900 items-center flex hidden'
+      mobile-nav
+    >
+      <button
+        close-mobile-nav
+        class='text-white-400 hover:text-gray-50 block cursor-pointer absolute top-6 right-6'
+        aria-label='Close Menu'
+      >
+      </button>
+      <ul class='flex flex-col gap-2 md:gap-3 items-center w-full'>
+        <li>
+          <a href='/about/' class='text-xl md:text-lg hover:text-gray-300 hidden'
+            >About</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
