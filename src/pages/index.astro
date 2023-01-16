@@ -1,9 +1,42 @@
 ---
-import Baselayout from "@layouts/BaseLayout.astro";
 
+import Baselayout from "@layouts/BaseLayout.astro";
+import Button from "@components/Button.astro";
 ---
 
 <Baselayout title="Opportunities for students"
 description='Internships and entrylever jobs for all students and fresh-graduates'
 url="/">
+
+<div class='bg-zinc-900'>
+    <div>
+      <div
+        class='container sm:text-center py-6 sm:py-20 px-6 sm:px-0'
+      >
+        <h1
+          class='text-2xl sm:text-5xl mb-2 sm:mb-4 font-bold bg-white text-transparent bg-clip-text'
+        >
+        Juniors Job
+        </h1>
+
+        <p class='hidden sm:block justify-center m-12 text-sky-200 text-lg px-4'>
+          <span class='font-medium text-pink-900'>Juniors Job</span> is a community
+          effort to collect Internships and Entry-level jobs for MEAN software engineers to be in one place, and make it more
+          easy to get your first Opportunity.
+        </p>
+
+        <p class='block sm:hidden text-gray-400 text-md px-0'>
+          Community created Job posts for Juniors and Fresh-graduates to help developers
+          to start thier career.
+        </p>
+        <Button textcolor="text-gray-900" bgcolor="bg-slate-200" title="Entry-level" link='/entry'/>
+        <Button textcolor="text-slate-200" bgcolor="bg-slate-800" title="Internships" link='/internships'/>
+      </div>
+      
+    </div>
+</div>
+
+
+
 </Baselayout>
+

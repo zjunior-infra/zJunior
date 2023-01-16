@@ -1,0 +1,27 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "Juniors",
+    "scope": "/",
+    "display": "standalone",
+    "start_url": "https://Juniors.sh/",
+    "short_name": "Juniors",
+    "theme_color": "#EDD07E",
+    "description": "Opprtunities for Juniors and fresh-graduates – Juniors",
+    "orientation": "any",
+    "background_color": "#101010",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [
+      {
+        "src": "/manifest/icon76.png",
+        "sizes": "76x76",
+        "type": "image/png"
+      },
+      {
+        "src": "/manifest/icon96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      }
+    ]
+  }

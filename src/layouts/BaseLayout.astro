@@ -38,9 +38,9 @@ const currentAbsoluteLink=`https://<change>${url}`
     <meta name='twitter:creator' content='@eitmg' />
     <meta property='og:image:width' content='1200' />
     <meta property='og:image:height' content='630' />
-    <meta property='og:image' content='https://<change>/images/og-img.png' />
-    <meta property='og:image:alt' content='<change>' />
-    <meta property='og:site_name' content='<change>' />
+    <meta property='og:image' content='' />
+    <meta property='og:image:alt' content='JuniorsJob' />
+    <meta property='og:site_name' content='JuniorsJob' />
     <meta property='og:title' content={title} />
     <meta property='og:description' content={description} />
     <meta property='og:type' content='website' />
@@ -51,8 +51,8 @@ const currentAbsoluteLink=`https://<change>${url}`
 
     <meta name='apple-mobile-web-app-capable' content='yes' />
     <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
-    <meta name='apple-mobile-web-app-title' content='roadmap.sh' />
-    <meta name='application-name' content='roadmap.sh' />
+    <meta name='apple-mobile-web-app-title' content='JuniorsJob' />
+    <meta name='application-name' content='JuniorsJob' />
 
     <link rel='apple-touch-icon' sizes='180x180' href='/manifest/apple-touch-icon.png' />
     <meta name='msapplication-TileColor' content='#101010' />
@@ -60,13 +60,14 @@ const currentAbsoluteLink=`https://<change>${url}`
 
     <link rel='manifest' href='/manifest/manifest.json' />
     <link rel='icon' type='image/png' sizes='32x32' href='/manifest/icon32.png' />
-    <link rel='icon' type='image/png' sizes='16x16' href='/manifest/icon16.png' />
-    <link rel='shortcut icon' href='/manifest/favicon.ico' type='image/x-icon' />
+    <link rel='icon' type='image/svg+xml' sizes='16x16' href='/manifest/icon16.png' />
+    <link rel='shortcut icon' href='/manifest/favicon.ico' type='image/svg+xml' />
 
-    <link rel='icon' href='/manifest/favicon.ico' type='image/x-icon' />
+    <link rel='icon' href='/manifest/favicon.ico' type='image/svg+xml' />
 </head>
 <body>
     <Navigation />
+    <slot/>
     <Footer/>
 </body>
 </html>
