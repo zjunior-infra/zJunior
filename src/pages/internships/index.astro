@@ -1,7 +1,11 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import job from "../../util/Jobs.astro"
+
+const jobs = await import("../../../public/jobs/opportunity/sample.json");
 ---
 
 <BaseLayout title="Internships" description="Internships for all MEAN software engineer to start thier career"
 url='/internships'>
+    <p>{jobs.company}</p>
 </BaseLayout>

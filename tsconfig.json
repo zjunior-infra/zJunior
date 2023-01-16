@@ -1,6 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "types":["vite/client"],
     "importsNotUsedAsValues": "error",
     "baseUrl": ".",
     "paths": {
