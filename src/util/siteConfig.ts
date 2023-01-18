@@ -5,5 +5,7 @@ export const siteConfig={
         'jobs',
         'internships',
         'intern',
+        'entrylevel',
+        'open-source'
     ],
 }
