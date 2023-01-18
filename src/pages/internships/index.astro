@@ -9,6 +9,31 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 <BaseLayout title="Internships" description="Internships for all MEAN software engineer to start thier career"
 url='/internships'>
 <DefaultHeader title="Internships within your Hand" description="Almost all the internships for MEAN software engineers in one place"></DefaultHeader>
-
-
+<div class="flex flex-col-2 grid-auto flex-wrap items-center justify-center sm:mx-20 my-20 gap-4">
+<div class="relative ring-1 rounded bg-zinc-300 ring-slate-800  flex flex-col p-4 w-96">
+    <div class="flex justify-start">
+        <div class="rounded-md bg-white p-2.5 w-16 h-16 justify-items-center">
+            <img src="/AMZN.png" class="items-center">
+            
+        </div>
+        <h1 class="absolute bottom-12 mx-1.5 text-sm">Amazon</h1>
+        <div class="flex flex-col justify-end mx-8 my-1">
+            <h1 class="font-bold">Software Engineer</h1>
+            <p class="text-sm">Internship</p>
+            <p class="text-sm">Apply before: 20/2/2023</p>
+        </div>
+    </div>
+    <a href="#" class="absolute bottom-0 bg-slate-700 text-white right-0  m-2 w-20 justify-center flex p-1 ring-1 ring-black rounded">
+        Apply
+    </a>
+    <div class="mt-8 mx-4 text-xs">
+        <ul class="flex space-x-2">
+            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">React</li>
+            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">Nodejs</li>
+            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">C++</li>
+            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">CI/CD</li>
+        </ul>
+    </div>
+</div>
+</div>
 </BaseLayout>
