@@ -1,40 +1,52 @@
 ---
+const navigation = [
+  {
+    name: "Programs",
+    href: "/programs",
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/mahmoudgalalz/juniorjobs",
+    external: true,
+  },
+  {
+    name: "About",
+    href: "/about",
+  },
+]
+const pathname=Astro.url.pathname
 ---
 
-<div class='bg-pink-900 text-white py-5 sm:py-8'>
-  <nav class='container flex items-center justify-between'>
-    <a class='font-medium text-lg flex items-center text-white' href='/'>
-      <span class='ml-3'>Junior Jobs</span>
-    </a>
 
-    <!-- Desktop navigation items -->
-    <ul class='hidden sm:flex space-x-5'>
-
-      <li>
-        <a href='/about/' class='text-white-400 hover:text-gray-400'>About</a>
-      </li>
-    </ul>
-
-    <!-- Mobile Navigation Button -->
-    <button
-      class='text-white-400 hover:text-gray-50 block sm:hidden cursor-pointer'
-      aria-label='Menu'
-      show-mobile-nav
-    >
-    </button>
-
-    <!-- Mobile Navigation Items -->
-    <div
-      class='fixed top-0 bottom-0 left-0 right-0 z-40 bg-pink-900 items-center  hidden'
-      mobile-nav
-    >
-      <ul class='flex flex-col gap-2 md:gap-3 items-center w-full'>
-        <li>
-          <a href='/about/' class='text-xl md:text-lg hover:text-gray-300 hidden'
-            >About</a
-          >
-        </li>
-      </ul>
+<header class="top-0 z-30 w-full px-4 sm:fixed backdrop-blur bh-zinc-900/50">
+  <div class="container mx-auto">
+    <div class="flex flex-col items-center justify-between gap-2 pt-6 sm:h-20 sm:flex-row sm:pt-0">
+      <a href="/" class="text-2xl font-semibold duration-150 text-slate-700 hover:text-zinc-500">
+        Junior Jobs
+      </a>
+      {/* Desktop navigation */}
+      <nav class="flex items-center grow">
+        <ul class="flex flex-wrap items-center justify-end gap-4 grow">
+          {navigation.map((item) => (
+            <li class="">
+              <a
+                class={`flex items-center px-3 py-2 duration-150 text-sm sm:text-base  hover:text-zinc-400
+                ${pathname === item.href ? "text-zinc-500" : "text-zinc-800"}`}
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
-  </nav>
-</div>
+  </div>
+
+  {/* Fancy fading bottom border */}
+</header>
+
+
+
