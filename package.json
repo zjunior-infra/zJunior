@@ -7,22 +7,18 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "migration": "npx prisma db push"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^5.0.0",
     "@astrojs/tailwind": "^2.1.3",
-    "@prisma/client": "^4.9.0",
     "astro": "^1.9.0",
-    "tailwindcss": "^3.2.4",
-    "worktop": "^0.7.3"
+    "tailwindcss": "^3.2.4"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
     "eslint": "^8.32.0",
-    "eslint-plugin-astro": "^0.21.1",
-    "prisma": "^4.9.0"
+    "eslint-plugin-astro": "^0.21.1"
   }
 }
