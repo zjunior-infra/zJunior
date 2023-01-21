@@ -1,5 +1,0 @@
-name="juniorjobs-backend"
-main="./functions/api/jobs.js"
-compatibility_date = "2023-01-18"
-[vars]
-DATABASE_URL='prisma://aws-eu-central-1.prisma-data.com/?api_key=rmjS-FCfnw1e3d8sflbfk0aa7W5qpOQmFOW3qyxB4xWIOxpeUA3fCX409UK5mU-1'
