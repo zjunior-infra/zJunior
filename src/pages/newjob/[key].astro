@@ -1,0 +1,14 @@
+---
+import JobForm from "@components/JobForm.astro";
+const { key }=Astro.params
+const keys:Array<string>= import.meta.env.keys.split(',')
+if(!keys.find(el=> key==el)){
+return Astro.redirect('/')
+}
+//exclude name from the secret key
+//@ts-ignore
+const authorName:string=key?.substring(0,key?.indexOf('s'))
+
+---
+
+<JobForm author={authorName}></JobForm>

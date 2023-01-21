@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import DefaultHeader from "./DefaultHeader.astro";
+export interface Props{
+    author:string
+}
+const {author}=Astro.props
+const API_URL=import.meta.env.API_URL
+const url =new URL(`${API_URL}`)
+
+---
+
+<BaseLayout title="Job form" url="/newjob">
+    <DefaultHeader title={author.toUpperCase()} description="Thanks for helping our community"/>
+    <div class="container bg-zinc-200/50 rounded-lg relative ring-2 ring-slate-800 shadow-lg p-7 mb-7 max-w-[380px] sm:max-w-2xl">
+        <h1 class="text-center text-lg absolute top-0 left-0 ml-4 mt-2 text-slate-800">Add a Job </h1>
+        <div class="m-8 ">
+            <label for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Company</label>
+            <input type="text" id="company" placeholder="Instabug" class="block w-full p-2 shadow-md text-gray-900 border border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
+        </div>
+        <div class="m-8 ">
+            <label for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Title</label>
+            <input type="text" placeholder="Software engineer" id="company" class="block w-full p-2 shadow-md text-gray-900 border border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
+        </div>
+        <div class="m-8 ">
+            <label for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Company</label>
+            <input type="text" id="company" class="block w-full p-2 shadow-md text-gray-900 border border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
+        </div>
+    </div>
+</BaseLayout>
