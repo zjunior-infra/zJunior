@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import DefaultHeader from "./DefaultHeader.astro";
+
 export interface Props{
     author:string
 }
@@ -16,15 +17,73 @@ const url =new URL(`${API_URL}`)
         <h1 class="text-center text-lg absolute top-0 left-0 ml-4 mt-2 text-slate-800">Add a Job </h1>
         <div class="m-8 ">
             <label for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Company</label>
-            <input type="text" id="company" placeholder="Instabug" class="block w-full p-2 shadow-md text-gray-900 border border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
+            <input type="text" id="company" placeholder="Instabug" class="block w-full p-2 shadow-md text-gray-900 border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
         </div>
         <div class="m-8 ">
             <label for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Title</label>
-            <input type="text" placeholder="Software engineer" id="company" class="block w-full p-2 shadow-md text-gray-900 border border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
+            <input type="text" placeholder="Software engineer" id="company" class="block w-full p-2 shadow-md text-gray-900  border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
         </div>
         <div class="m-8 ">
-            <label for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Company</label>
-            <input type="text" id="company" class="block w-full p-2 shadow-md text-gray-900 border border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
+            <label for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Type</label>
+            <select id="default" class="w-full p-2 shadow-md text-gray-900 border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
+                <option selected>Choose the type</option>
+                <option value="Intern">Internship</option>
+                <option value="entry-level">EntryLevel</option>
+              </select>
         </div>
+        <div class="m-8 ">
+            <label for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Deadline</label>
+            <input class="w-52 p-2 shadow-md text-gray-900 border-gray-500 rounded-lg bg-gray-50 sm:text-xs" type="date" id="deadline" value="2023-01-01" min="2023-01-01" max="2050-12-20">
+        </div>
+        <div class="m-8 ">
+            <label for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Logo link</label>
+            <input type="text" placeholder="img.com/logo.png" id="company" class="block w-full p-2 shadow-md text-gray-900  border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
+        </div>
+        <div class="m-8">
+            <div class="flex">
+                <div class="flex items-center h-5">
+                    <input id="helper-radio" aria-describedby="helper-radio-text" name="pick" checked type="radio" value="Link" class="w-4 h-4 bg-gray-100 border-gray-300">
+                </div>
+                <div class="ml-2 text-sm">
+                    <label for="helper-radio" class="font-medium text-zinc-800 ">Link</label>
+                    <p id="helper-radio-text" class="text-xs font-normal text-gray-500">Link to the job form or career site</p>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="flex items-center h-5">
+                    <input id="helper-radio" aria-describedby="helper-radio-text" name="pick" type="radio" value="Email" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
+                </div>
+                <div class="ml-2 text-sm">
+                    <label for="helper-radio" class="font-medium text-zinc-800 ">Email</label>
+                    <p id="helper-radio-text" class="text-xs font-normal text-gray-500">Opprtunity via mailing the recuriter</p>
+                </div>
+            </div>
+        </div>
+        <div class="m-8 ">
+            <label id="formlink" for="small-input" class="block mb-2 text-sm font-medium  text-zinc-800">Link</label>
+            <input type="text" placeholder="www.instabug.com/career" id="formLink" class="block w-full p-2 shadow-md text-gray-900  border-gray-500 rounded-lg bg-gray-50 sm:text-xs focus:border-slate-500">
+        </div>
+        <div class="m-8 ">
+            <button id="submitBtn">test</button>
+        </div>
+
+
     </div>
+    <script>
+        // Find all buttons with the `alert` class on the page.
+        const buttons = document.querySelector('#submitBtn');
+        const radio= document.querySelector('[name="pick"]')
+        const formType = document.querySelector('#helper-radio')
+        // Handle clicks on each button.
+        //@ts-ignore
+        buttons.addEventListener('change',inputType(formType))
+        //@ts-ignore
+        function inputType(option){
+            const formLink=document.querySelector('#formLink')
+            formLink.placeholder=option.value
+            console.log(option.value)
+        }
+      </script>
 </BaseLayout>
+
+
