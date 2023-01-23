@@ -1,4 +1,4 @@
-export interface Job{
+export type IJob ={
     company:string,
 	title:string,
 	link:string,
@@ -6,5 +6,5 @@ export interface Job{
 	type:string,
 	deadline:string,
 	logo:string,
-	tags?:string
+	tags:string
 }

@@ -17,6 +17,9 @@
       ,
       "@util/*":[
         "src/util/*"
+      ],
+      "@api/*":[
+        "src/pages/api/*"
       ]
     },
     "jsx": "react-jsx",

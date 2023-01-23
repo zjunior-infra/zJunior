@@ -1,11 +1,17 @@
 ---
-import type {Job} from '@util/job.interface'
-
+import type {IJob} from '@util/job.interface'
+import { Debug } from 'astro/components';
 export interface Props {
-    roleJob:Job
+    company:string,
+    title:string,
+    link:string,
+    email:string,
+    type:string,
+    deadline:string,
+    logo:string,
+    tags:string,
 }
-const {roleJob}= Astro.props
-const {company,title,link,email,tags,type,deadline,logo}= roleJob
+const {company,title,link,email,type,deadline,logo,tags}=Astro.props
 ---
 
 <div class="relative ring-1 rounded bg-zinc-300 ring-slate-800  flex flex-col p-4 w-96">

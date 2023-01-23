@@ -2,6 +2,10 @@
 import DefaultHeader from "@components/DefaultHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Job from "@components/Job.astro";
+import type {IJob} from "@util/job.interface";
+
+const res= await fetch(`http://localhost:3000/api/getjobs.json`)
+const jobs:Array<IJob> = await res.json();
 
 ---
 
@@ -10,8 +14,15 @@ url='/internships'>
 <DefaultHeader title="Internships within your Hand" description="Almost all the internships for MEAN software engineers in one place"></DefaultHeader>
 
 <div class="flex flex-col-2 grid-auto flex-wrap items-center justify-center sm:mx-20 my-20 gap-4">
-    <!-- {result.map(job =>{
-        <Job roleJob={job}/>
-    })} -->
+        {jobs.map(job=>{
+                <Job company={job.company} title={job.title}
+                     link={job.link}
+                     email={job.email}
+                     type={job.type}
+                     deadline={job.deadline}
+                     logo={job.logo}
+                     tags={job.tags}
+                />
+        })}
 </div>
 </BaseLayout>
