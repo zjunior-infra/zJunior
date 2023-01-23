@@ -1,12 +1,17 @@
 ---
-import JobForm from "@components/JobForm.astro";
+import DefaultHeader from "@components/DefaultHeader.astro";
+import {JobForm} from "@components/JobForm.tsx";
+import BaseLayout from "@layouts/BaseLayout.astro";
 const { key }=Astro.params
 const keys:Array<string>= import.meta.env.keys.split(',')
 
 //exclude name from the secret key
 //@ts-ignore
-const authorName:string=key?.substring(0,key?.indexOf('s'))
+// const authorName:string=key?.substring(0,key?.indexOf('s'))
+const authorName:string=key?.split('s')[0]
 
 ---
-
-<JobForm author={authorName}></JobForm>
+<BaseLayout title="Job form" url="/newjob">
+  <DefaultHeader title={authorName.toUpperCase()} description="Thanks for helping our community"/>
+<JobForm author={authorName} client:only></JobForm>
+</BaseLayout>

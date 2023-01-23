@@ -1,12 +1,21 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "types":["vite/client"],
+    "types": [
+      "vite/client"
+    ],
     "importsNotUsedAsValues": "error",
+    "allowImportingTsExtensions" : true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@layouts/*":["src/layouts/*"],
-    }
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
   }
 }
