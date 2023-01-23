@@ -1,11 +1,10 @@
 ---
-
 interface Job{
     company:string,
 	title:string,
 	link:string,
 	email:string,
-	tags:string[],
+	tags:string,
 	type:string,
 	deadline:string,
 	logo:string,
@@ -16,7 +15,6 @@ export interface Props {
 const {roleJob}= Astro.props
 const {company,title,link,email,tags,type,deadline,logo}=roleJob
 
-console.log(roleJob)
 ---
 
 <div class="relative ring-1 rounded bg-zinc-300 ring-slate-800  flex flex-col p-4 w-96">
@@ -37,9 +35,7 @@ console.log(roleJob)
     </a>
     <div class="mt-8 mx-4 text-xs">
         <ul class="flex space-x-2">
-            {tags.map((tag:string) =>{
-            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">{tag}</li>
-            })}
+            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">{tags}</li>
         </ul>
     </div>
 </div>
