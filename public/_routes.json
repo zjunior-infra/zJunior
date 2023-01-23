@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "include": ["/*","_worker.js"],
+    "include": ["/*","/_worker.js"],
     "exclude": ["/dist/*"]
  }
  
