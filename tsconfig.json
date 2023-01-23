@@ -14,6 +14,10 @@
       "@layouts/*": [
         "src/layouts/*"
       ]
+      ,
+      "@util/*":[
+        "src/util/*"
+      ]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",

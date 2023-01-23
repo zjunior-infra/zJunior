@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "prisma://aws-eu-central-1.prisma-data.com/?api_key=rmjS-FCfnw1e3d8sflbfk0aa7W5qpOQmFOW3qyxB4xWIOxpeUA3fCX409UK5mU-1"
+  url      = env("DATABASE_URL")
 }
 
 
@@ -18,11 +18,6 @@ model Job {
   type     String
   deadline String
   logo     String
-  tags tags[]
+  tags     String
 }
 
-model tags{
-    id String @id
-    job String?
-    Job Job? @relation(fields: [job],references: [id])
-}

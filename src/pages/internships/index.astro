@@ -1,21 +1,22 @@
 ---
 import DefaultHeader from "@components/DefaultHeader.astro";
-import Navigation from "@components/Navigation.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Job from "@components/Job.astro";
-const url=new URL(import.meta.env.API_URL)
-const response= await fetch(`${url.href}get/intern`)
-const data= await response.json()
+import { prisma } from "@util/database";
+
 interface Job{
+	id?:string
     company:string,
 	title:string,
 	link:string,
 	email:string,
-	tags:string,
 	type:string,
 	deadline:string,
 	logo:string,
+	tags:string
 }
+
+const result= await prisma.job.findMany({})
 
 ---
 
@@ -24,9 +25,8 @@ url='/internships'>
 <DefaultHeader title="Internships within your Hand" description="Almost all the internships for MEAN software engineers in one place"></DefaultHeader>
 
 <div class="flex flex-col-2 grid-auto flex-wrap items-center justify-center sm:mx-20 my-20 gap-4">
-    {data.map((job:Job)=>{
+    {result.map((job)=>{
         <Job roleJob={job} />
     })}
-    <!-- <Job company={data[0].company} title="Hi" deadline="20" email="test" logo="/AMZN.png" type="dw" tags="dwqd,react" link="dwd" /> -->
 </div>
 </BaseLayout>
