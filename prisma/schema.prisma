@@ -1,0 +1,28 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "prisma://aws-eu-central-1.prisma-data.com/?api_key=rmjS-FCfnw1e3d8sflbfk0aa7W5qpOQmFOW3qyxB4xWIOxpeUA3fCX409UK5mU-1"
+}
+
+
+model Job {
+  id       String    @id @unique @default(cuid())
+  company  String
+  title    String
+  link     String
+  email    String
+  type     String
+  deadline String
+  logo     String
+  tags tags[]
+}
+
+model tags{
+    id String @id
+    job String?
+    Job Job? @relation(fields: [job],references: [id])
+}

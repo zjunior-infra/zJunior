@@ -1,0 +1,9 @@
+name = "junior-backend"
+main = "functions/hello.js"
+compatibility_date = "2023-01-18"
+
+[vars]
+DATABASE_URL="prisma://aws-eu-central-1.prisma-data.com/?api_key=rmjS-FCfnw1e3d8sflbfk0aa7W5qpOQmFOW3qyxB4xWIOxpeUA3fCX409UK5mU-1"
+MIGRATE_DATABASE_URL="prisma://aws-eu-central-1.prisma-data.com/?api_key=rmjS-FCfnw1e3d8sflbfk0aa7W5qpOQmFOW3qyxB4xWIOxpeUA3fCX409UK5mU-1"
+M_DATABASE_URL="mysql://zjpdmq1y5tt2i38q97pa:pscale_pw_VJz5WN19E2mIIzgXqiloRinzZHCVBeWxojio8hTOVui@eu-central.connect.psdb.cloud/juniorjobs?sslaccept=strict"
+PRISMA_GENERATE_DATAPROXY=true
