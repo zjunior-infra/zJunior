@@ -2,12 +2,14 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import DefaultHeader from "./DefaultHeader.astro";
 
+export async function getStaticPaths() {
+    
+}
+
 export interface Props{
     author:string
 }
 const {author}=Astro.props
-const API_URL=import.meta.env.API_URL
-const url =new URL(`${API_URL}`)
 
 ---
 

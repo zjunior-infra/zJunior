@@ -1,20 +1,11 @@
 ---
-interface Job{
-    company:string,
-	title:string,
-	link:string,
-	email:string,
-	tags:string,
-	type:string,
-	deadline:string,
-	logo:string,
-}
+import type {Job} from '@util/job.interface'
+
 export interface Props {
     roleJob:Job
 }
 const {roleJob}= Astro.props
-const {company,title,link,email,tags,type,deadline,logo}=roleJob
-
+const {company,title,link,email,tags,type,deadline,logo}= roleJob
 ---
 
 <div class="relative ring-1 rounded bg-zinc-300 ring-slate-800  flex flex-col p-4 w-96">

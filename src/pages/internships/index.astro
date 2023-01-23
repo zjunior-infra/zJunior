@@ -2,21 +2,6 @@
 import DefaultHeader from "@components/DefaultHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Job from "@components/Job.astro";
-import { prisma } from "@util/database";
-
-interface Job{
-	id?:string
-    company:string,
-	title:string,
-	link:string,
-	email:string,
-	type:string,
-	deadline:string,
-	logo:string,
-	tags:string
-}
-
-const result= await prisma.job.findMany({})
 
 ---
 
@@ -25,8 +10,8 @@ url='/internships'>
 <DefaultHeader title="Internships within your Hand" description="Almost all the internships for MEAN software engineers in one place"></DefaultHeader>
 
 <div class="flex flex-col-2 grid-auto flex-wrap items-center justify-center sm:mx-20 my-20 gap-4">
-    {result.map((job)=>{
-        <Job roleJob={job} />
-    })}
+    <!-- {result.map(job =>{
+        <Job roleJob={job}/>
+    })} -->
 </div>
 </BaseLayout>
