@@ -3,10 +3,13 @@ import DefaultHeader from "@components/DefaultHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Job from "@components/Job.astro";
 import type {IJob} from "@util/job.interface";
+import { getjj } from "@util/database";
+import { Debug } from "astro/components";
 
-const res= await fetch(`http://localhost:3000/api/getjobs.json`)
-const jobs:Array<IJob> = await res.json();
-
+// const res= await fetch(`http://localhost:3000/api/getjobs.json`)
+// const jobs:Array<IJob> = await res.json();
+const jobs:Array<IJob>=await getjj();
+console.log(jobs)
 ---
 
 <BaseLayout title="Internships" description="Internships for all MEAN software engineer to start thier career"
@@ -14,7 +17,7 @@ url='/internships'>
 <DefaultHeader title="Internships within your Hand" description="Almost all the internships for MEAN software engineers in one place"></DefaultHeader>
 
 <div class="flex flex-col-2 grid-auto flex-wrap items-center justify-center sm:mx-20 my-20 gap-4">
-        {jobs.map(job=>{
+        {jobs.forEach(job=>{
                 <Job company={job.company} title={job.title}
                      link={job.link}
                      email={job.email}
@@ -24,5 +27,14 @@ url='/internships'>
                      tags={job.tags}
                 />
         })}
+        <Job company="test" title="{job.title}"
+        link="{job.link}"
+        email="{job.email}"
+        type="{job.type}"
+        deadline="{job.deadline}"
+        logo="{job.logo}"
+        tags="{job.tags}"
+   />
 </div>
+<Debug {jobs}/>
 </BaseLayout>
