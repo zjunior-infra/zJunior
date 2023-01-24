@@ -1,16 +1,16 @@
 ---
-import type {IJob} from '@util/job.interface'
-import { Debug } from 'astro/components';
-export interface Props {
+export interface JobItemType{
     company:string,
-    title:string,
-    link:string,
-    email:string,
-    type:string,
-    deadline:string,
-    logo:string,
-    tags:string,
+	title:string,
+	link:string,
+	email:string,
+	type:string,
+	deadline:string,
+	logo:string,
+	tags:string
 }
+export interface Props extends JobItemType {}
+
 const {company,title,link,email,type,deadline,logo,tags}=Astro.props
 ---
 
