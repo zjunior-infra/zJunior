@@ -1,7 +1,7 @@
 import { prisma } from "@util/database";
 import type { APIRoute } from "astro";
 
-export const get: APIRoute = async function getJobs() {
+export const get: APIRoute = async function get() {
 	try {
 		const jobs: any = await prisma.job.findMany({})
 		if (jobs) {
