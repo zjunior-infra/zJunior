@@ -13,7 +13,7 @@ export async function getjj() {
   return result;
 }
 
-export async function auth(prvToken) {
+export async function auth(prvToken : any) {
   const Token=prvToken.value;
   const result=await prisma.lister.findFirst({
     where:{

@@ -5,7 +5,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import { auth } from "@util/database";
 const accessToken=Astro.cookies.get("token")
 const auths=await auth(accessToken);
-if(auths==null){
+if(auths===null){
     console.log("Hi")
     const url=new URL(Astro.url)
     Astro.redirect(`${url.origin}/newjob`)
