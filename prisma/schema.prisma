@@ -21,4 +21,9 @@ model Job {
   logo     String
   tags     String
 }
+model Lister{
+  id      String @id @unique @default(cuid())
+  name    String
+  token   String
+}
 
