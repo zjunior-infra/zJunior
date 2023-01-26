@@ -1,6 +1,15 @@
 ---
 import DefaultHeader from "@components/DefaultHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { auth } from "src/util/database";
+
+const accessToken = Astro.cookies.get('token');
+const verified = await auth(accessToken);
+
+if(verified !== null){
+    const url=new URL(Astro.url)
+    Astro.redirect(`${url.origin}/newjob/add`)
+}
 
 ---
 <BaseLayout title="JobForm" url="/newjob">
@@ -12,7 +21,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     <button class="ring-2 place-self-center ring-white rounded-md p-2 m-2 w-36 bg-slate-800 text-zinc-300 hover:bg-slate-800/70">Grant Access</button>
 </div>
 </div>
-<script is:inline>
+<!-- <script is:inline>
     const btn=document.querySelector('button')
     btn.addEventListener('click',grantAccess)
     const cookie=document.cookie
@@ -34,5 +43,5 @@ import BaseLayout from "@layouts/BaseLayout.astro";
         alert("Enter your token")
     } 
     checkCookie()
-</script>
+</script> -->
 </BaseLayout>
