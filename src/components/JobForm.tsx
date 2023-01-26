@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import react from '@astrojs/react';
 
-interface IProps {
-    author: string
-}
-export const JobForm = ({ author }: IProps) => {
+export const JobForm = () => {
     //@ts-ignore
     const [contactWay, setContactWay]: any = useState(null);
     const setContactHandler = () => {

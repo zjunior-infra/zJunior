@@ -12,3 +12,13 @@ export async function getjj() {
   const result=await prisma.job.findMany({})
   return result;
 }
+
+export async function auth(prvToken) {
+  const Token=prvToken.value;
+  const result=await prisma.lister.findFirst({
+    where:{
+      token: Token
+    }
+  })
+  return result;
+}
