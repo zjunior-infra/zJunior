@@ -5,10 +5,14 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import { auth } from "@util/database";
 const accessToken=Astro.cookies.get("token")
 const auths=await auth(accessToken);
+
+const url=new URL(Astro.url)
+  Astro.redirect(`${url.origin}/newjob`)
+  
 if(auths===null){
-    console.log("Hi")
-    const url=new URL(Astro.url)
-    Astro.redirect(`${url.origin}/newjob`)
+  console.log("Hi")
+  const url=new URL(Astro.url)
+  Astro.redirect(`${url.origin}/newjob`)
 }
 ---
 <BaseLayout title="Job form" url="/newjob">
