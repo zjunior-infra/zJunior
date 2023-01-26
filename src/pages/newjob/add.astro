@@ -7,8 +7,8 @@ const accessToken=Astro.cookies.get("token")
 const auths=await auth(accessToken);
 
 const url=new URL(Astro.url)
-  Astro.redirect(`${url.origin}/newjob`)
-  
+return Astro.redirect(`${url.origin}/newjob`)
+
 if(auths===null){
   console.log("Hi")
   const url=new URL(Astro.url)
