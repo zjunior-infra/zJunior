@@ -8,7 +8,7 @@ const verified = await auth(accessToken);
 
 if(verified !== null){
     const url=new URL(Astro.url)
-    Astro.redirect(`${url.origin}/newjob/add`)
+    Astro.redirect(`${url.origin}/newjob`)
 }
 
 ---
