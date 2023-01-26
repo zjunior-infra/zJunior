@@ -5,10 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "npx prisma generate --data-proxy && npm run inject-env && astro build",
+    "build": "npx prisma generate --data-proxy && astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "inject-env": "export DATABASE_URL='prisma://aws-eu-central-1.prisma-data.com/?api_key=nfdXbrN1710AWyrH6QCOth7LPi6VnNAwMW6lBJprXIeY3YxWLpsHT78GLgOxLeyw' "
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^5.0.0",
