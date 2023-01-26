@@ -9,7 +9,7 @@ if (Astro.cookies.has('token')){
     const accessToken = Astro.cookies.get('token');
     const verified = await auth(accessToken);
     if(verified !== null){
-        Astro.redirect(`${url.origin}/newjob/add`)
+        return Astro.redirect(`${url.origin}/newjob/add`)
     }
 }
 
