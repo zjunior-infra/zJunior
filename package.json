@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "npx prisma generate --data-proxy && injext-env && astro build",
+    "build": "npx prisma generate --data-proxy && npm run injext-env && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "inject-env": "export DATABASE_URL='prisma://aws-eu-central-1.prisma-data.com/?api_key=nfdXbrN1710AWyrH6QCOth7LPi6VnNAwMW6lBJprXIeY3YxWLpsHT78GLgOxLeyw' "
