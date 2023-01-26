@@ -3,13 +3,16 @@ import DefaultHeader from "@components/DefaultHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { auth } from "src/util/database";
 
-const accessToken = Astro.cookies.get('token');
-const verified = await auth(accessToken);
 
-if(verified !== null){
-    const url=new URL(Astro.url)
-    Astro.redirect(`${url.origin}/newjob`)
+const url=new URL(Astro.url)
+if (Astro.cookies.has('token')){
+    const accessToken = Astro.cookies.get('token');
+    const verified = await auth(accessToken);
+    if(verified !== null){
+        return Astro.redirect(`${url.origin}/newjob/add`)
+    }
 }
+
 
 ---
 <BaseLayout title="JobForm" url="/newjob">
