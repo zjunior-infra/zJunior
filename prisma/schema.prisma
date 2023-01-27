@@ -19,7 +19,7 @@ model Job {
   type     String
   deadline String
   logo     String
-  tags     String
+  skills   String
 }
 model Lister{
   id      String @id @unique @default(cuid())
