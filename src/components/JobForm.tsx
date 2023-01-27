@@ -4,6 +4,7 @@ import useInput from 'hooks/use-input';
 import InputWrapper from './wrappers/InputWrapper/InputWrapper';
 import CustomizedHook from './AutoCompleteInput/AutoCompleteInput';
 import Test from './AutoCompleteInput/Test';
+import { addJob } from '@util/database';
 
 export const JobForm = () => {
   const [contactWay, setContactWay]: any = useState('link');
@@ -74,7 +75,7 @@ export const JobForm = () => {
     resetInputHandler: resetEmailInput
   } = useInput((value) => !!value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/), '');
 
-  const test = useCallback((value: any) => {
+  const syncSkillsHandler = useCallback((value: any) => {
     setSkillsValueHandler(value)
   }, [])
 
@@ -90,6 +91,7 @@ export const JobForm = () => {
     (enteredEmailIsValid || enteredLinkIsValid)
   )
     formIsValid = true;
+  // reset all form inputs
   const resetFormHandler = () => {
     resetCompanyInput()
     resetTitleInput()
@@ -100,6 +102,7 @@ export const JobForm = () => {
     resetEmailInput()
     resetLinkInput()
   }
+  // touch all form inputs
   const touchFormHandler = () => {
     onBlurCompanyHandler()
     onBlurTitleHandler()
@@ -110,20 +113,37 @@ export const JobForm = () => {
     onBlurEmailHandler()
     onBlurLinkHandler()
   }
+  const addJobHandler = async () => {
+    console.log(1)
+    const res = await addJob({
+      company: enteredCompany,
+      title: enteredTitle,
+      type: enteredType,
+      deadline: enteredDeadLine,
+      skills: enteredSkills.map((el : any) => el.skill).join(),
+      logo: enteredLogo,
+      email: enteredEmail,
+      link: enteredLink
+    })
+    console.log(res)
+    return res;
+  }
   const onSubmitFormHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // touch all form inputs
     touchFormHandler();
-    if(formIsValid)
-    console.log(1)
-    console.log(enteredCompany)
-    console.log(enteredTitle)
-    console.log(enteredType)
-    console.log(enteredDeadLine)
-    console.log(enteredSkills)
-    console.log(enteredLogo)
-    console.log(enteredEmail)
-    console.log(enteredLink)
+    if (!formIsValid)
+      return;
+    try {
+      // add job to db
+      const res = await addJobHandler();
+      console.log(res)
+      // reset form
+      resetFormHandler();
+    } catch (e) {
+      console.log(e)
+    }
+
   }
   return (
     <div className="container mt-4 bg-zinc-200/50 rounded-md relative ring-2 ring-slate-800 shadow-lg p-7 mb-7 max-w-[380px] sm:max-w-2xl">
@@ -209,7 +229,7 @@ export const JobForm = () => {
         </InputWrapper>
 
         <CustomizedHook
-          setSkillsHandler={test}
+          setSkillsHandler={syncSkillsHandler}
         />
 
         {/* <Test /> */}

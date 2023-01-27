@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client/edge"
-import { IJob } from "./job.interface";
+import type { IJob } from "./job.interface";
 
 export const prisma=new PrismaClient({
     datasources:{
       db:{
-        url: "process.env.DATABASE_URL"
+        url: 'prisma://aws-eu-central-1.prisma-data.com/?api_key=T7eTxa0vERI02U9TXPjUETxLb7c0GqRW9Etd8PR1Sd64tfzMD13Evb-2QVMV2vzd'
       }
     }
 })
@@ -28,6 +28,7 @@ export async function addJob(job:IJob){
         skills,
       }
     })
+    console.log(result);
     return result;
   }
   catch(err){
