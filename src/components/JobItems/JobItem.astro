@@ -1,19 +1,19 @@
 ---
-export interface JobItemType{
-    company:string,
-	title:string,
-	link:string,
-	email:string,
-	type:string,
-	deadline:string,
-	logo:string,
-	tags:string
+import type { IJob } from '@util/job.interface';
+
+export interface Props extends IJob{}
+const Job=Astro.props
+const {company, title, email, type, deadline, skills, link, logo}=Job
+const appplyLink= ()=>{
+    if(link===""){
+        return false
+    }
+    else{
+        return true
+    }
 }
-export interface Props extends JobItemType {}
 
-const {company,title,link,email,type,deadline,logo,tags}=Astro.props
 ---
-
 <div class="relative ring-1 rounded bg-zinc-300 ring-slate-800  flex flex-col p-4 w-96">
     <div class="flex justify-start">
         <div class="rounded-md bg-white p-2.5 w-16 h-16 justify-items-center">
@@ -27,12 +27,15 @@ const {company,title,link,email,type,deadline,logo,tags}=Astro.props
             <p class="text-sm">Apply before: {deadline}</p>
         </div>
     </div>
-    <a href={link} class="absolute bottom-0 bg-slate-700 text-white right-0  m-2 w-20 justify-center flex p-1 ring-1 ring-black rounded">
+    {appplyLink() && <a href={link} class="absolute bottom-0 bg-slate-700 text-white right-0  m-2 w-20 justify-center flex p-1 ring-1 ring-black rounded">
         Apply
     </a>
+    }
+
     <div class="mt-8 mx-4 text-xs">
         <ul class="flex space-x-2">
-            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">{tags}</li>
+            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">{skills}</li>
         </ul>
     </div>
 </div>
+

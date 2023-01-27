@@ -3,12 +3,26 @@ import { PrismaClient } from "@prisma/client/edge"
 export const prisma=new PrismaClient({
     datasources:{
       db:{
-        url: process.env.DATABASE_URL
+        url: "process.env.DATABASE_URL"
       }
     }
 })
 
-export async function getjj() {
-  const result=await prisma.job.findMany({})
+export async function getJobs(type:string) {
+  const result=await prisma.job.findMany({
+    where:{
+      type,
+    }
+  });
+  return result;
+}
+
+export async function auth(prvToken : any) {
+  const Token=prvToken.value;
+  const result=await prisma.lister.findFirst({
+    where:{
+      token: Token
+    }
+  })
   return result;
 }

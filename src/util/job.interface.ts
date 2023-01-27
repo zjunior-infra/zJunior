@@ -6,5 +6,5 @@ export type IJob ={
 	type:string,
 	deadline:string,
 	logo:string,
-	tags:string
+	skills:string
 }

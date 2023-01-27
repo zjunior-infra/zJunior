@@ -1,6 +1,18 @@
 ---
 import DefaultHeader from "@components/DefaultHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { auth } from "src/util/database";
+
+
+const url=new URL(Astro.url)
+if (Astro.cookies.has('token')){
+    const accessToken = Astro.cookies.get('token');
+    const verified = await auth(accessToken);
+    if(verified !== null){
+        return Astro.redirect(`${url.origin}/newjob/add`)
+    }
+}
+
 
 ---
 <BaseLayout title="JobForm" url="/newjob">
@@ -18,21 +30,15 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     const cookie=document.cookie
     const d=new Date()
     const url=new URL(location)
-    function checkCookie(){
-        if(cookie){
-            location.assign(`${url.href}/add`)
-        }
-    }
     function grantAccess(){
         const token=document.getElementById("secret");
         if(token.value){
             d.setTime(d.getTime()+ (30*24*60*60*1000))
             let expire=`expires=${d.toUTCString}`
             document.cookie=`token=${token.value};${expire};path=/`
-            checkCookie()
+            location.reload()
         }
-        alert("Enter your token")
-    } 
-    checkCookie()
+        else alert("Enter your token")
+    }
 </script>
 </BaseLayout>
