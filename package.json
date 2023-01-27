@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "npx prisma generate --data-proxy && astro build",
-    "preview": "astro preview",
+    "preview": "wrangler pages dev ./dist --env .env",
     "astro": "astro"
   },
   "dependencies": {
