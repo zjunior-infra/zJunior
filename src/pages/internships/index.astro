@@ -1,12 +1,13 @@
 ---
 import DefaultHeader from "@components/DefaultHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import JobItems from "@components/JobItems/JobItems.astro";
+import JobItem from "@components/JobItems/JobItem.astro";
 import type {IJob} from "@util/job.interface";
-import { getJobs, prisma } from "@util/database";
-import { Debug } from "astro/components";
-const jobs = await getJobs();
-
+const url=new URL(Astro.url);
+console.log(url.origin)
+const jobs = await fetch(`${url.origin}/api/internship.json`)
+.then((res) => res.json()) as IJob[];
+console.log(jobs);
 ---
 
 <BaseLayout title="Internships" description="Internships for all MEAN software engineer to start thier career"
@@ -14,9 +15,11 @@ url='/internships'>
 <DefaultHeader title="Internships within your Hand" description="Almost all the internships for MEAN software engineers in one place"></DefaultHeader>
 
 <div class="flex flex-col-2 grid-auto flex-wrap items-center justify-center sm:mx-20 my-20 gap-4">
-                <JobItems Jobs={jobs}/>
+        {jobs.map(job=>{
+            <JobItem Job={job}/>
+        })
+        }
 </div>
 
-<Debug data={jobs}/>
 
 </BaseLayout>

@@ -9,8 +9,12 @@ export const prisma=new PrismaClient({
     }
 })
 
-export async function getJobs() {
-  const result=await prisma.job.findMany();
+export async function getJobs(type:string) {
+  const result=await prisma.job.findMany({
+    where:{
+      type,
+    }
+  });
   return result;
 }
 
