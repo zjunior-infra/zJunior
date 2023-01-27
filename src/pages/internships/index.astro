@@ -6,8 +6,6 @@ import type {IJob} from "@util/job.interface";
 import { prisma } from "@util/database";
 import { Debug } from "astro/components";
 
-// const res= await fetch(`http://localhost:3000/api/getjobs.json`)
-// const jobs:Array<IJob> = await res.json();
 
 
 const jobs:Array<IJob>=await prisma.job.findMany({})
