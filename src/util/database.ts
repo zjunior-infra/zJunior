@@ -1,12 +1,6 @@
 import { PrismaClient } from "@prisma/client/edge"
 
-export const prisma=new PrismaClient({
-    datasources:{
-      db:{
-        url: "prisma://aws-eu-central-1.prisma-data.com/?api_key=nfdXbrN1710AWyrH6QCOth7LPi6VnNAwMW6lBJprXIeY3YxWLpsHT78GLgOxLeyw"
-      }
-    }
-})
+export const prisma=new PrismaClient()
 
 export async function getjj() {
   const result=await prisma.job.findMany({})
