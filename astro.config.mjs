@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   vite: {
     define: {
-      'process.env.DATABASE_URL': process.env.DATABASE_URL,
+      "process.env.DATABASE_URL": process.env.DATABASE_URL,
     },
   },
 });
