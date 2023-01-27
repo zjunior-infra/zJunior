@@ -4,7 +4,7 @@ import useInput from 'hooks/use-input';
 import InputWrapper from './wrappers/InputWrapper/InputWrapper';
 import CustomizedHook from './AutoCompleteInput/AutoCompleteInput';
 import Test from './AutoCompleteInput/Test';
-import { addJob } from '@util/database';
+import { addJob, getjj } from '@util/database';
 
 export const JobForm = () => {
   const [contactWay, setContactWay]: any = useState('link');
@@ -79,6 +79,7 @@ export const JobForm = () => {
     setSkillsValueHandler(value)
   }, [])
 
+  // getjj().then((res) => console.log(res)).catch((err) => console.log(err))
 
   let formIsValid = false;
   //check if form is valid
@@ -115,15 +116,30 @@ export const JobForm = () => {
   }
   const addJobHandler = async () => {
     console.log(1)
-    const res = await addJob({
-      company: enteredCompany,
-      title: enteredTitle,
-      type: enteredType,
-      deadline: enteredDeadLine,
-      skills: enteredSkills.map((el : any) => el.skill).join(),
-      logo: enteredLogo,
-      email: enteredEmail,
-      link: enteredLink
+    // const res = await addJob({
+    //   company: enteredCompany,
+    //   title: enteredTitle,
+    //   type: enteredType,
+    //   deadline: enteredDeadLine,
+    //   skills: enteredSkills.map((el : any) => el.skill).join(),
+    //   logo: enteredLogo,
+    //   email: enteredEmail,
+    //   link: enteredLink
+    // })
+    const res = await fetch('/addJob',{
+      method : "POST",
+      body  : 
+        {
+            company: enteredCompany,
+        title: enteredTitle,
+        type: enteredType,
+        deadline: enteredDeadLine,
+        skills: enteredSkills.map((el : any) => el.skill).join(),
+        logo: enteredLogo,
+        email: enteredEmail,
+        link: enteredLink
+        }
+      
     })
     console.log(res)
     return res;
@@ -132,8 +148,8 @@ export const JobForm = () => {
     e.preventDefault();
     // touch all form inputs
     touchFormHandler();
-    if (!formIsValid)
-      return;
+    // if (!formIsValid)
+    //   return;
     try {
       // add job to db
       const res = await addJobHandler();
