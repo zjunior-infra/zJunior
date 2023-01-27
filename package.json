@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^5.0.0",
+    "@astrojs/partytown": "^1.0.3",
     "@astrojs/react": "^1.2.2",
     "@astrojs/tailwind": "^3.0.0",
     "@emotion/react": "^11.10.5",

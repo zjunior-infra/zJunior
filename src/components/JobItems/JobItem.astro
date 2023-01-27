@@ -1,31 +1,40 @@
 ---
 import type { IJob } from '@util/job.interface';
 
-export interface Props{
-    Job: IJob;
-}
+export interface Props extends IJob{}
 const Job=Astro.props
+const {company, title, email, type, deadline, skills, link, logo}=Job
+const appplyLink= ()=>{
+    if(link===""){
+        return false
+    }
+    else{
+        return true
+    }
+}
 
 ---
 <div class="relative ring-1 rounded bg-zinc-300 ring-slate-800  flex flex-col p-4 w-96">
     <div class="flex justify-start">
         <div class="rounded-md bg-white p-2.5 w-16 h-16 justify-items-center">
-            <img src={Job.logo} class="items-center">
+            <img src={logo} class="items-center">
             
         </div>
-        <h1 class="absolute bottom-12 mx-1.5 text-sm">{Job.company}</h1>
+        <h1 class="absolute bottom-12 mx-1.5 text-sm">{company}</h1>
         <div class="flex flex-col justify-end mx-8 my-1">
-            <h1 class="font-bold">{Job.title}</h1>
-            <p class="text-sm">{Job.type}</p>
-            <p class="text-sm">Apply before: {Job.deadline}</p>
+            <h1 class="font-bold">{title}</h1>
+            <p class="text-sm">{type}</p>
+            <p class="text-sm">Apply before: {deadline}</p>
         </div>
     </div>
-    <a href={Job.link} class="absolute bottom-0 bg-slate-700 text-white right-0  m-2 w-20 justify-center flex p-1 ring-1 ring-black rounded">
+    {appplyLink() && <a href={link} class="absolute bottom-0 bg-slate-700 text-white right-0  m-2 w-20 justify-center flex p-1 ring-1 ring-black rounded">
         Apply
     </a>
+    }
+
     <div class="mt-8 mx-4 text-xs">
         <ul class="flex space-x-2">
-            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">{Job.skills}</li>
+            <li class="rounded-3xl px-2 bg-slate-900/50 text-zinc-300 hover:text-zinc-800 hover:bg-slate-100 duration-150">{skills}</li>
         </ul>
     </div>
 </div>
