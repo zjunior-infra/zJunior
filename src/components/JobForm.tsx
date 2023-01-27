@@ -3,8 +3,13 @@ import react from '@astrojs/react';
 import useInput from 'hooks/use-input';
 import InputWrapper from './wrappers/InputWrapper/InputWrapper';
 import CustomizedHook from './AutoCompleteInput/AutoCompleteInput';
-import Test from './AutoCompleteInput/Test';
-import { addJob, getjj } from '@util/database';
+import { ToastContainer, toast } from 'react-toastify';
+
+
+import 'react-toastify/dist/ReactToastify.css'; 
+
+// import Test from './AutoCompleteInput/Test';
+// import { addJob, getjj } from '@util/database';
 
 export const JobForm = () => {
   const [contactWay, setContactWay]: any = useState('link');
@@ -115,54 +120,77 @@ export const JobForm = () => {
     onBlurLinkHandler()
   }
   const addJobHandler = async () => {
-    console.log(1)
-    // const res = await addJob({
-    //   company: enteredCompany,
-    //   title: enteredTitle,
-    //   type: enteredType,
-    //   deadline: enteredDeadLine,
-    //   skills: enteredSkills.map((el : any) => el.skill).join(),
-    //   logo: enteredLogo,
-    //   email: enteredEmail,
-    //   link: enteredLink
-    // })
-    const res = await fetch('/addJob',{
-      method : "POST",
-      body  : 
-        {
-            company: enteredCompany,
-        title: enteredTitle,
-        type: enteredType,
-        deadline: enteredDeadLine,
-        skills: enteredSkills.map((el : any) => el.skill).join(),
-        logo: enteredLogo,
-        email: enteredEmail,
-        link: enteredLink
-        }
-      
+    const res = await fetch('/api/JobPost', {
+      method: "POST",
+      body:
+        JSON.stringify({
+          company: enteredCompany,
+          title: enteredTitle,
+          type: enteredType,
+          deadline: enteredDeadLine,
+          skills: enteredSkills.map((el: any) => el.skill).join(),
+          logo: enteredLogo,
+          email: enteredEmail,
+          link: enteredLink
+        })
     })
-    console.log(res)
     return res;
   }
   const onSubmitFormHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // touch all form inputs
     touchFormHandler();
-    // if (!formIsValid)
-    //   return;
+    if (!formIsValid)
+      return;
+    const formToast = toast.loading("Adding you job...")
     try {
       // add job to db
       const res = await addJobHandler();
-      console.log(res)
+      if (!res.ok) {
+        const resText = await res.text();
+        throw new Error(resText)
+      }
       // reset form
       resetFormHandler();
-    } catch (e) {
-      console.log(e)
+      toast.update(formToast,
+        {
+          render: "Your job has been added successfully",
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          isLoading: false,
+          type: toast.TYPE.SUCCESS,
+          closeButton: true,
+        }
+      )
+    } catch (e : any) {
+      toast.update(formToast,
+        {
+          render: e.message,
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          isLoading: false,
+          type: toast.TYPE.ERROR,
+          closeButton: true,
+        })
     }
 
   }
   return (
     <div className="container mt-4 bg-zinc-200/50 rounded-md relative ring-2 ring-slate-800 shadow-lg p-7 mb-7 max-w-[380px] sm:max-w-2xl">
+      <ToastContainer />
+
       <h1 className="text-center text-lg absolute top-0 left-0 ml-4 mt-2 text-slate-800">Add a Job </h1>
       <form onSubmit={onSubmitFormHandler}>
         <InputWrapper
@@ -321,5 +349,9 @@ export const JobForm = () => {
       </form>
     </div>
   )
+}
+
+function saveSettings(settings: any): Promise<unknown> {
+  throw new Error('Function not implemented.');
 }
 
