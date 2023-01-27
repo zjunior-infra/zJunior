@@ -1,19 +1,12 @@
 ---
-import { prisma } from "@prisma/client/edge";
+import JobItem from "./JobItem.astro";
 import type {IJob} from "@util/job.interface";
 
-export interface Props{
-    JobsItem: IJob[];
+export interface Props {
+    Jobs: IJob;
 }
-const {JobsItem} = Astro.props
-
-export async function getStaticProps() {
-    const res = await prisma.jobs.findMany()
-    const JobsItem = await res.json()
-    return {
-        props: {
-            JobsItem
-        }
-    }
-}
+const jobs:any=Astro.props
 ---
+jobs.map((job:IJob) => (
+    <JobItem Job={job} />
+))

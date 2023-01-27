@@ -3,13 +3,9 @@ import DefaultHeader from "@components/DefaultHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import JobItems from "@components/JobItems/JobItems.astro";
 import type {IJob} from "@util/job.interface";
-import { prisma } from "@util/database";
+import { getJobs, prisma } from "@util/database";
 import { Debug } from "astro/components";
-
-
-
-const jobs:Array<IJob>=await prisma.job.findMany({})
-console.log(jobs)
+const jobs = await getJobs();
 
 ---
 
@@ -18,9 +14,9 @@ url='/internships'>
 <DefaultHeader title="Internships within your Hand" description="Almost all the internships for MEAN software engineers in one place"></DefaultHeader>
 
 <div class="flex flex-col-2 grid-auto flex-wrap items-center justify-center sm:mx-20 my-20 gap-4">
-                <JobItems JobsItem={jobs}/>
+                <JobItems Jobs={jobs}/>
 </div>
 
-
+<Debug data={jobs}/>
 
 </BaseLayout>
