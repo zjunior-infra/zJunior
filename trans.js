@@ -36949,12 +36949,6 @@ ZSeries
 console.time()
 const arr = x.split('\n')
 const newArr = arr.map(el => `{skill : ` + `\`` + el + `\``+ `},\n`)
-newArr.filter(el => el?.skill?.contains('sss'))
-newArr.filter(el => el?.skill?.contains('sss'))
-newArr.filter(el => el?.skill?.contains('sss'))
-newArr.filter(el => el?.skill?.contains('sss'))
-newArr.filter(el => el?.skill?.contains('sss'))
-// newArr.forEach(el => console.log(el))
 
 const newTxt = newArr.join('')
 // console.log(newTxt)
