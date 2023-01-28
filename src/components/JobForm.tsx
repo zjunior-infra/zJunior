@@ -140,8 +140,10 @@ export const JobForm = () => {
     e.preventDefault();
     // touch all form inputs
     touchFormHandler();
-    if (!formIsValid)
+    if (!formIsValid){
+      toast.error("Please fill all required fields")
       return;
+    }
     const formToast = toast.loading("Adding you job...")
     try {
       // add job to db
@@ -206,7 +208,7 @@ export const JobForm = () => {
             placeholder="Instabug"
             value={enteredCompany}
             onChange={onChangeCompanyHandler}
-            className="block w-full p-2 shadow-md text-gray-900 border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100" />
+            className={`block w-full p-2 shadow-md text-gray-900 border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100 ${companyHasError ?  'border-red-700': ''}`}/>
         </InputWrapper>
 
         <InputWrapper
@@ -220,7 +222,7 @@ export const JobForm = () => {
             id="title"
             value={enteredTitle}
             onChange={onChangeTitleHandler}
-            className="block w-full p-2 shadow-md text-gray-900  border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100" />
+            className={`block w-full p-2 shadow-md text-gray-900  border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100  ${titleHasError ?  'border-red-700': ''}`}/>
         </InputWrapper>
         <InputWrapper
           title="Type"
@@ -234,7 +236,7 @@ export const JobForm = () => {
             placeholder='Choose the type'
             value={enteredType}
             onChange={onChangeTypeHandler}
-            className="w-full p-2 shadow-md text-gray-900 border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100ne">
+            className={`w-full p-2 shadow-md text-gray-900 border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100ne ${typeHasError ?  'border-red-700': ''}`}>
             <option >Choose the type</option>
             <option value="Internship">Internship</option>
             <option value="EntryLevel">EntryLevel</option>
@@ -246,7 +248,7 @@ export const JobForm = () => {
         >
           <input
             placeholder='Deadline'
-            className="w-52 p-2 sm:cursor-pointer shadow-md text-gray-900 border-gray-300 rounded-md border-[1px] bg-white sm:text-xs hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100"
+            className={`w-52 p-2 sm:cursor-pointer shadow-md text-gray-900 border-gray-300 rounded-md border-[1px] bg-white sm:text-xs hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100 ${deadLineHasError ?  'border-red-700': ''}` }
             type="date"
             id="deadline"
             name='deadline'
@@ -269,7 +271,7 @@ export const JobForm = () => {
             name="logo"
             value={enteredLogo}
             onChange={onChangeLogoHandler}
-            className="block w-full p-2 shadow-md text-gray-900 border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100" />
+            className={`block w-full p-2 shadow-md text-gray-900 border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100 ${logoHasError ?  'border-red-700': ''}`}/>
         </InputWrapper>
 
         <CustomizedHook
@@ -320,7 +322,7 @@ export const JobForm = () => {
                 name="link"
                 value={enteredLink}
                 onChange={onChangeLinkHandler}
-                className="block w-full p-2 shadow-md text-gray-900  border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100" />
+                className={`block w-full p-2 shadow-md text-gray-900  border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100  ${linkHasError ?  'border-red-700': ''}`}/>
             </InputWrapper>
           ) : (
             <InputWrapper
@@ -334,7 +336,7 @@ export const JobForm = () => {
                 name="email"
                 value={enteredEmail}
                 onChange={onChangeEmailHandler}
-                className="block w-full p-2 shadow-md text-gray-900  border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100" />
+                className={`block w-full p-2 shadow-md text-gray-900  border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100  ${emailHasError ?  'border-red-700': ''}`}/>
             </InputWrapper>
           )
         }
