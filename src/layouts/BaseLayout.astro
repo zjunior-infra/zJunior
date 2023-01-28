@@ -2,7 +2,7 @@
 import { siteConfig } from '../util/siteConfig'
 import Navigation from '@components/Navigation.astro'
 import Footer from '@components/Footer.astro'
-import Analytics from '@components/Analytics.astro'
+import Analytics from '@components/Analytics/Analytics.astro'
 
 export interface Props{
     title: string,
@@ -40,7 +40,7 @@ const currentAbsoluteLink=`https://juniorjobs.pages.dev${url}`
     <meta name='twitter:creator' content='@eitmg' />
     <meta property='og:image:width' content='1200' />
     <meta property='og:image:height' content='630' />
-    <meta property='og:image' content='' />
+    <meta property='og:image' content="http://juniorjobs.pages.dev/images/og.png" />
     <meta property='og:image:alt' content='JuniorsJob' />
     <meta property='og:site_name' content='JuniorsJob' />
     <meta property='og:title' content={title} />
