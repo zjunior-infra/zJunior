@@ -10,7 +10,7 @@ export default defineConfig({
   adapter: cloudflare({mode:'directory'}),
   integrations: [tailwind(), react(), partytown({
     config: { debug: false },
-    // @ts-ignore
+    //@ts-ignore
     forward: ["dataLayer.push"],
   })],
   vite: {
