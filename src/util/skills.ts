@@ -170,8 +170,6 @@ const skills : ISkill[] = [
 {skill : `Spring Roo`},
 {skill : `Spring Security`},
 {skill : `Spring Webflow`},
-{skill : `SpringSource`},
-
 {skill : `Test Assurance`},
 {skill : `Test Automation`},
 {skill : `Test Automation Framework`},
