@@ -171,6 +171,10 @@ const skills : ISkill[] = [
 {skill : `Spring Security`},
 {skill : `Spring Webflow`},
 {skill : `SpringSource`},
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23b526fce5af6fcde0ba2b143eb75ab802e08dc4
 {skill : `Test Assurance`},
 {skill : `Test Automation`},
 {skill : `Test Automation Framework`},

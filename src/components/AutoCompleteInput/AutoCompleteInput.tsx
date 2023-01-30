@@ -176,7 +176,7 @@ export default function CustomizedHook({setSkillsHandler} : IProps) {
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    defaultValue: [skills[2169]],
+    defaultValue: [skills[91]],
     multiple: true,
     options: skills,
     getOptionLabel: (option) => option.skill,
@@ -193,7 +193,7 @@ export default function CustomizedHook({setSkillsHandler} : IProps) {
         <Label {...getInputLabelProps()} className='block mb-2 text-sm font-medium  text-zinc-800'>Skills</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option: ISkill, index: number) => (
-            <StyledTag label={option.skill} {...getTagProps({ index })} />
+            <StyledTag label={option?.skill} {...getTagProps({ index })} />
           ))}
           <input {...getInputProps()} />
         </InputWrapper>
