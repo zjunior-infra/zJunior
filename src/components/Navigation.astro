@@ -5,11 +5,6 @@ const navigation = [
     href: "/programs",
   },
   {
-    name: "GitHub",
-    href: "https://github.com/mahmoudgalalz/juniorjobs",
-    external: true,
-  },
-  {
     name: "About",
     href: "/about",
   },
@@ -17,11 +12,11 @@ const navigation = [
 const pathname=Astro.url.pathname
 ---
 
-
-<header class="top-0 z-30 w-full px-4 sm:fixed backdrop-blur bh-zinc-900/50">
+<header class="top-0 z-30 w-full px-4 bg-white sm:bg-transparent sm:fixed">
   <div class="container mx-auto">
     <div class="flex flex-col items-center justify-between gap-2 pt-6 sm:h-20 sm:flex-row sm:pt-0">
-      <a href="/" class="text-2xl font-semibold duration-150 text-slate-700 hover:text-zinc-500">
+      <img src="/images/logo.png" alt="Logo" class="w-9">
+      <a href="/" class="text-sm font-medium duration-150 text-blue-600 sm:text-white sm:hover:text-blue-600  hover:text-blue-600/50">
         Junior Jobs
       </a>
       {/* Desktop navigation */}
@@ -30,11 +25,11 @@ const pathname=Astro.url.pathname
           {navigation.map((item) => (
             <li class="">
               <a
-                class={`flex items-center px-3 py-2 duration-150 text-sm sm:text-base  hover:text-zinc-400
-                ${pathname === item.href ? "text-zinc-500" : "text-zinc-800"}`}
+                class={`flex items-center px-3 py-2 duration-150 text-sm sm:text-sm sm:text-white hover:text-blue-600
+                ${pathname === item.href ? "text-blue-600" : "text-zinc-700"}`}
                 href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
+                // target={item.external ? "_blank" : undefined}
+                // rel={item.external ? "noopener noreferrer" : undefined}
               >
                 {item.name}
               </a>
@@ -44,9 +39,8 @@ const pathname=Astro.url.pathname
       </nav>
     </div>
   </div>
-
-  {/* Fancy fading bottom border */}
 </header>
+
 
 
 
