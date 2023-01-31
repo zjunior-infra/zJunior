@@ -1,7 +1,9 @@
 export const siteConfig={
-    title: 'Jobs for Entrylevel and students',
-    description: 'Opprtunity for students and fresh-graduates to find jobs in MEAN and Egypt',
+    title: 'Junior Jobs',
+    description: 'Opprtunities for students and fresh-graduates to find jobs in MEAN and Egypt, DevOps, Software Engineers, UI/UX, Backend Developers',
     keywords:[
+        'junior jobs',
+        'Junior jobs',
         'jobs',
         'internships',
         'intern',

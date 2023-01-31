@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "dev:phone": "astro dev --host",
     "start": "astro dev",
     "build": "npx prisma generate --data-proxy && astro build",
     "preview": "wrangler pages dev ./dist --compatibility-date=2023-01-27",

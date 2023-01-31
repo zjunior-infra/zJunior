@@ -3,37 +3,127 @@ import Baselayout from "@layouts/BaseLayout.astro";
 
 ---
 
-<Baselayout title="Opportunities for students"
-description='Internships and entrylever jobs for all students and fresh-graduates'
+<Baselayout title="Junior Jobs"
+description='Internships and Entry-level jobs for all students and fresh-graduates'
 url="/">
 
-<div class="flex flex-col gap-8 pb-8 md:gap-16 md:pb-16 xl:pb-24">
-  <div class="flex flex-col items-center justify-center max-w-3xl px-8 mx-auto mt-8 sm:min-h-screen sm:mt-0 sm:px-0">
-    <div>
-      <h1 class="py-4 text-5xl font-bold tracking-tight text-center text-transparent bg-gradient-to-t bg-clip-text from-zinc-400 to-slate-700 sm:text-7xl">
-        Gain your work experience now
+<section
+  class="relative bg-[url(/images/banner.png)] bg-cover bg-center bg-no-repeat"
+>
+  <div
+    class="absolute inset-0 bg-white/60 sm:bg-transparent sm:bg-gradient-to-t sm:from-[#0374E2] sm:to-transparent"
+  ></div>
+
+  <div
+    class="relative mx-auto justify-center max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
+  >
+    <div class="max-w-xl text-center sm:text-left">
+      <h1 class="text-3xl text-[#0374E2] sm:text-white text-center font-extrabold sm:text-7xl">
+        Gain Your Work
+        Experience Now
       </h1>
-      <p class="mt-6 leading-5 text-zinc-600 sm:text-center">
-        We have collected the Software engineering related programs, jobs and internships in a one place, stop searching just <span class="font-bold text-lg">apply</span>.
+
+      <p class="mt-4 text-slate-700 sm:text-white text-center max-w-xl sm:text-md sm:leading-relaxed">
+        We have collected Software Engineering related programs, jobs and internships in a one place, stop searching just <strong>Apply.</strong>
       </p>
-      <div class="flex flex-col justify-center gap-4 mx-auto mt-8 sm:flex-row sm:max-w-lg ">
+
+      <div class="mt-20 flex flex-wrap justify-center gap-4 sm:gap-28 text-center">
         <a
           href="/internships"
-          class="sm:w-1/2 sm:text-center inline-block space-x-2 rounded px-4 py-1.5 md:py-2 text-base font-semibold leading-7 text-white  bg-slate-600 ring-1  hover:bg-white hover:text-zinc-900 duration-150 hover:ring-slate-800 hover:drop-shadow-cta"
+          class="block w-full rounded-3xl bg-white px-16 py-4 text-sm font-medium  text-[#0374E2] shadow-lg hover:bg-transparent hover:ring-2 hover:ring-white hover:text-white duration-150 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
         >
           Internships
         </a>
+
         <a
-          href="/entry"
-          class="sm:w-1/2 sm:text-center inline-block transition-all space-x-2  rounded px-4 py-1.5 md:py-2 text-base font-semibold leading-7 bg-zinc-400 text-slate-200 ring-1 ring-transparent hover:text-zinc-100 hover:ring-zinc-100  hover:bg-slate-600 duration-150 hover:drop-shadow-cta"
+          href="entry"
+          class="block w-full rounded-3xl bg-transparent ring-2 ring-white px-16 py-4 text-sm font-medium  text-white shadow-lg hover:bg-[#0374E2] hover:ring-0  hover:text-white duration-150 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
         >
-          Entry Level
+          Learn More
         </a>
       </div>
     </div>
   </div>
+</section>
 
-</div>
+<section class="bg-[#0374E2] mt-5">
+  <div class="mx-auto max-w-screen-xl py-6">
+    <div class="mb-10 py-8">
+      <dl class="grid grid-cols-1 gap-20 sm:grid-cols-3">
+        <div
+          class="flex flex-col px-4 text-center"
+        >
+          <dt class="relative top-14 text-sm text-white">
+            Entry-level Opportunities
+          </dt>
+
+          <dd class="text-4xl font-extrabold text-white md:text-5xl">
+            <div class="relative left-24 sm:left-16 py-2 w-52 z-10 bg-gradient-to-r rounded-3xl from-yellow-300 to-transparent">
+              <div class="absolute z-20 left-16 sm:left-12 -bottom-2">
+                <p>780+</p>
+              </div>
+            </div>
+          </dd>
+        </div>
+        
+
+        <div
+          class="flex flex-col px-4 text-center"
+        >
+          <dt class="relative top-14 text-sm text-white">
+            Internships Opportunities
+          </dt>
+
+          <dd class="text-4xl font-extrabold text-white md:text-5xl">
+            <div class="relative left-24 sm:left-16 py-2 w-52 z-10 bg-gradient-to-r rounded-3xl from-yellow-300 to-transparent">
+              <div class="absolute z-20 left-16 sm:left-12 -bottom-2">
+                <p>420+</p>
+              </div>
+            </div>
+          </dd>
+        </div>
+
+        <div
+          class="flex flex-col px-4 text-center"
+        >
+          <dt class="relative top-14 text-sm text-white">
+            Users
+          </dt>
+
+          <dd class="text-4xl font-extrabold text-white md:text-5xl">
+            <div class="relative left-24 sm:left-16 py-2 w-52 z-10 bg-gradient-to-r rounded-3xl from-yellow-300 to-transparent">
+              <div class="absolute z-20 left-16 sm:left-12 -bottom-2">
+                <p>1500+</p>
+              </div>
+            </div>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="mx-auto max-w-screen-xl px-20 sm:pb-44 my-24">
+      <h1 class="font-bold text-xl tracking-wider">What is Junior Jobs?
+        <div class="py-1 w-28 bg-[#0374E2] rounded-md"></div>
+      </h1>
+      <p class="leading-9 tracking-wide text-clip sm:max-w-lg mt-12">
+        In our first release junior jobs offers you all of the entry-level and internships opportunities of MENA region. Wait us on the coming releases with more stuff to help you in software<br> engineering field.  
+      </p>
+  </div>
+  <div class="flex flex-col sm:flex-row justify-center sm:gap-80 py-20  bg-[#FBC252]">
+    <div class="px-8 max-sm:p-10">
+      <h1 class="text-white tracking-wide text-clip font-bold text-3xl">Get New Jobs Notification!</h1>
+      <p class="text-sm tracking-wide text-clip text-white font-normal">Subscribe & get all related jobs notification.</p>
+    </div>
+    <div class="flex flex-none max-sm:p-4">
+      <input class="py-0 px-2 rounded-l-lg " type="text" placeholder="Enter Your Email">
+      <button class="py-4 w-60 sm:w-32 text-white bg-black/80 duration-100 hover:bg-black rounded-r-lg">Subscribe</button>
+    </div>
+  </div>
+</section>
 
 </Baselayout>
+
 
