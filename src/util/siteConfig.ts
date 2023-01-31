@@ -2,6 +2,8 @@ export const siteConfig={
     title: 'Junior Jobs',
     description: 'Opprtunity for students and fresh-graduates to find jobs in MEAN and Egypt',
     keywords:[
+        'junior jobs',
+        'Junior jobs',
         'jobs',
         'internships',
         'intern',
