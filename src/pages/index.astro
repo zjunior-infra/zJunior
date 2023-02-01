@@ -1,11 +1,50 @@
 ---
 import Baselayout from "@layouts/BaseLayout.astro";
-
+const navigation = [
+  {
+    name: "Programs",
+    href: "/programs",
+  },
+  {
+    name: "About",
+    href: "/about",
+  },
+]
+const pathname=Astro.url.pathname
 ---
 
 <Baselayout title="Junior Jobs"
 description='Internships and Entry-level jobs for all students and fresh-graduates'
-url="/">
+url="/" includeHeader={false}>
+
+<header class="top-0 z-30 w-full px-4 bg-white sm:absolute bg-transparent">
+  <div class="container mx-auto">
+    <div class="flex flex-col items-center justify-between gap-2 pt-6 sm:h-20 sm:flex-row sm:pt-0">
+      <img src="/images/logo.png" alt="Logo" class="w-9">
+      <a href="/" class="text-sm font-medium duration-150 sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50">
+        Junior Jobs
+      </a>
+      {/* Desktop navigation */}
+      <nav class="flex items-center grow">
+        <ul class="flex flex-wrap items-center justify-end gap-4 grow">
+          {navigation.map((item) => (
+            <li class="">
+              <a
+                class={`flex items-center px-3 py-2 duration-150 text-sm sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50
+                ${pathname === item.href ? "text-blue-600" : "text-zinc-700"}`}
+                href={item.href}
+                // target={item.external ? "_blank" : undefined}
+                // rel={item.external ? "noopener noreferrer" : undefined}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
 
 <section
   class="relative bg-[url(/images/banner.png)] bg-cover bg-center bg-no-repeat"

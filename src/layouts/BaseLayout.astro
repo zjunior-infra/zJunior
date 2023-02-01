@@ -9,13 +9,15 @@ export interface Props{
     description?:string
     keywords?:string[]
     url:string
+    includeHeader?:boolean
 }
 
 const {
     title= siteConfig.title,
     description= siteConfig.description,
     keywords= siteConfig.keywords,
-    url=''
+    url='',
+    includeHeader=true
 }
 = Astro.props
 
@@ -94,7 +96,7 @@ const currentAbsoluteLink=`${DomainURL}${url}`
     <Analytics/>
 </head>
 <body class="relative min-h-screen bg-white">
-    <Navigation />
+    {includeHeader? <Navigation/> : '' }
     <slot/>
     <Footer/>
 </body>
