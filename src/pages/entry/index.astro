@@ -1,7 +1,30 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import JobItem from "@components/JobItems/JobItem.astro";
+import { getJobs } from "@util/database";
+const url=new URL(Astro.url);
+const jobs = await getJobs("entrylevel")
 ---
 
-<BaseLayout title="Entry-level jobs" description="Entry-level jobs for fresh-graduates for all MEAN software engineer to start thier career"
-url='/entry'>
+<BaseLayout title="Internships" description="Internships for all MEAN software engineer to start thier career"
+url='/internships'>
+<div class="mt-20 sm:mt-40 mx-10 sm:mx-40 text-[#002838] text-xl font-bold">
+    <h1 class="text-[#002838]">Explore New Career Opportunities</h1>
+    <hr class="block border-4 border-[#0374E2] rounded-md w-20 items-center">
+</div>
+
+<div class="grid sm:grid-cols-2 items-center sm:mx-40 lg:grid-cols-3 gap-6 place-items-center my-20">
+        {jobs.map((job) => (
+            <JobItem title={job.title}
+            company={job.company}
+            skills={job.skills}
+            type={job.type}
+            link={job.link}
+            logo={job.logo}
+            deadline={job.deadline}
+            email={job.email}
+            ></JobItem>
+        ))}
+</div>
+
 </BaseLayout>
