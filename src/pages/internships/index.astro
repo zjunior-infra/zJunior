@@ -1,5 +1,4 @@
 ---
-import DefaultHeader from "@components/DefaultHeader.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import JobItem from "@components/JobItems/JobItem.astro";
 import { getJobs } from "@util/database";
@@ -9,9 +8,12 @@ const jobs = await getJobs("internship")
 
 <BaseLayout title="Internships" description="Internships for all MEAN software engineer to start thier career"
 url='/internships'>
-<DefaultHeader title="Internships within your Hand" description="Almost all the internships for MEAN software engineers in one place"></DefaultHeader>
+<div class="mt-20 sm:mt-40 mx-10 sm:mx-40 text-[#002838] text-xl font-bold">
+    <h1 class="text-[#002838]">Explore New Career Opportunities</h1>
+    <hr class="block border-4 border-[#0374E2] rounded-md w-20 items-center">
+</div>
 
-<div class="flex flex-col-2 grid-auto flex-wrap items-center justify-center sm:mx-20 my-20 gap-4">
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center my-20">
         {jobs.map((job) => (
             <JobItem title={job.title}
             company={job.company}
@@ -24,6 +26,5 @@ url='/internships'>
             ></JobItem>
         ))}
 </div>
-
 
 </BaseLayout>
