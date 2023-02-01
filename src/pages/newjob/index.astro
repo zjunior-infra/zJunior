@@ -35,7 +35,7 @@ if (Astro.cookies.has('token')){
         if(token.value){
             d.setTime(d.getTime()+ (30*24*60*60*1000))
             let expire=`expires=${d.toUTCString}`
-            document.cookie=`token=${token.value};${expire};path=/`
+            document.cookie=`token=${token.value};${expire};path=/ ;SameSite=None;Secure`
             location.reload()
         }
         else alert("Enter your token")
