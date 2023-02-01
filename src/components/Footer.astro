@@ -1,30 +1,32 @@
 ---
-
+import { Icon } from 'astro-icon'
 ---
 
+
 <footer class="bg-[#0374E2] mt-6">
-  <div class="flex flex-col gap-1 px-6 pt-14 pb-4 mx-auto text-white max-w-7xl lg:px-8">
+  
+  <div class="flex flex-col gap-1 px-6 pt-14 pb-4 mx-auto max-w-7xl lg:px-8">
     
       <ul class="flex flex-row ">
         <li class="mx-1">
-          <a target="_blank" href="https://github.com/mahmoudgalalz/juniorjobs">
-          <img class="w-5" src="/images/AMZN.png">
+          <a target="_blank" href="#">
+            <Icon name="mdi:linkedin" size={24} color="white"/>
+          </a>
+        </li>
+        <li class="mx-1">
+          <a target="_blank" href="#">
+            <Icon name="mdi:facebook" size={24} color="white"/>
           </a>
         </li>
         <li class="mx-1">
           <a target="_blank" href="https://github.com/mahmoudgalalz/juniorjobs">
-          <img class="w-5" src="/images/AMZN.png">
-          </a>
-        </li>
-        <li class="mx-1">
-          <a target="_blank" href="https://github.com/mahmoudgalalz/juniorjobs">
-          <img class="w-5" src="/images/AMZN.png">
+            <Icon name="mdi:github" size={24} color="white"/>
           </a>
         </li>
       </ul>
       
     <hr class="mt-6 bg-white/50 border-transparent border-1 rounded-md">
-    <div class="flex mt-6 gap-12 text-sm font-normal ">
+    <div class="flex mt-6 gap-12 text-sm font-normal text-white">
       <div class="flex flex-col">
         <a href="/" class="my-2 duration-150 hover:text-zinc-600">Home</a>
         <a href="/about" class="my-2 duration-150 hover:text-zinc-600">About</a>
@@ -36,7 +38,7 @@
       </div>
       
     </div>
-    <div class="flex flex-col mt-4 leading-5 mx-auto text-center font-light text-xs">
+    <div class="flex flex-col mt-4 leading-5 mx-auto text-center text-white font-light text-xs">
       <p>
         Built by{" "}
         <a href="https://twitter.com/eitmg" class="font-semibold duration-150 hover:text-zinc-600">
