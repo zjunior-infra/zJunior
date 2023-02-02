@@ -23,15 +23,21 @@ const {
 
 const DomainURL = Astro.url.origin
 const currentAbsoluteLink=`${DomainURL}${url}`
-
+console.log(currentAbsoluteLink)
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="latin">
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name='generator' content={Astro.generator} />
-    <meta name='description' content={description} />   
+    <meta name='description' content={description} />
+    <meta name='robots' content='index, follow' />
+    <meta name='distribution' content='global' />
+    <meta name='audience' content='all' />
+    <meta name='coverage' content='Worldwide' />
+    <meta name='topic' content={keywords.join(', ')} />
+    <meta name='summary' content={description} />
     <meta name='author' content='Mahmoud Galal' />
     <meta name='keywords' content={keywords.join(', ')} />
     <title>{title}</title>
@@ -58,30 +64,25 @@ const currentAbsoluteLink=`${DomainURL}${url}`
     <meta name='twitter:creator' content='@eitmg'/>
     <meta name='twitter:site' content="@eitmg"/>
     <meta name='twitter:domain' content={`${currentAbsoluteLink}`}/>
-    <meta name='twitter:app:name:iphone' content='JuniorsJob'/>
-    <meta name='twitter:app:name:ipad' content='JuniorsJob'/>
-    <meta name='twitter:app:name:googleplay' content='JuniorsJob'/>
-    <meta name='twitter:app:url:iphone' content={`${currentAbsoluteLink}`}/>
-    <meta name='twitter:app:url:ipad' content={`${currentAbsoluteLink}`}/>
-    <meta name='twitter:app:url:googleplay' content={`${currentAbsoluteLink}`}/>
-
-
     <meta property='og:image:width' content='1200' />
     <meta property='og:image:height' content='600' />
     <meta property='og:image' itemprop="image" content={`${DomainURL}/images/og_banner.png`} />
-    <meta property='og:image:alt' content='JuniorsJob' />
-    <meta property='og:site_name' content='JuniorsJob' />
+    <meta property='og:image:alt' content='Junior Jobs' />
+    <meta property='og:site_name' content='Junior Jobs' />
     <meta property='og:title' content={title} />
     <meta property='og:description' content={description} />
     <meta property='og:type' content='website' />
     <meta property='og:url' content={currentAbsoluteLink} />
     <link rel='canonical' href={currentAbsoluteLink} />
     <meta name='mobile-web-app-capable' content='yes' />
+    <meta itemprop="url" content={DomainURL}/>
+    <meta itemprop="name" content="Junior Jobs"/>
+
 
     <meta name='apple-mobile-web-app-capable' content='yes' />
     <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
-    <meta name='apple-mobile-web-app-title' content='JuniorsJob' />
-    <meta name='application-name' content='JuniorsJob' />
+    <meta name='apple-mobile-web-app-title' content='JuniorJobs' />
+    <meta name='application-name' content='JuniorJobs' />
 
     <link rel='apple-touch-icon' sizes='180x180' href='/manifest/apple-touch-icon.png' />
     <meta name='msapplication-TileColor' content='#101010' />
@@ -95,7 +96,7 @@ const currentAbsoluteLink=`${DomainURL}${url}`
     <link rel='icon' href='/manifest/favicon.ico' type='image/svg+xml' />
     <Analytics/>
 </head>
-<body class="relative min-h-screen bg-white">
+<body class="relative bg-white">
     {includeHeader? <Navigation/> : '' }
     <slot/>
     <Footer/>
