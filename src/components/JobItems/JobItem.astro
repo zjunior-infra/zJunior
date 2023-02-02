@@ -4,14 +4,7 @@ import type { IJob } from '@util/job.interface';
 export interface Props extends IJob{}
 const Job=Astro.props
 const {company, title, email, type, deadline, skills, link, logo}=Job
-const appplyLink= ()=>{
-    if(link===""){
-        return false
-    }
-    else{
-        return true
-    }
-}
+
 const tags=skills.split(",")
 console.log(tags)
 ---
@@ -31,7 +24,7 @@ console.log(tags)
                     })}
                 </ul>
             </div>
-        <button type="button" class="absolute rounded-lg bg-[#0374E2] text-white w-16 -my-4 sm:w-20 mx-44 sm:mx-60 item-center text-[10px] h-[1.2rem] hover:text-zinc-800 hover:bg-yellow-300 duration-150 hover:shadow-md">Apply</button>
+        <button type="button" class="absolute rounded-lg bg-[#0374E2] text-white w-16 -my-4 sm:w-20 mx-44 sm:mx-64 item-center text-[10px] h-[1.2rem] hover:text-zinc-800 hover:bg-yellow-300 duration-150 hover:shadow-md">Apply</button>
     </div>
 </div>
 
