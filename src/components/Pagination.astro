@@ -1,0 +1,16 @@
+---
+const {prevUrl, nextUrl} = Astro.props
+---
+
+<nav role="navigation" aria-label="Pagination Navigation" class="flex gap-4 justify-center">
+    {
+        prevUrl && (
+            <a href={prevUrl} class="border-2 border-[#002838] rounded-sm px-2 hover:bg-[#002838] hover:text-white duration-150 hover:shadow-md">Prev</a>
+        )
+    }
+    {
+        nextUrl && (
+            <a href={nextUrl} class="border-2 border-[#002838] rounded-sm px-2 hover:bg-[#002838] hover:text-white duration-150 hover:shadow-md">Next</a>
+        )
+    }
+</nav>

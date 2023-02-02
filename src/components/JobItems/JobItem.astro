@@ -4,9 +4,8 @@ import type { IJob } from '@util/job.interface';
 export interface Props extends IJob{}
 const Job=Astro.props
 const {company, title, email, type, deadline, skills, link, logo}=Job
-
 const tags=skills.split(",")
-console.log(tags)
+
 ---
 <div class="flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800 w-[24rem] sm:w-[30rem] h-36 shadow-md duration-150 hover:border-zinc-500 hover:shadow-lg">
         <img src={logo} class="bg-white w-28 h-36 object-center object-cover">
