@@ -4,7 +4,13 @@ module.exports = {
 	,'./src/components/JobForm.tsx'
 	],
 	theme: {
-		extend: {},
+		extend: {
+			colors: {
+				'primary': '#0374E2',
+				'secondary': '#002838',
+				'accent': '#FBC252',
+			}
+		},
 		container:{
 			center:true
 		}

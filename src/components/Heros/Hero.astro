@@ -1,0 +1,44 @@
+---
+import Behance from "@components/Icons/Behance.astro";
+import Github from "@components/Icons/Github.astro";
+import LinkedIn from "@components/Icons/LinkedIn.astro";
+
+const { bg, name, title, img, socialMedia, email, icons } = Astro.props
+---
+
+<div class="bg-white w-fit px-4 pt-4 rounded-t-full">
+  <div class={`${bg} rounded-[50%] overflow-hidden h-44 w-44 mx-auto sm:w-64 sm:h-64`}>
+    <img src={img} alt="hero" class="">
+  </div>
+  <div class="my-5">
+    <p class="text-secondary text-center">{name}</p>
+    <p class="text-secondary font-light text-center">{title}</p>
+    <div class="flex justify-center items-center gap-2 my-2">
+      {socialMedia.behance && 
+      <a href={socialMedia.behance} aria-label="Behance" target="_blank">
+        <Behance />
+      </a>
+      }
+      {socialMedia.linkedin && 
+        <a href={socialMedia.linkedin} aria-label="Linkedin" target="_blank">
+          <LinkedIn />
+        </a>
+        }
+        {socialMedia.github && 
+          <a href={socialMedia.github} aria-label="Github" target="_blank">
+            <Github />
+          </a>
+          }
+    </div>
+    <div class="my-12">
+      <span class="w-2 h-2 rounded-[50%] bg-[#FFADAD] inline-block"></span>
+      <a href={`mailto:${email}`} class="ml-2 font-light">{email}</a>
+    </div>
+    <div class="flex gap-3 items-end justify-evenly">
+      {icons?.map((Icon : any) => (
+        <Icon />
+      ))
+    }
+    </div>
+  </div>
+</div>

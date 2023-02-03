@@ -1,0 +1,37 @@
+---
+import Heros from "@components/Heros/Heros.astro";
+import Navigation from "@components/Navigation.astro";
+import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
+import Baselayout from "@layouts/BaseLayout.astro";
+
+const pathname=Astro.url.pathname
+const navigation = [
+  {
+    name: "Programs",
+    href: "/programs",
+  },
+  // {
+  //   name:"Hackathons",
+  //   href:"/hackathons"
+  // },
+  // {
+  //   name: "Blog",
+  //   href: "/blog",
+  // },
+  {
+    name: "About",
+    href: "/about",
+  },
+]
+---
+<Baselayout title="Junior Jobs"
+description='Internships and Entry-level jobs for all students and fresh-graduates'
+url="/about" includeHeader={false}>
+  <Navigation  />
+  <main>
+    <section class="pt-[80px] bg-[#F5F5F5]">
+      <SectionTitle title="Our Heros" style="justify-center" />
+      <Heros />
+    </section>
+  </main>
+</Baselayout>
