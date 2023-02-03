@@ -9,7 +9,12 @@ export default defineConfig({
   adapter: cloudflare({
     mode: 'directory'
   }),
-  integrations: [tailwind(), react(), compress()],
+  integrations: [tailwind(), react(), compress(
+    {
+      css: false,
+      js: false,
+    }
+  )],
   vite: {
     define: {
       "process.env.DATABASE_URL": process.env.DATABASE_URL,
