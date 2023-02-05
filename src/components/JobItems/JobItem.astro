@@ -7,9 +7,9 @@ const {company, title, email, type, deadline, skills, link, logo}=Job
 const tags=skills.split(",")
 
 ---
-<div class="flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800 w-[24rem] sm:w-[30rem] h-36 shadow-md duration-150 hover:border-zinc-500 hover:shadow-lg">
-        <img src={logo} alt="logo" class="bg-white w-28 h-36 object-center object-cover">
-        <div class="text-[#002838] mx-4 my-4 text-sm">
+<div class="flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800 shadow-md duration-150 hover:border-zinc-500 hover:shadow-lg">
+        <img src={logo} alt="logo" class="bg-white w-28 sm:w-32 object-cover object-center">
+        <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-[20rem] sm:w-[30rem]">
             <h1 class="font-bold">{title}</h1>
             <div class="text-xs mt-1">
                 <h2 class="font-medium">{company}</h2>
@@ -17,13 +17,13 @@ const tags=skills.split(",")
                 <p>Apply before: {deadline}</p>
             </div>
             <div class="flex mt-6 items-center">
-                <ul class="overflow-hidden flex gap-2 text-[8px] sm:text-xs font-medium ">
+                <ul class="flex sm:flex-wrap gap-2 text-[8px] sm:text-xs font-medium">
                     {tags.map(tag=>{
                         return <li class="rounded-sm bg-[#002838] text-white text-start px-1 hover:bg-[#00283896] duration-150">{tag}</li>
                     })}
                 </ul>
             </div>
-        <button type="button" class="absolute rounded-lg bg-[#0374E2] text-white w-16 -my-4 sm:w-20 mx-44 sm:mx-64 item-center text-[10px] h-[1.2rem] hover:text-zinc-800 hover:bg-yellow-300 duration-150 hover:shadow-md">Apply</button>
-    </div>
+            <button type="button" class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">Apply</button>
+        </div>
 </div>
 
