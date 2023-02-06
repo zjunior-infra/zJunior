@@ -24,15 +24,7 @@ url='/entry'>
 
 <div class="grid sm:grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 items-center mx-8 gap-6 my-20">
         {page.data.map((job:IJob) => (
-            <JobItem title={job.title}
-            company={job.company}
-            skills={job.skills}
-            type={job.type}
-            link={job.link}
-            logo={job.logo}
-            deadline={job.deadline}
-            email={job.email}
-            ></JobItem>
+            <JobItem {...job}/>
         ))}
 </div>
 <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} />
