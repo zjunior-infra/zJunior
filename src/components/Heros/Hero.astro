@@ -2,6 +2,7 @@
 import Behance from "@components/Icons/Behance.astro";
 import Github from "@components/Icons/Github.astro";
 import LinkedIn from "@components/Icons/LinkedIn.astro";
+import Twitter from "@components/Icons/Twitter.astro";
 
 const { bg, name, title, img, socialMedia, email, icons } = Astro.props
 ---
@@ -23,12 +24,17 @@ const { bg, name, title, img, socialMedia, email, icons } = Astro.props
         <a href={socialMedia.linkedin} aria-label="Linkedin" target="_blank">
           <LinkedIn />
         </a>
-        }
-        {socialMedia.github && 
-          <a href={socialMedia.github} aria-label="Github" target="_blank">
-            <Github />
-          </a>
-          }
+      }
+      {socialMedia.github && 
+        <a href={socialMedia.github} aria-label="Github" target="_blank">
+          <Github />
+        </a>
+      }
+      {socialMedia.twitter && 
+        <a href={socialMedia.twitter} aria-label="Twitter" target="_blank">
+          <Twitter />
+        </a>
+      }
     </div>
     <div class="my-12">
       <span class="w-2 h-2 rounded-full bg-[#FFADAD] inline-block"></span>
