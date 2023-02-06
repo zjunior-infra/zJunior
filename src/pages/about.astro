@@ -6,30 +6,11 @@ import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 import Baselayout from "@layouts/BaseLayout.astro";
 
 const pathname=Astro.url.pathname
-const navigation = [
-  {
-    name: "Programs",
-    href: "/programs",
-  },
-  // {
-  //   name:"Hackathons",
-  //   href:"/hackathons"
-  // },
-  // {
-  //   name: "Blog",
-  //   href: "/blog",
-  // },
-  {
-    name: "About",
-    href: "/about",
-  },
-]
+
 ---
 <Baselayout title="Junior Jobs"
 description='Internships and Entry-level jobs for all students and fresh-graduates'
-url="/about" includeHeader={false}>
-  <Navigation  />
-
+url="/about" includeHeader={true}>
   <main class="mx-4 md:mx-10 lg:mx-20">
     <section class="pt-[80px] ">
       <SectionTitle title="Our Heros" style="items-center" />
