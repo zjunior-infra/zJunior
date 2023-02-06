@@ -2,6 +2,8 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import JobItem from "@components/JobItems/JobItem.astro";
 import { getJobs } from "@util/database";
+import Pagination from "@components/Pagination.astro";
+import type { IJob } from "@util/job.interface";
 
 // Allowing Astro to prerender this page using Hybrid Mode
 export const prerender = true;
@@ -13,14 +15,14 @@ const {page}=Astro.props
 
 ---
 
-<BaseLayout title="Internships" description="Internships for all MEAN software engineer to start thier career"
-url='/internships'>
+<BaseLayout title="Entry level Jobs" description="Entry level opprtunities for all MEAN software engineer to start thier career"
+url='/entry'>
 <div class="mt-20 sm:mt-40 mx-10 sm:mx-40 text-[#002838] text-xl font-bold">
     <h1 class="text-[#002838]">Explore New Career Opportunities</h1>
     <hr class="block border-4 border-[#0374E2] rounded-md w-20 items-center">
 </div>
 
-<div class="grid sm:grid-cols-2 items-center sm:mx-48 lg:grid-cols-3 gap-6 place-items-center my-20">
+<div class="grid sm:grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 items-center mx-8 gap-6 my-20">
         {page.data.map((job:IJob) => (
             <JobItem title={job.title}
             company={job.company}
@@ -33,5 +35,5 @@ url='/internships'>
             ></JobItem>
         ))}
 </div>
-
+<Pagination nextUrl={page.url.next} prevUrl={page.url.prev} />
 </BaseLayout>

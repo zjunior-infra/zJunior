@@ -1,0 +1,31 @@
+---
+const {prevUrl, nextUrl} = Astro.props
+---
+
+<nav role="navigation" aria-label="Pagination Navigation" class="flex gap-4 justify-center">
+    {
+        prevUrl && (
+            <a href={prevUrl} class="rounded-sm px-2 hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md">Prev</a>
+        )
+    }    
+    {
+        !prevUrl && (
+            <button type="button" disabled class="text-zinc-700/70 px-2 rounded-sm">
+                    Prev
+            </button>
+        )
+    }
+    {
+        !nextUrl && (
+            <button type="button" disabled class="text-zinc-700/70 px-2 rounded-sm">
+                    Next
+            </button>
+        )
+    }
+    {
+        nextUrl && (
+                <a href={nextUrl} class="rounded-sm px-2 hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md">Next</a>
+            )
+    }
+        
+</nav>

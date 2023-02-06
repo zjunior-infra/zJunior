@@ -1,11 +1,57 @@
 ---
-import BetaHeader from "@components/BetaHeader.astro";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import Heros from "@components/Heros/Heros.astro";
+import Rocket from "@components/Icons/Rocket.astro";
+import Navigation from "@components/Navigation.astro";
+import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
+import Baselayout from "@layouts/BaseLayout.astro";
 
-
+const pathname=Astro.url.pathname
+const navigation = [
+  {
+    name: "Programs",
+    href: "/programs",
+  },
+  // {
+  //   name:"Hackathons",
+  //   href:"/hackathons"
+  // },
+  // {
+  //   name: "Blog",
+  //   href: "/blog",
+  // },
+  {
+    name: "About",
+    href: "/about",
+  },
+]
 ---
+<Baselayout title="Junior Jobs"
+description='Internships and Entry-level jobs for all students and fresh-graduates'
+url="/about" includeHeader={false}>
+  <Navigation  />
 
-<BaseLayout title="About Juniorjobs" description="Internships for all MEAN software engineer to start thier career"
-url='/about'>
-<BetaHeader/>
-</BaseLayout>
+  <main class="mx-4 md:mx-10 lg:mx-20">
+    <section class="pt-[80px] ">
+      <SectionTitle title="Our Heros" style="items-center" />
+      <Heros />
+    </section>
+    <section class="mt-32 grid md:grid-cols-3 items-end gap-2">
+      <div class="col-span-2">
+        <div>
+          <SectionTitle title="Mission" style="items-start"/>
+          <p class="text-secondary">Reaching each software engineer, Tech junior in the MEAN region to help them explore all kinds of internships and opportunities, and Trying to empower them to fit the market </p>
+        </div>
+        <div class="my-8">
+          <SectionTitle title="Vision" style="items-start"/>
+          <p class="text-secondary">To 100% of university students landed their internship or get hired after graduation within months, It's all depend on them and improving their skill to fit the market, we will trying our best to help them technically, 
+            we trust that students with experience are able to help their collages more than 5+ software engineer experience as we are closer to the infletion of being a student and full-time software egineer the same language.</p>
+        </div>
+
+      </div>
+      <div class="max-md:hidden col-span-1">
+        <Rocket />
+      </div>
+    </section>
+  </main>
+
+</Baselayout>

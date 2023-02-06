@@ -1,0 +1,51 @@
+---
+import Hero from "@components/Heros/Hero.astro";
+import Ball from "@components/Icons/Ball.astro";
+import Cat from "@components/Icons/Cat.astro";
+import Dog from "@components/Icons/Dog.astro";
+import FrontDog from "@components/Icons/FrontDog.astro";
+
+const heros = [
+  {name : 'Hamed Osama' , 
+  title : 'Software Engineer' , 
+  img : '/images/heros/hero1.png' ,
+  socialMedia : {behance : 'https://www.behance.net/hamedosama' ,
+  linkedin : 'https://www.linkedin.com/in/hamed-osama-70b838206/' ,
+  github : 'https://www.github.com/HamedOsama'},
+  email : 'hamedosama19@gmail.com',
+  bg: 'bg-accent',
+  icons:[Dog , Cat , Ball],
+  },
+  {
+  name : 'Mahmoud Galal' ,
+  title : 'Software Engineer' ,
+  img : '/images/heros/hero2.png' ,
+  socialMedia : {linkedin : 'https://www.linkedin.com/in/mahmoudgalalz/' ,
+  github : 'https://github.com/Mahmoudgalalz',
+  twitter : 'https://twitter.com/eitmg'},
+  email : 'krooking0@gmail.com',
+  bg: 'bg-primary',
+  icons:[Dog , Cat , Ball, FrontDog],
+  }
+  ,
+  {
+  name : 'Heba Allah Hashim' ,
+  title : 'UI/UX designer' ,
+  img : '/images/heros/hero3.png' ,
+  socialMedia : {behance : 'https://www.behance.net/Mahmoudgalalz' ,
+  linkedin : 'https://www.linkedin.com/in/hebamuh58/' ,
+  github : 'https://github.com/hebamuh68'},
+  email : 'muhamedheba2@gmail.com',
+  bg: 'bg-[#FFADAD]',
+  icons:[Dog , Cat , FrontDog,Ball],
+  }
+  ]
+---
+
+<div class="grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+  {
+    heros?.map((hero) => {
+      return <Hero {...hero} />
+    })
+  }
+</div>
