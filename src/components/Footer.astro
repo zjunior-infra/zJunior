@@ -1,4 +1,36 @@
 ---
+const pages=[
+  {
+    name: "Home",
+    href: "/",
+    target:"_self"
+  },
+  {
+    name: "About",
+    href: "/about",
+    target:"_self"
+  },
+  {
+    name: "Programs",
+    href: "/programs",
+    target:"_self"
+  },
+  {
+    name: "GitHub",
+    href: "",
+    target:"_blank"
+  },
+  {
+    name: "Internships",
+    href: "/internships",
+    target:"_self"
+  },
+  {
+    name:"EntryLevel",
+    href:"/entry",
+    target:"_self"
+  }
+]
 ---
 
 
@@ -25,17 +57,14 @@
       </ul>
       
     <hr class="mt-6 bg-white/50 border-transparent border-1 rounded-md">
-    <div class="flex mt-6 gap-12 text-sm font-normal text-white">
-      <div class="flex flex-col">
-        <a href="/" class="my-2 duration-150 hover:text-zinc-600">Home</a>
-        <a href="/about" class="my-2 duration-150 hover:text-zinc-600">About</a>
-        <a href="/programs" class="my-2 duration-150 hover:text-zinc-600">Programs</a>
-      </div>
-      <div class="flex flex-col">
-        <a href="https://github.com/mahmoudgalalz/juniorjobs" class="my-2 duration-150 hover:text-zinc-600">GitHub</a>
-        <a href="/Listers" class="my-2 duration-150 hover:text-zinc-600">Listers</a>
-      </div>
-      
+    <div class="mt-6 text-sm font-normal text-white">
+        <ul class="grid grid-rows-3 grid-flow-col gap-4 place-content-start">
+            {
+              pages?.map((page)=>{
+                return <li><a href={page.href} target={page.target} class="my-2 duration-150 hover:text-zinc-600">{page.name}</a></li>
+              })
+            }
+        </ul>
     </div>
     <div class="flex flex-col mt-4 leading-5 mx-auto text-center text-white font-light text-xs">
       <p>
