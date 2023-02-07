@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import Program from "@components/programs/Program.astro";
+import Programs from "@components/programs/Programs.astro";
 import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 ---
 
@@ -8,5 +8,10 @@ import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 keywords={["open-source", "opensource" ,"work","internships","google summer of code","gsoc","MLH"]} 
 includeHeader={true}>
 <SectionTitle title="Programs that will improve your skills" style="items-center"/>
+<main class="mx-4 md:mx-10 lg:mx-20">
+    <section class="pt-[80px]">
+        <Programs/>
+    </section>
+</main>
 
 </BaseLayout>
