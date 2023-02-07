@@ -1,0 +1,15 @@
+---
+const { name,discription,link,starts,img } = Astro.props
+---
+<div class="snap-center bg-white shadow-lg rounded-md w-[21rem] hover:scale-105 sm:hover:scale-110 duration-150">
+    <div class="object-cover object-center">
+        <img src={img} alt="Header Image" class="h-48 w-[21rem] rounded-t-md border-[1px] border-primary">
+    </div>
+    <div class="text-start mx-6 my-6 font-sans text-secondary">
+        <h1 class="my-2 font-bold">{name}</h1>
+        <p class="font-bold text-[12px]">Description</p>
+        <p class="my-4 text-[11px] leading-5">{discription}</p>
+        <p class="text-[11px] font-bold">Applying Starts: {starts}</p>
+        <a href={link} target="_blank" aria-label="Link" class="float-right my-8 shadow-md px-5 py-1 rounded-3xl bg-primary text-white hover:ring-1 hover:ring-secondary hover:text-secondary hover:bg-transparent duration-150">Learn More</a>
+    </div>
+</div>
