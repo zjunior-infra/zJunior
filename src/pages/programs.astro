@@ -8,10 +8,11 @@ import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 keywords={["open-source", "opensource" ,"work","internships","google summer of code","gsoc","MLH"]} 
 includeHeader={true}>
 <SectionTitle title="Programs that will improve your skills" style="items-center"/>
-<main class="flex justify-center hover:scroll-auto w-full overflow-scroll scroll-px-20">
-    <section class="pt-[40px] ">
+<div class="flex justify-center ">
+<div class="my-10 w-[90%] overflow-scroll snap-x scroll-pl-60">
+    <section class="flex pt-[40px]">
         <Programs/>
     </section>
-</main>
-
+</div>
+</div>
 </BaseLayout>
