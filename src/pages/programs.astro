@@ -25,14 +25,14 @@ includeHeader={true}>
     const scrollable = document.getElementById('scrollable');
     const toLeft = document.getElementById('to-left');
     const toRight = document.getElementById('to-right');
-    const program = document.querySelectorAll('#program');
-    const cardSize= program.length;
-    let currentProgram=0;
+    const card = document.querySelectorAll('#program');
+    const cardSize= card.length;
+    let currentCard=0;
     window.addEventListener('load', init);
     function init(){
-        program[0].classList.add('sm:scale-110','scale-105');
+        card[0].classList.add('sm:scale-110','scale-105');
         scrollable.scrollTo(0,0)
-        program[0].classList.remove('opacity-70');
+        card[0].classList.remove('opacity-70');
     }
     function focus(id,from){
         if(from=='left'){
@@ -45,19 +45,19 @@ includeHeader={true}>
             PrevRest(id);
         }
         if(id >= cardSize){
-            currentProgram=0;
+            currentCard=0;
             id=0;
         }
         else if(id < 0){
-            currentProgram=cardSize-1;
+            currentCard=cardSize-1;
             id=cardSize-1;
         }
-        program[id].classList.remove('opacity-70');
-        program[id].classList.add('sm:scale-110','scale-105');
+        card[id].classList.remove('opacity-70');
+        card[id].classList.add('sm:scale-110','scale-105');
     }
     function PrevRest(id){
-        program[id].classList.add('opacity-70');
-        program[id].classList.remove('sm:scale-110','scale-105');
+        card[id].classList.add('opacity-70');
+        card[id].classList.remove('sm:scale-110','scale-105');
     }
     
     toLeft.addEventListener('click', () => {
@@ -65,7 +65,7 @@ includeHeader={true}>
             scrollable.scrollTo({
                 left: scrollable.scrollWidth,
             });
-            currentProgram=cardSize-1;
+            currentCard=cardSize-1;
             focus(cardSize-1,'init')
         }
         else{
@@ -74,16 +74,16 @@ includeHeader={true}>
             behavior: "smooth"
             
         })
-        focus(--currentProgram,'left');
+        focus(--currentCard,'left');
         }
-        console.log(currentProgram)
+        console.log(currentCard)
     });
     toRight.addEventListener('click', () => {
         if(scrollable.scrollLeft >= 2000 ){
             scrollable.scrollTo({
                 left: 0,
             });
-            currentProgram=0;
+            currentCard=0;
             focus(0,'init')
         }
         else{
@@ -91,9 +91,9 @@ includeHeader={true}>
             left: 330,
             behavior: "smooth"
         });
-        focus(++currentProgram,'right');
+        focus(++currentCard,'right');
         }
-        console.log(currentProgram)
+        console.log(currentCard)
 
     });
     
