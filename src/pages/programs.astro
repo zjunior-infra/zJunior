@@ -11,7 +11,7 @@ keywords={["open-source", "opensource" ,"work","internships","google summer of c
 includeHeader={true}>
 <SectionTitle title="Programs that will improve your skills" style="max-sm:pt-20 items-center"/>
 <div class="flex justify-center overflow-visible">
-<div id="scrollable" class="flex justify-start w-[90%] sm:w-[26rem] overflow-scroll snap-x snap-center">
+<div id="scrollable" class="flex justify-start w-[24rem] overflow-scroll snap-x snap-center">
     <section class="flex mt-[40px] pl-[24px] pr-[24px] ">
         <Programs/>
     </section>
@@ -26,28 +26,55 @@ includeHeader={true}>
     const toLeft = document.getElementById('to-left');
     const toRight = document.getElementById('to-right');
     const program = document.querySelectorAll('#program');
+    window.addEventListener('load', init);
+    function init(){
+        if(window.matchMedia('(max-width: 600px)')){
+        program[0].classList.add('scale-105');
+    }
+    else{
+        program[0].classList.add('scale-110');
+    }
     program[0].classList.remove('opacity-70');
+    }
+    
+    function reset(){
+        program.forEach((item) => {
+            item.classList.add('opacity-70');
+            item.classList.remove('scale-110'||'scale-105');
+        });
+    }
+    function foucs(){
+
+    }
     toLeft.addEventListener('click', () => {
-        scrollable.scrollBy({
+        if(scrollable.scrollLeft <= 0 ){
+            scrollable.scrollTo({
+                left: scrollable.scrollWidth,
+            });
+            reset();
+        }
+        else{
+            scrollable.scrollBy({
             left: -330,
             behavior: "smooth"
         })
+        focus();
+        }
     });
     toRight.addEventListener('click', () => {
-        console.log(scrollable.scrollWidth, scrollable.offsetWidth, scrollable.scrollLeft,screenY)
-        if(scrollable.scrollLeft = scrollable.offsetWidth + scrollable.scrollLeft  ){
+        if(scrollable.scrollLeft >= 2000 ){
             scrollable.scrollTo({
                 left: 0,
             });
+            reset();
         }
         else{
             scrollable.scrollBy({
             left: 330,
             behavior: "smooth"
         });
+        focus();
         }
-
-        
     });
 </script>
 </BaseLayout>
