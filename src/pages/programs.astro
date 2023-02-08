@@ -26,25 +26,13 @@ includeHeader={true}>
     const toLeft = document.getElementById('to-left');
     const toRight = document.getElementById('to-right');
     const program = document.querySelectorAll('#program');
-    const programSize= program.length;
+    const cardSize= program.length;
     let currentProgram=0;
     window.addEventListener('load', init);
     function init(){
-        if(window.matchMedia('(max-width: 600px)')){
-            program[0].classList.add('scale-105');
-        }
-        else{
-            program[0].classList.add('scale-110');
-        }
+        program[0].classList.add('sm:scale-110','scale-105');
         scrollable.scrollTo(0,0)
         program[0].classList.remove('opacity-70');
-    }
-    
-    function reset(from){
-        program.forEach((item) => {
-            item.classList.add('opacity-70');
-            item.classList.remove('scale-110','scale-105');
-        });
     }
     function focus(id,from){
         if(from=='left'){
@@ -53,26 +41,23 @@ includeHeader={true}>
         else if(from=='right'){
             PrevRest(id-1);
         }
-
-        if(id >= programSize){
+        else if(from=='init'){
+            PrevRest(id);
+        }
+        if(id >= cardSize){
             currentProgram=0;
             id=0;
         }
         else if(id < 0){
-            currentProgram=programSize-1;
-            id=programSize-1;
+            currentProgram=cardSize-1;
+            id=cardSize-1;
         }
         program[id].classList.remove('opacity-70');
-        if(window.matchMedia('(max-width: 600px)')){
-            program[id].classList.add('scale-105');
-        }
-        else{
-            program[id].classList.add('scale-110');
-        }
+        program[id].classList.add('sm:scale-110','scale-105');
     }
     function PrevRest(id){
         program[id].classList.add('opacity-70');
-        program[id].classList.remove('scale-110','scale-105');
+        program[id].classList.remove('sm:scale-110','scale-105');
     }
     
     toLeft.addEventListener('click', () => {
@@ -80,8 +65,8 @@ includeHeader={true}>
             scrollable.scrollTo({
                 left: scrollable.scrollWidth,
             });
-            reset('left');
-            focus(programSize-1,'right')
+            currentProgram=cardSize-1;
+            focus(cardSize-1,'init')
         }
         else{
             scrollable.scrollBy({
@@ -98,7 +83,8 @@ includeHeader={true}>
             scrollable.scrollTo({
                 left: 0,
             });
-            reset('right');
+            currentProgram=0;
+            focus(0,'init')
         }
         else{
             scrollable.scrollBy({
