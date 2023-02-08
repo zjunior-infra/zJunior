@@ -2,17 +2,52 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Programs from "@components/programs/Programs.astro";
 import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
+import LeftArrow from "@components/Icons/LeftArrow.astro";
+import RightArrow from "@components/Icons/RightArrow.astro";
 ---
 
 <BaseLayout title="Programs" url="/programs" 
 keywords={["open-source", "opensource" ,"work","internships","google summer of code","gsoc","MLH"]} 
 includeHeader={true}>
 <SectionTitle title="Programs that will improve your skills" style="max-sm:pt-20 items-center"/>
-<div class="flex justify-center bg-transparent">
-<div class="flex justify-start w-[90%] sm:w-[80%] overflow-scroll snap-x">
+<div class="flex justify-center overflow-visible">
+<div id="scrollable" class="flex justify-start w-[90%] sm:w-[26rem] overflow-scroll snap-x snap-center">
     <section class="flex mt-[40px] pl-[24px] pr-[24px] ">
         <Programs/>
     </section>
 </div>
 </div>
+<div class="flex justify-evenly mt-4">
+<button id="to-left" class="px-2 py-2 border-2 hover:border-primary rounded-full duration-150"><LeftArrow/></button>
+<button id="to-right" class="px-2 py-2 border-2 hover:border-primary rounded-full duration-150"><RightArrow/></button>
+</div>
+<script is:inline>
+    const scrollable = document.getElementById('scrollable');
+    const toLeft = document.getElementById('to-left');
+    const toRight = document.getElementById('to-right');
+    const program = document.querySelectorAll('#program');
+    program[0].classList.remove('opacity-70');
+    toLeft.addEventListener('click', () => {
+        scrollable.scrollBy({
+            left: -330,
+            behavior: "smooth"
+        })
+    });
+    toRight.addEventListener('click', () => {
+        console.log(scrollable.scrollWidth, scrollable.offsetWidth, scrollable.scrollLeft,screenY)
+        if(scrollable.scrollLeft = scrollable.offsetWidth + scrollable.scrollLeft  ){
+            scrollable.scrollTo({
+                left: 0,
+            });
+        }
+        else{
+            scrollable.scrollBy({
+            left: 330,
+            behavior: "smooth"
+        });
+        }
+
+        
+    });
+</script>
 </BaseLayout>
