@@ -1,0 +1,67 @@
+---
+import LArrow from "./Icons/LArrow.astro";
+import RArrow from "./Icons/RArrow.astro";
+import Ball from "./Icons/Ball.astro";
+import Behance from "./Icons/Behance.astro";
+import Cat from "./Icons/Cat.astro";
+import Dog from "./Icons/Dog.astro";
+import Github from "./Icons/Github.astro";
+import Dog2 from "./Icons/FrontDog.astro";
+import Linkedin from "./Icons/LinkedIn.astro";
+import Rocket from "./Icons/Rocket.astro";
+import Twitter from "./Icons/Twitter.astro";
+
+export const Icons=[
+    {
+        name:'ball',
+        icon: '<Ball/>'
+    },
+    {
+        name:'behance',
+        icon: '<Behance />'
+    },
+    {
+        name:'cat',
+        icon: '<Cat />'
+    },
+    {
+        name:'dog',
+        icon: '<Dog/>'
+    },
+    {
+        name:'github',
+        icon: '<Github/>'
+    },
+    {
+        name:'dog2',
+        icon: '<Dog2/>'
+    },
+    {
+        name:'left-arrow',
+        icon: return <LArrow/>
+    },
+    {
+        name:'right-arrow',
+        icon: <RArrow>
+    },
+    {
+        name:'linkedin',
+        icon: '<Linkedin/>'
+    },
+    {
+        name:'rocket',
+        icon: '<Rocket/>'
+    },
+    {
+        name:'twitter',
+        icon: '<Twitter/>'
+    }
+]
+const {name}=Astro.props
+
+---
+{   //@ts-ignore
+    return Icons.find(icon=>
+        (icon.name===name.toLowerCase() ? icon.icon : null)
+    ).icon
+}
