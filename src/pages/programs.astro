@@ -10,8 +10,8 @@ import RightArrow from "@components/Icons/RightArrow.astro";
 keywords={["open-source", "opensource" ,"work","internships","google summer of code","gsoc","MLH"]} 
 includeHeader={true}>
 <SectionTitle title="Programs that will improve your skills" style="max-sm:pt-20 items-center"/>
-<div class="flex justify-center overflow-visible">
-<div id="scrollable" class="flex justify-start w-[24rem] overflow-scroll snap-x snap-center">
+<div class="flex justify-center">
+<div id="scrollable" class="flex justify-start w-[24rem] overflow-hidden snap-x snap-center">
     <section class="flex mt-[40px] pl-[24px] pr-[24px] ">
         <Programs/>
     </section>
@@ -26,55 +26,90 @@ includeHeader={true}>
     const toLeft = document.getElementById('to-left');
     const toRight = document.getElementById('to-right');
     const program = document.querySelectorAll('#program');
+    const programSize= program.length;
+    let currentProgram=0;
     window.addEventListener('load', init);
     function init(){
         if(window.matchMedia('(max-width: 600px)')){
-        program[0].classList.add('scale-105');
-    }
-    else{
-        program[0].classList.add('scale-110');
-    }
-    program[0].classList.remove('opacity-70');
+            program[0].classList.add('scale-105');
+        }
+        else{
+            program[0].classList.add('scale-110');
+        }
+        scrollable.scrollTo(0,0)
+        program[0].classList.remove('opacity-70');
     }
     
-    function reset(){
+    function reset(from){
         program.forEach((item) => {
             item.classList.add('opacity-70');
-            item.classList.remove('scale-110'||'scale-105');
+            item.classList.remove('scale-110','scale-105');
         });
     }
-    function foucs(){
+    function focus(id,from){
+        if(from=='left'){
+            PrevRest(id+1);
+        }
+        else if(from=='right'){
+            PrevRest(id-1);
+        }
 
+        if(id >= programSize){
+            currentProgram=0;
+            id=0;
+        }
+        else if(id < 0){
+            currentProgram=programSize-1;
+            id=programSize-1;
+        }
+        program[id].classList.remove('opacity-70');
+        if(window.matchMedia('(max-width: 600px)')){
+            program[id].classList.add('scale-105');
+        }
+        else{
+            program[id].classList.add('scale-110');
+        }
     }
+    function PrevRest(id){
+        program[id].classList.add('opacity-70');
+        program[id].classList.remove('scale-110','scale-105');
+    }
+    
     toLeft.addEventListener('click', () => {
         if(scrollable.scrollLeft <= 0 ){
             scrollable.scrollTo({
                 left: scrollable.scrollWidth,
             });
-            reset();
+            reset('left');
+            focus(programSize-1,'right')
         }
         else{
             scrollable.scrollBy({
             left: -330,
             behavior: "smooth"
+            
         })
-        focus();
+        focus(--currentProgram,'left');
         }
+        console.log(currentProgram)
     });
     toRight.addEventListener('click', () => {
         if(scrollable.scrollLeft >= 2000 ){
             scrollable.scrollTo({
                 left: 0,
             });
-            reset();
+            reset('right');
         }
         else{
             scrollable.scrollBy({
             left: 330,
             behavior: "smooth"
         });
-        focus();
+        focus(++currentProgram,'right');
         }
+        console.log(currentProgram)
+
     });
+    
 </script>
 </BaseLayout>
