@@ -5,26 +5,31 @@ import { getJobs } from "@util/database";
 import Pagination from "@components/Pagination.astro";
 import type { IJob } from "@util/job.interface";
 import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
+import Modal from "@components/Modal/Modal.astro";
 
 // Allowing Astro to prerender this page using Hybrid Mode
 export const prerender = true;
 export async function getStaticPaths({ paginate }) {
     const jobs= await getJobs('entrylevel');
-    return paginate(jobs,{pageSize:12})
+    return paginate(jobs,{pageSize:9})
 }
 const {page}=Astro.props
 
----
+// const enter = ()=>{ entered = true };
 
+
+---
 <BaseLayout title="Entry level Jobs" description="Entry level opprtunities for all MEAN software engineer to start thier career"
 url='/entry'>
+
+
 <div class="mt-40 mx-4 sm:mx-10 text-[#002838] text-xl font-bold">
     <SectionTitle title="Explore New Career Opportunities" style="items-start" />
 </div>
 
 <div class="grid sm:grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 items-center mx-8 gap-6 my-20">
         {page.data.map((job:IJob) => (
-            <JobItem {...job}/>
+            <JobItem {...job} />
         ))}
 </div>
 <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} />

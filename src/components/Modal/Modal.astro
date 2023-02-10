@@ -1,0 +1,26 @@
+---
+import Copy from "@components/Icons/Copy.astro";
+
+let entered = false;
+
+---
+
+<div  class="modal inset-0 fixed bg-black bg-opacity-30 flex items-center justify-center">
+  <div class="w-11/12  md:w-3/5  lg:w-2/5 h-fit bg-white rounded-md p-4 xs:p-8">
+  <p class="text-xl sm:text-3xl xl:text-4xl text-center">Apply by sending mail</p>
+  <div class="bg-gray-600 bg-opacity-30 flex justify-between items-center mt-4 p-1 px-4 rounded-md text-sm">
+      <p>h.osama@trendlix.com</p>
+      <button 
+      onmouseenter="entered=true"
+      onmouseleave="entered=false"
+      aria-label="copy" class="w-8 h-8 rounded-[50%] flex items-center justify-center bg-white">
+          <Copy  hovered={entered}/>
+      </button>
+  </div>
+  <div class="flex  justify-end">
+      <button type="button" class="mt-4 px-8 py-4 flex items-center justify-center text-center rounded-lg bg-[#0374E2] text-white item-center h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
+          <span>Done</span>
+      </button>
+  </div>
+  </div>
+</div>

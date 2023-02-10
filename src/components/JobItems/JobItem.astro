@@ -1,12 +1,21 @@
 ---
+import Modal from '@components/Modal/Modal.astro';
 import type { IJob } from '@util/job.interface';
 
 export interface Props extends IJob{}
 const Job=Astro.props
-const {company, title, email, type, deadline, skills, link, logo}=Job
+const {company, title, email, type, deadline, skills, link, logo }=Job
 const tags=skills.split(",")
 
+let isOpened = false;
+
+const onApply=()=>{
+    isOpened = true;
+}
 ---
+
+<!-- {isOpened && <Modal email={email} link={link} />} -->
+<!-- <Modal id="modal" open="apply"/> -->
 <div class="flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800 shadow-md duration-150 hover:border-zinc-500 hover:shadow-lg hover:-translate-y-1">
         <img src={logo} onerror="this.onerror=null; this.src='/images/joblogo.png'" alt="logo" class=" bg-white w-28 sm:w-32 object-cover object-center">
         <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-[20rem] sm:w-[30rem]">
@@ -23,7 +32,24 @@ const tags=skills.split(",")
                     })}
                 </ul>
             </div>
-            <button type="button" class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">Apply</button>
+            <button 
+            type="button" class="apply self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
+                Apply
+            </button>
         </div>
 </div>
 
+
+<script >
+    const applyBtns = document.querySelectorAll('.apply');
+    applyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // window.module.apply();
+            // const modal = document.querySelector('.modal');
+            // console.log(modal)
+            // console.log(modal.classList)
+            // modal.classList.remove('hidden');
+            // modal.classList.add('flex');
+        });
+    });
+</script>
