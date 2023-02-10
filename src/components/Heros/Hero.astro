@@ -6,8 +6,8 @@ import Twitter from "@components/Icons/Twitter.astro";
 
 const { bg, name, title, img, socialMedia, email, icons } = Astro.props
 ---
-<div class="bg-white w-fit px-4 pt-4 rounded-t-full z-10 shadow-lg">
-  <div class={`${bg} rounded-full overflow-hidden h-64 w-64 mx-auto sm:w-64 sm:h-64`}>
+<div class="bg-white w-full xs:w-fit px-4 pt-4 rounded-t-full z-10 shadow-lg">
+  <div class={`${bg} rounded-full overflow-hidden h-auto w-full mx-auto xs:w-64 xs:h-64`}>
     <img src={img} alt="hero" class="object-top object-cover">
   </div>
   <div class="my-5">
