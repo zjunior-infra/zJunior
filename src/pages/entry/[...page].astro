@@ -11,13 +11,9 @@ import Modal from "@components/Modal/Modal.astro";
 export const prerender = true;
 export async function getStaticPaths({ paginate }) {
     const jobs= await getJobs('entrylevel');
-    return paginate(jobs,{pageSize:9})
+    return paginate(jobs,{pageSize:12})
 }
 const {page}=Astro.props
-
-// const enter = ()=>{ entered = true };
-
-
 ---
 <BaseLayout title="Entry level Jobs" description="Entry level opprtunities for all MEAN software engineer to start thier career"
 url='/entry'>
@@ -32,5 +28,8 @@ url='/entry'>
             <JobItem {...job} />
         ))}
 </div>
+
+<Modal/>
+
 <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} />
 </BaseLayout>

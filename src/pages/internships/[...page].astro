@@ -5,6 +5,7 @@ import { getJobs } from "@util/database";
 import type { IJob } from "@util/job.interface";
 import Pagination from "@components/Pagination.astro";
 import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
+import Modal from "@components/Modal/Modal.astro";
 
 // Allowing Astro to prerender this page using Hybrid Mode
 export const prerender = true;
@@ -26,5 +27,8 @@ url='/internships'>
             <JobItem {...job}/>
         ))}
 </div>
+
+<Modal/>
+
 <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} />
 </BaseLayout>
