@@ -1,30 +1,48 @@
 ---
-const {prevUrl, nextUrl} = Astro.props
+const {prevUrl, nextUrl, currentPage,lastPage} = Astro.props
 ---
 
 <nav role="navigation" aria-label="Pagination Navigation" class="flex gap-4 justify-center">
     {
         prevUrl && (
-            <a href={prevUrl} class="rounded-sm px-2 hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md">Prev</a>
+            <a href={prevUrl} class="rounded-sm hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md">Prev</a>
         )
     }    
     {
         !prevUrl && (
-            <button type="button" disabled class="text-zinc-700/70 px-2 rounded-sm">
-                    Prev
-            </button>
+            <p class="text-zinc-700/70 rounded-sm">
+                Prev
+            </p>
         )
     }
+    <div class="flex">
+        {
+            currentPage && (
+                <p class="text-zinc-700 px-2 rounded-sm">
+                    {currentPage}
+                </p>
+            )
+        }
+        {
+            lastPage && (
+                <p class="text-zinc-700/70 px-2 rounded-sm">
+                    of <span class="pl-2">{lastPage}</span>
+                </p>
+            )
+        }
+    </div>
+    
+
     {
         !nextUrl && (
-            <button type="button" disabled class="text-zinc-700/70 px-2 rounded-sm">
+            <p class="text-zinc-700/70  rounded-sm">
                     Next
-            </button>
+            </p>
         )
     }
     {
         nextUrl && (
-                <a href={nextUrl} class="rounded-sm px-2 hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md">Next</a>
+                <a href={nextUrl} class="rounded-sm hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md">Next</a>
             )
     }
         
