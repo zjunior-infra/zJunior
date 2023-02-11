@@ -1,4 +1,5 @@
 ---
+import Newsletter from "@components/newsletter/Newsletter.astro";
 import Baselayout from "@layouts/BaseLayout.astro";
 const navigation = [
 {
@@ -101,7 +102,7 @@ url="/" includeHeader={false}>
   </div>
 </section>
 
-<section class="bg-[#0374E2] mt-5">
+<!-- <section class="bg-[#0374E2] mt-5">
   <div class="mx-auto max-w-screen-xl py-6">
     <div class="mb-10 py-8">
       <dl class="grid grid-cols-1 gap-20 sm:grid-cols-3">
@@ -156,7 +157,7 @@ url="/" includeHeader={false}>
       </dl>
     </div>
   </div>
-</section>
+</section> -->
 
 <section>
   <div class="mx-auto max-w-screen-xl px-20 sm:pb-44 my-24">
@@ -167,15 +168,12 @@ url="/" includeHeader={false}>
         In our first release junior jobs offers you all of the entry-level and internships opportunities of MENA region. Wait us on the coming releases with more stuff to help you in software<br> engineering field.  
       </p>
   </div>
-  <div class="flex flex-col sm:flex-row items-center justify-between px-6 py-20  bg-[#FBC252]">
-    <div class="px-8 max-sm:p-10">
+  <div class="flex flex-col items-center justify-center px-4 py-20 bg-[#FBC252]">
+    <div class="px-8 max-sm:p-10 text-center mb-10">
       <h1 class="text-white tracking-wide text-clip font-bold text-3xl">Get New Jobs Notification!</h1>
       <p class="text-sm tracking-wide text-clip text-white font-normal">Subscribe & get all related jobs notification.</p>
     </div>
-    <div class="flex  max-sm:p-4 h-fit ">
-      <input class="py-0 px-6 rounded-l-lg outline-none" type="text" placeholder="Enter Your Email">
-      <button class="py-2 px-4 text-white bg-black/80 duration-100 hover:bg-black rounded-r-lg">Subscribe</button>
-    </div>
+      <Newsletter/>
   </div>
 </section>
 
