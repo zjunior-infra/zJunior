@@ -4,6 +4,8 @@ import JobItem from "@components/JobItems/JobItem.astro";
 import { getJobs } from "@util/database";
 import Pagination from "@components/Pagination.astro";
 import type { IJob } from "@util/job.interface";
+import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
+import Modal from "@components/Modal/Modal.astro";
 
 // Allowing Astro to prerender this page using Hybrid Mode
 export const prerender = true;
@@ -12,20 +14,22 @@ export async function getStaticPaths({ paginate }) {
     return paginate(jobs,{pageSize:12})
 }
 const {page}=Astro.props
-
 ---
-
 <BaseLayout title="Entry level Jobs" description="Entry level opprtunities for all MEAN software engineer to start thier career"
 url='/entry'>
-<div class="mt-20 sm:mt-40 mx-10 sm:mx-40 text-[#002838] text-xl font-bold">
-    <h1 class="text-[#002838]">Explore New Career Opportunities</h1>
-    <hr class="block border-4 border-[#0374E2] rounded-md w-20 items-center">
+
+
+<div class="mt-40 mx-4 sm:mx-10 text-[#002838] text-xl font-bold">
+    <SectionTitle title="Explore New Career Opportunities" style="items-start" />
 </div>
 
 <div class="grid sm:grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 items-center mx-8 gap-6 my-20">
         {page.data.map((job:IJob) => (
-            <JobItem {...job}/>
+            <JobItem {...job} />
         ))}
 </div>
-<Pagination nextUrl={page.url.next} prevUrl={page.url.prev} />
+
+<Modal/>
+
+<Pagination nextUrl={page.url.next} prevUrl={page.url.prev} lastPage={page.lastPage} currentPage={page.currentPage}/>
 </BaseLayout>
