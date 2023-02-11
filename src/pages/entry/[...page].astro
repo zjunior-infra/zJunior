@@ -20,10 +20,10 @@ url='/entry'>
 
 
 <div class="mt-40 mx-4 sm:mx-10 text-[#002838] text-xl font-bold">
-    <SectionTitle title="Explore New Career Opportunities" style="items-start" />
+    <SectionTitle title="Explore New Career Opportunities" style="mx-4 sm:mx-32 items-start" />
 </div>
 
-<div class="grid sm:grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 items-center mx-8 gap-6 my-20">
+<div class="grid sm:grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20">
         {page.data.map((job:IJob) => (
             <JobItem {...job} />
         ))}
