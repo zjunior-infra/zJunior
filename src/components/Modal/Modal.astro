@@ -27,8 +27,8 @@ import Copy from "@components/Icons/Copy.astro";
         document.querySelector('.modal').classList.add('hidden');
     }
     closeBtn.addEventListener('click', closeModal);
-    function openModal(em){
-        document.querySelector('#email').innerHTML = em;
+    function openModal(email){
+        document.querySelector('#email').innerHTML = email;
         document.querySelector('.modal').classList.remove('hidden');
     }
     const copyBtn = document.querySelector('#copyBtn');
