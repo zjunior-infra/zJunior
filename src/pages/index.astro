@@ -1,6 +1,14 @@
 ---
 import Baselayout from "@layouts/BaseLayout.astro";
 const navigation = [
+{
+    name: "Internships",
+    href: "/internships",
+  },
+  {
+    name: "Entry Level",
+    href: "/entry",
+  },
   {
     name: "Programs",
     href: "/programs",
@@ -25,7 +33,7 @@ const pathname=Astro.url.pathname
 description='Internships and Entry-level jobs for all students and fresh-graduates'
 url="/" includeHeader={false}>
 
-<header class="top-0 z-30 w-full px-4 bg-white sm:absolute bg-transparent">
+<header class="top-0 z-30 w-full px-1 xs:px-4 bg-white sm:absolute bg-transparent">
   <div class="container mx-auto">
     <div class="flex flex-col items-center justify-between gap-2 pt-6 sm:h-20 sm:flex-row sm:pt-0">
       <img src="/images/logo.png" alt="Logo" class="w-9">
@@ -34,11 +42,11 @@ url="/" includeHeader={false}>
       </a>
       {/* Desktop navigation */}
       <nav class="flex items-center grow">
-        <ul class="flex flex-wrap items-center justify-end gap-4 grow">
+        <ul class="flex flex-wrap items-center justify-end sm:gap-4 grow">
           {navigation.map((item) => (
             <li class="">
               <a
-                class={`flex items-center px-3 py-2 duration-150 text-sm sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50
+                class={`flex items-center px-2 xs:px-3 py-2 duration-150 text-sm sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50
                 ${pathname === item.href ? "text-blue-600" : "text-zinc-700"}`}
                 href={item.href}
                 // target={item.external ? "_blank" : undefined}
@@ -65,7 +73,7 @@ url="/" includeHeader={false}>
     class="relative mx-auto justify-center max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
   >
     <div class="max-w-xl text-left">
-      <h1 class="text-3xl text-center text-[#0374E2] font-extrabold sm:text-7xl">
+      <h1 class="text-3xl text-center text-white font-extrabold sm:text-7xl">
         Gain Your Work
         Experience Now
       </h1>
@@ -159,14 +167,14 @@ url="/" includeHeader={false}>
         In our first release junior jobs offers you all of the entry-level and internships opportunities of MENA region. Wait us on the coming releases with more stuff to help you in software<br> engineering field.  
       </p>
   </div>
-  <div class="flex flex-col sm:flex-row justify-center sm:gap-80 py-20  bg-[#FBC252]">
+  <div class="flex flex-col sm:flex-row items-center justify-between px-6 py-20  bg-[#FBC252]">
     <div class="px-8 max-sm:p-10">
       <h1 class="text-white tracking-wide text-clip font-bold text-3xl">Get New Jobs Notification!</h1>
       <p class="text-sm tracking-wide text-clip text-white font-normal">Subscribe & get all related jobs notification.</p>
     </div>
-    <div class="flex flex-none max-sm:p-4">
-      <input class="py-0 px-2 rounded-l-lg " type="text" placeholder="Enter Your Email">
-      <button class="py-4 w-60 sm:w-32 text-white bg-black/80 duration-100 hover:bg-black rounded-r-lg">Subscribe</button>
+    <div class="flex  max-sm:p-4 h-fit ">
+      <input class="py-0 px-6 rounded-l-lg outline-none" type="text" placeholder="Enter Your Email">
+      <button class="py-2 px-4 text-white bg-black/80 duration-100 hover:bg-black rounded-r-lg">Subscribe</button>
     </div>
   </div>
 </section>

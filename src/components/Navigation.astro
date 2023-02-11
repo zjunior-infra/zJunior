@@ -1,5 +1,13 @@
 ---
 const navigation = [
+{
+    name: "Internships",
+    href: "/internships",
+  },
+  {
+    name: "Entry Level",
+    href: "/entry",
+  },
   {
     name: "Programs",
     href: "/programs",
@@ -20,7 +28,7 @@ const navigation = [
 const pathname=Astro.url.pathname
 ---
 
-<header class="top-0 z-30 w-full px-4 bg-white shadow-lg fixed sm:static">
+<header class="top-0 z-30 w-full px-1 xs:px-4 bg-white shadow-lg fixed sm:static">
   <div class="container mx-auto">
     <div class="flex flex-col items-center justify-between gap-2 pt-6 sm:h-20 sm:flex-row sm:pt-0">
       <img src="/images/logo.png" alt="Logo" class="w-9">
@@ -29,11 +37,11 @@ const pathname=Astro.url.pathname
       </a>
       {/* Desktop navigation */}
       <nav class="flex items-center grow">
-        <ul class="flex flex-wrap items-center justify-end gap-4 grow">
+        <ul class="flex flex-wrap items-center justify-end sm:gap-4 grow">
           {navigation.map((item) => (
             <li class="">
               <a
-                class={`flex items-center px-3 py-2 duration-150 text-sm text-zinc-600  hover:text-zinc-600/70
+                class={`flex items-center px-2 xs:px-3 py-2 duration-150 text-sm text-zinc-600  hover:text-zinc-600/70
                 ${pathname === item.href ? "text-blue-600" : "text-zinc-700"}`}
                 href={item.href}
                 // target={item.external ? "_blank" : undefined}

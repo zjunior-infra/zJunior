@@ -11,7 +11,7 @@ const tags=skills.split(",")
 
 <div class="flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800 shadow-md duration-150 hover:border-zinc-500 hover:shadow-lg hover:-translate-y-1">
         <img src={logo} onerror="this.onerror=null; this.src='/images/joblogo.png'" alt="logo" class=" bg-white w-28 sm:w-32 object-cover object-center">
-        <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-[20rem] sm:w-[30rem]">
+        <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
             <h1 class="font-bold">{title}</h1>
             <div class="text-xs mt-1">
                 <h2 class="font-medium">{company}</h2>
@@ -19,7 +19,7 @@ const tags=skills.split(",")
                 <p>Apply before: {deadline}</p>
             </div>
             <div class="flex mt-6 items-center">
-                <ul class="flex sm:flex-wrap gap-2 text-[8px] sm:text-xs font-medium">
+                <ul class="flex flex-wrap gap-2 text-[8px] sm:text-xs font-medium">
                     {tags.map(tag=>{
                         return <li class="rounded-sm bg-[#002838] text-white text-start px-1 hover:bg-[#00283896] duration-150">{tag}</li>
                     })}
