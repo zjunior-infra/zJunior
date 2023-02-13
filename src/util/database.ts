@@ -10,7 +10,7 @@ export const prisma=new PrismaClient({
 })
 
 
-export function formatJobs(jobs, {
+function formatJobs(jobs, {
   filterPriority= true,
   sortByDate=true
 }={})
