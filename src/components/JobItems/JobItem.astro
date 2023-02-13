@@ -1,21 +1,28 @@
 ---
+import Siren from '@components/Icons/Siren.astro';
 import type { IJob } from '@util/job.interface';
+import { spawn } from 'child_process';
 
 export interface Props extends IJob{}
 const Job=Astro.props
-const {company, title, email, type, deadline, skills, link, logo }=Job
+const {company, title, email, type, deadline, skills, link, logo,close=false }=Job
 const tags=skills.split(",")
-
 ---
 
-<div class="flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800 shadow-md duration-150 hover:border-zinc-500 hover:shadow-lg hover:-translate-y-1">
+<div class='transition ease-in-out delay-150 flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800  shadow-md duration-300 hover:border-zinc-500 hover:shadow-lg hover:scale-105'>
         <img src={logo} onerror="this.onerror=null; this.src='/images/joblogo.png'" alt="logo" class=" bg-white w-28 sm:w-32 object-cover object-center">
         <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
             <h1 class="font-bold">{title}</h1>
             <div class="text-xs mt-1">
-                <h2 class="font-medium">{company}</h2>
-                <p>{type}</p>
-                <p>Apply before: {deadline}</p>
+                <h2 class="font-medium mt-1">{company}</h2>
+                <p class="mb-1">{type}</p>
+                <p class={close && 'text-[#ED0000] flex relative'}>Apply before: {deadline} {close && 
+                    <span class="flex">
+                        <span class="animate-ping mx-[0.68rem] absolute inline-flex h-3 w-3 rounded-full bg-[#ED0000] opacity-75"></span>
+                        <span class="relative mx-2 -my-1"><Siren/></span>
+                    </span>
+                }
+                </p>
             </div>
             <div class="flex mt-6 items-center">
                 <ul class="flex flex-wrap gap-2 text-[8px] sm:text-xs font-medium">

@@ -6,6 +6,14 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			keyframes:{
+				'wig': {
+					'0%, 100%': { transform: 'translate-x-20' },
+				}
+			},
+			animation:{
+				'wig': 'wig 10s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+			},
 			colors: {
 				'primary': '#0374E2',
 				'secondary': '#002838',
