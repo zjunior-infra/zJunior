@@ -19,6 +19,7 @@ jobs:
           cache: npm
       - name: install deps and generate prisma
         run: |
+          echo $DATABASE_URL
           npm install
           npx prisma generate
       - name: run the delete script
