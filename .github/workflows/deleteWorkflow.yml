@@ -1,0 +1,25 @@
+name: Cron job to delete ended Jobs
+
+on:
+  workflow_dispatch:
+  schedule: # "At 06:00 PM, only on Monday"
+    - cron: "0 18 * * 1"
+
+jobs:
+  deleteJobs:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: env.DATABASE_URL
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - name: install deps
+        run: |
+          npm install
+      - name: run the delete script
+        run: |
+          node ./bin/cleanJobs.cjs
+          
