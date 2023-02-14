@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DATABASE_URL: env.DATABASE_URL
+      MAIN_DATABSAE_URL: env.MAIN_DATABASE_URL
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
