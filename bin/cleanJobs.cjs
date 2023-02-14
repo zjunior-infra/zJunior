@@ -1,4 +1,3 @@
-//import { prisma } from "../src/util/database";
 const { PrismaClient } = require('@prisma/client')
 const moment = require('moment')
 const prisma = new PrismaClient({
