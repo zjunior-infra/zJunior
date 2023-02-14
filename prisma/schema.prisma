@@ -10,6 +10,7 @@ datasource db {
 }
 
 
+
 model Job {
   id       String    @id @unique @default(cuid())
   company  String
