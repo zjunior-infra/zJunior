@@ -21,3 +21,5 @@ pnpm-debug.log*
 
 #build
 build/
+bin/cleaningJobs.cjs
+bin/data.yaml
