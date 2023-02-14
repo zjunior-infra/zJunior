@@ -17,9 +17,10 @@ jobs:
         with:
           node-version: 18
           cache: npm
-      - name: install deps
+      - name: install deps and generate prisma
         run: |
           npm install
+          npx prisma generate
       - name: run the delete script
         run: |
           node ./bin/cleanJobs.cjs
