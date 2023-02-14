@@ -18,7 +18,7 @@ function formatJobs(jobs, {
    const filteredJobs= jobs.reduce((acc,job)=>{
       const {deadline}=job;
       const date=new Date(deadline);
-      const today=new Date(new Date());
+      const today=new Date();
       const closeDate=new Date(today.getFullYear(),today.getMonth(),today.getDate()+8);
       if(date<=closeDate){
         return [...acc, {...job, close:true}];
