@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client/edge"
+import moment from "moment";
 import { IJob } from "./job.interface";
 
 export const prisma=new PrismaClient({
@@ -33,6 +34,19 @@ function formatJobs(jobs, {
    return filteredJobs;
 }
 
+export async function cleaningJobs() {
+  //construct today date in format yyyy-mm-dd
+  const today=moment().format('YYYY-MM-DD')
+  // delete all jobs that are older than today
+  const result =await prisma.job.deleteMany({
+      where:{
+          deadline:{
+              lt:today
+          }
+      }
+  })
+  return (`Deleted ${result.count} jobs`)
+}
 export async function getJobs(type:string) {
   const result=await prisma.job.findMany({
     where:{
