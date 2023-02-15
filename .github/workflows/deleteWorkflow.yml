@@ -17,11 +17,14 @@ jobs:
         with:
           node-version: 18
           cache: npm
+      - name: inject env to the job
+        run: |
+          export DATABASE_URL=$secrets.DATABASE_URL
+          export MAIN_DATABASE_URL=$secrets.MAIN_DATABASE_URL
       - name: install deps and generate prisma
         run: |
           echo $DATABASE_URL
           npm install
-          npx prisma generate
       - name: run the delete script
         run: |
           node ./bin/cleanJobs.cjs
