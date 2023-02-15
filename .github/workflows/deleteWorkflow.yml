@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call the delete api
-        uses: wei/curl@v1.1.1
-        with:
-          args: -X POST https://juniorjobs.pages.dev/api/cleanJobs -H "auth: ${{ secrets.DEL_TOKEN }}"
+        run: |
+          curl -X POST https://juniorjobs.pages.dev/api/cleanJobs -H "auth: ${{ secrets.DEL_TOKEN }}"
           
