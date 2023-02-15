@@ -8,19 +8,12 @@ on:
 jobs:
   deleteJobs:
     runs-on: ubuntu-latest
-    env:
-      DATABASE_URL: env.DATABASE_URL
-      MAIN_DATABSAE_URL: env.MAIN_DATABASE_URL
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Call the delete api
+        uses: Satak/webrequest-action@v1.2.3
         with:
-          node-version: 18
-          cache: npm
-      - name: install deps
-        run: |
-          npm install
-      - name: run the delete script
-        run: |
-          node ./bin/cleanJobs.cjs
+          # Web request URL endpoint
+          url: "https://juniorjobs.pages.dev/api/cleanJobs"
+          method: POST
+          headers: '{"auth": "${{ secrets.DEL_TOKEN }}"}'
           
