@@ -6,7 +6,7 @@ export const post: APIRoute = async ({ request }) => {
         try{
             if (!reqAuth)
             return new Response("Not Authorized", {status:401})
-            if(reqAuth===process.env.DEL_TOKEN)
+            if(reqAuth==="process.env.DEL_TOKEN")
             {
                 const result = await cleaningJobs();
                 return new Response(result,{status:200});

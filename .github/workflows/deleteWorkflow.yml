@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call the delete api
-        uses: Satak/webrequest-action@v1.2.3
-        with:
-          # Web request URL endpoint
-          url: "https://juniorjobs.pages.dev/api/cleanJobs"
-          method: POST
-          headers: '{"auth": "${{ secrets.DEL_TOKEN }}"}'
+        run: |
+          curl -X POST https://juniorjobs.pages.dev/api/cleanJobs -H "auth: ${{ secrets.DEL_TOKEN }}"
           
