@@ -12,11 +12,17 @@ export const post: APIRoute = async ({ request }) => {
                 return new Response(result,{status:200});
             }
             else {
-                return new Response("TOKEN is unvalid",{status:401});
+                return new Response(`TOKEN is unvalid: ${[process.env.DEL_TOKEN]}`,{status:401});
             }
         }
         catch(err){
             return new Response(err.message,{status:500})
         }
         
+}
+export const get: APIRoute = async ({ request }) => {
+    const reqAuth = request.headers.get('auth');
+    
+    return new Response(reqAuth,{status:200})
+    
 }
