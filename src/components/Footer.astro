@@ -21,15 +21,15 @@ const pages=[
     target:"_blank"
   },
   {
-    name: "Internships",
+    name: "Opportunities",
     href: "/internships",
     target:"_self"
-  },
-  {
-    name:"EntryLevel",
-    href:"/entry",
-    target:"_self"
   }
+    // {
+    //   name:"EntryLevel",
+    //   href:"/entry",
+    //   target:"_self"
+    // }
 ]
 ---
 
@@ -58,10 +58,10 @@ const pages=[
       
     <hr class="mt-6 bg-white/50 border-transparent border-1 rounded-md">
     <div class="mt-6 text-sm font-normal text-white">
-        <ul class="grid grid-rows-3 grid-flow-col gap-4 place-content-start">
+        <ul class="grid grid-rows-5 grid-flow-col gap-4 place-content-start">
             {
               pages?.map((page)=>{
-                return <li><a href={page.href} target={page.target} class="my-2 duration-150 hover:text-zinc-600">{page.name}</a></li>
+                return <li><a href={page.href} target={page.target} class=" my-2 duration-150 hover:text-zinc-600">{page.name}</a></li>
               })
             }
         </ul>
