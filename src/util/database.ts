@@ -47,12 +47,8 @@ export async function cleaningJobs() {
   })
   return (`Deleted ${result.count} jobs`)
 }
-export async function getJobs(type:string) {
-  const result=await prisma.job.findMany({
-    where:{
-      type,
-    }
-  });
+export async function getJobs() {
+  const result=await prisma.job.findMany({});
   return formatJobs(result);
 }
 
