@@ -208,7 +208,7 @@ import skills from "@util/skills";
         }
        #selectedTags::-webkit-scrollbar {
             width: 0px;
-            background: transparent; /* make scrollbar transparent */
+            background: transparent; 
         }
 
         
@@ -232,7 +232,7 @@ import skills from "@util/skills";
         }
 
         #warning-card {
-            position: absolute;
+            position: fixed;
             display: none;
             top: 100px;
             right: 0;
@@ -269,81 +269,173 @@ import skills from "@util/skills";
         /* Large devices (desktops, 1200px and up) */
 @media (min-width: 1300px) and (max-width: 1690px){
   .search-bar-container {
-    width: 100%;
+    width: 1261px;
     margin: 0 auto;
+  }
+  .search-bar-right{
+    width: 510px;
+  }
+  .search-tags{
+    width: 483px;
+  }
+  .write-tags select{
+    width: 441px;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 1299px) {
+@media (min-width: 1196px) and (max-width: 1299px) {
   .search-bar-container {
-    width: 100%;
+    width: 1153px;
     margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
   }
-  .search-bar-right {
-    width: 50%;
-    padding-left: 30px;
+  .search-bar-right{
+    width: 484px;
   }
-  .search-bar-right input {
-    width: 100%;
+  .search-bar-left{
+    width: 426px;
   }
-  .search-bar-left {
-    width: 50%;
+  .search-tags{
+    width: 483px;
   }
-  .search-bar-end {
-    width: 100px;
+  .write-tags select{
+    width: 382px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1195px) {
+  .search-bar-container {
+    width: 902px;
+    margin: 0 auto;
+  }
+  .search-bar-right{
+    width: 398px;
+  }
+  .search-bar-left{
+    width: 288px;
+  }
+  .search-tags{
+    width: 267px;
+  }
+  .write-tags select{
+    width: 225px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar-container {
+    width: 746px;
+    margin: 0 auto;
+  }
+  .search-bar-right{
+    width: 294px;
+  }
+  .search-bar-left{
+    width: 212px;
+  }
+  .search-tags{
+    width: 198px;
+  }
+  .write-tags select{
+    width: 155px;
   }
 }
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767px) {
   .search-bar-container {
-    width: 100%;
+    width: 584px;
     margin: 0 auto;
-    padding: 0 20px;
   }
-  .search-bar-right {
-    width: 60%;
-    padding-left: 30px;
+  .search-bar-right{
+    width: 198px;
   }
-  .search-bar-right input {
-    width: 100%;
+  .search-bar-right input{
+    width: 140px;
+    font-weight: 600;
+    font-size: 10px;
   }
-  .search-bar-middel {
-    display: none;
+  .search-bar-middel{
+    width: 115px;
   }
-  .search-bar-left {
-    width: 40%;
+  .search-bar-left{
+    width: 175px  ;
   }
+  .search-tags{
+    width: 170px;
+  }
+  .write-tags{
+    width: 132px;
+  }
+  .write-tags select{
+    width: 92px;
+    font-size: 10px;
+  }
+  #selectedTags{
+    width: 170px;
+    font-size: 10px;
+  }
+  #warning-card{
+    width: 408px;
+    font-size: 11px;
+    top: 166px;
+}
+  
 }
 
 /* Extra small devices (portrait phones, 575px and under) */
 @media (max-width: 575px) {
   .search-bar-container {
-    width: 100%;
+    width: 415px;
     margin: 0 auto;
-    padding: 0 20px;
   }
-  .search-bar-right {
-    width: 100%;
-    padding: 0;
+  .search-bar-right{
+    width: 145px;
   }
-  .search-bar-right input {
-    width: 100%;
-    margin-bottom: 10px;
+  .search-bar-right input{
+    width: 77px;
+    font-weight: 800;
+    font-size: 6px;
   }
-  .search-bar-middel {
-    display: none;
+  .search-bar-middel{
+    width: 115px;
   }
-  .search-bar-left {
-    width: 100%;
+  .job-type-pick-header{
+    font-size: 11px;
+    width: 49px ;
   }
-  .write-tags {
-    display: none;
+  .job-type-pick{
+    width: 87px;
   }
+  .job-type-pick select{
+    font-size: 11px;    
+    appearance: none;
+    background-image: none;
+    padding-left: 0;
+  }
+  .search-bar-left{
+    width: 91px  ;
+  }
+  .search-tags{
+    width: 83px;
+  }
+  .write-tags{
+    width: 29px ;
+  }
+  .write-tags-header{
+    font-size: 11px;  
+  }
+  .write-tags select{
+    width: 52px;
+    font-size: 10px;
+  }
+  #selectedTags{
+    width: 118px;
+    font-size: 10px;
+  }
+  #warning-card{
+    width: 408px;
+    font-size: 11px;
+    top: 166px;
+}
 }
 
         
