@@ -62,6 +62,11 @@ import skills from "@util/skills";
             </svg>
             
     </div>
+
+    <div id="warning-card">
+        <p>Please fill in the search field or select at least one tag before searching.</p>
+      </div>
+      
 </div>
 
 
@@ -225,7 +230,122 @@ import skills from "@util/skills";
             margin-right: 5px;
 
         }
+
+        #warning-card {
+            position: absolute;
+            display: none;
+            top: 100px;
+            right: 0;
+            width: 540px;
+            height: 50px;
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            transform: translateX(100%) translateY(-100%);
+            animation: slide-in 0.5s forwards;
+            font-family: 'Montserrat';
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 36px;
+            border-radius: 5px 0 0 5px;
+            cursor: pointer;
+            }
+
+      
+        #warning-card.show {
+        transform: translate(0, 50px);
+        display: inline-block;
+        }
+    
+        @keyframes slide-in {
+        from {
+            transform: translateX(100%) translateY(-100%);
+        }
+        to {
+            transform: translateX(0) translateY(0);
+        }
+        }
         
+        /* Large devices (desktops, 1200px and up) */
+@media (min-width: 1300px) and (max-width: 1690px){
+  .search-bar-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 1299px) {
+  .search-bar-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .search-bar-right {
+    width: 50%;
+    padding-left: 30px;
+  }
+  .search-bar-right input {
+    width: 100%;
+  }
+  .search-bar-left {
+    width: 50%;
+  }
+  .search-bar-end {
+    width: 100px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .search-bar-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .search-bar-right {
+    width: 60%;
+    padding-left: 30px;
+  }
+  .search-bar-right input {
+    width: 100%;
+  }
+  .search-bar-middel {
+    display: none;
+  }
+  .search-bar-left {
+    width: 40%;
+  }
+}
+
+/* Extra small devices (portrait phones, 575px and under) */
+@media (max-width: 575px) {
+  .search-bar-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .search-bar-right {
+    width: 100%;
+    padding: 0;
+  }
+  .search-bar-right input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .search-bar-middel {
+    display: none;
+  }
+  .search-bar-left {
+    width: 100%;
+  }
+  .write-tags {
+    display: none;
+  }
+}
+
         
 </style>
 
@@ -238,6 +358,7 @@ import skills from "@util/skills";
     const list = document.querySelector('#selectedTags');
     const JobtypeSelect = document.querySelector('#job-type-selector');
     const searchButton = document.querySelector('#submit-button');
+    const warningCard = document.querySelector('#warning-card');
     
     selectTag.addEventListener('change', (event) => {
   const selectedOption = event.target.value;
@@ -272,7 +393,18 @@ import skills from "@util/skills";
         const jobName = document.querySelector('#job-name').value;
         const selectedTags = tags;
         const selectedJobType = JobtypeSelect.value;
-        
+        if (!jobName  && selectedTags.length === 0) {
+            warningCard.classList.add('show');
+    setTimeout(() => {
+      warningCard.classList.remove('show');
+    }, 3000);
+   
+  } else {
+
         console.log(jobName,selectedJobType , selectedTags);
+  }
     })
+    warningCard.addEventListener('click', () => {
+        warningCard.classList.remove('show');
+    });
 </script>
