@@ -1,0 +1,499 @@
+---
+import skills from "@util/skills";
+
+
+---
+
+<div class="search-bar-container">
+    <div class="search-bar-right">
+        <input type="text" placeholder="What are you looking for?" id='job-name'>
+        <svg width="2" height="65" viewBox="0 0 2 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 0V65" stroke="#121214" stroke-width="0.5"/>
+        </svg>
+    </div>
+    <div class="search-bar-middel">
+        <div class="job-type-pick">
+            <div class="job-type-pick-header">
+                Job Type
+            </div>
+            <select id="job-type-selector">
+                <option value="entry">Entry-level</option>
+                <option value="internship">Internship</option>
+            </select>
+        </div>
+
+        <svg width="2" height="65" viewBox="0 0 2 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 0V65" stroke="#121214" stroke-width="0.5"/>
+        </svg>
+    </div>
+    
+    <div class="search-bar-left">
+            <div class="search-tags">
+                <div class="write-tags">
+                    <div class="write-tags-header">
+                        Tags:
+                    </div>
+                    <select  id="selectTag" >
+                        <option value=''>Select tag</option>
+                        {skills.map(skill => {
+                            return <option value={skill.skill}>{skill.skill}</option>
+                        })}
+                    </select>
+                </div>
+                <div id="selectedTags"></div>
+
+            </div>
+    </div>
+
+    <div class="search-bar-end" id="submit-button">
+        <svg  viewBox="0 0 42 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_277_595" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="3" y="4" width="35" height="35">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 4.40063H37.5844V38.4854H3.5V4.40063Z" fill="white"/>
+            </mask>
+            <g mask="url(#mask0_277_595)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5428 7.02567C12.5925 7.02567 6.12451 13.4919 6.12451 21.4422C6.12451 29.3924 12.5925 35.8604 20.5428 35.8604C28.4913 35.8604 34.9593 29.3924 34.9593 21.4422C34.9593 13.4919 28.4913 7.02567 20.5428 7.02567M20.5428 38.4854C11.1453 38.4854 3.49951 30.8396 3.49951 21.4421C3.49951 12.0446 11.1453 4.40063 20.5428 4.40063C29.9403 4.40063 37.5843 12.0446 37.5843 21.4421C37.5843 30.8396 29.9403 38.4854 20.5428 38.4854" fill="white"/>
+            </g>
+            <mask id="mask1_277_595" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="30" y="31" width="9" height="10">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M30.1702 31.8878H38.9623V40.6636H30.1702V31.8878Z" fill="white"/>
+            </mask>
+            <g mask="url(#mask1_277_595)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M37.6501 40.6636C37.3159 40.6636 36.9799 40.5359 36.7226 40.2804L30.5556 34.1309C30.0429 33.6181 30.0411 32.7869 30.5539 32.2741C31.0649 31.7579 31.8961 31.7614 32.4106 32.2706L38.5776 38.4219C39.0904 38.9346 39.0921 39.7641 38.5794 40.2769C38.3239 40.5359 37.9861 40.6636 37.6501 40.6636" fill="white"/>
+            </g>
+            </svg>
+            
+    </div>
+
+    <div id="warning-card">
+        <p>Please fill in the search field or select at least one tag before searching.</p>
+      </div>
+      
+</div>
+
+
+
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+        html{
+            font-family: 'Montserrat', sans-serif;
+        }
+        .search-bar-container {
+            width: 1541px;
+            height:  90px;
+            background: #ffff;
+            border: 1px solid #000;
+            border-radius: 50px;
+            display: flex;
+            margin-left: 136px;
+            justify-content: space-between;
+        }
+        .search-bar-right{
+            width: 610px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 60px;
+        }
+        .search-bar-right input{
+            width: 498px;
+            height: 80px;
+            font-family: 'Montserrat';
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 36px;
+        }
+        input:focus, select:focus{
+            outline: none;
+        }
+        .search-bar-middel {
+            width: 198px;
+            display: flex;  
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .job-type-pick{
+            width: 118px;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: stretch;
+            padding-left: 4px;
+
+        }
+        .job-type-pick-header{
+            width: 67px;
+            height: 37px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 36px;
+        }
+        .job-type-pick select{
+            appearance: none;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMCAyMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMuNzI0NjggNy41NDIwN0MzLjk0NjU3IDcuMzIwMTggNC4yOTM3OSA3LjMwMDAxIDQuNTM4NDcgNy40ODE1NUw0LjYwODU3IDcuNTQyMDdMOS45OTk5NiAxMi45MzMyTDE1LjM5MTQgNy41NDIwN0MxNS42MTMyIDcuMzIwMTggMTUuOTYwNSA3LjMwMDAxIDE2LjIwNTEgNy40ODE1NUwxNi4yNzUyIDcuNTQyMDdDMTYuNDk3MSA3Ljc2Mzk2IDE2LjUxNzMgOC4xMTExOCAxNi4zMzU4IDguMzU1ODVMMTYuMjc1MiA4LjQyNTk1TDEwLjQ0MTkgMTQuMjU5M0MxMC4yMiAxNC40ODEyIDkuODcyNzkgMTQuNTAxMyA5LjYyODEyIDE0LjMxOThMOS41NTgwMiAxNC4yNTkzTDMuNzI0NjggOC40MjU5NUMzLjQ4MDYxIDguMTgxODcgMy40ODA2MSA3Ljc4NjE0IDMuNzI0NjggNy41NDIwN1oiIGZpbGw9IiM4RThFOEUiLz4KPC9zdmc+Cg==');
+            background-repeat: no-repeat;
+            background-position: right 0.25rem center;
+            padding-right: 1.5rem;
+            border: none;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #6c757d;
+            background-color: #fff;
+            cursor: pointer;
+
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 36px;
+            color: #7B7B7B;
+        }
+        .search-bar-left{
+            width: 630px;
+            height: 90px;
+            display: flex;
+            
+            align-items: center;
+        }
+        .search-tags{
+           width: 592px;
+           height: 74px;
+           display: flex;
+           justify-content: space-between;
+           flex-direction: column;
+        }
+        .write-tags{
+            widht: 630px;
+            height: 37px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .write-tags-header{
+            width: 34px;
+            height: 37px;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 36px;
+            color: #000000;
+        }
+
+        .write-tags select{
+            appearance: none;
+            width: 549px;
+            background: #FFFFFF;
+            font-family: 'Montserrat';
+            font-weight: 400;
+    
+            font-size: 14px;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 36px;
+            color: #7B7B7B;
+
+        }
+        
+        #selectedTags{
+           overflow-y: auto;
+           padding-bottom: 8px;
+           
+        }
+        #selectedTags .tag{
+            color: red;
+        }
+       #selectedTags::-webkit-scrollbar {
+            width: 0px;
+            background: transparent; 
+        }
+
+        
+        .search-bar-end{
+            width: 101px;
+            height: 90px;
+            min-width: 97px;
+            border-radius: 0 50px 50px 0;
+            background: #0374E2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .search-bar-end svg{
+            width: 42px;
+            height: 43px;
+            margin-bottom: 5px;
+            margin-right: 5px;
+
+        }
+
+        #warning-card {
+            position: fixed;
+            display: none;
+            top: 100px;
+            right: 0;
+            width: 540px;
+            height: 50px;
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            transform: translateX(100%) translateY(-100%);
+            animation: slide-in 0.5s forwards;
+            font-family: 'Montserrat';
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 36px;
+            border-radius: 5px 0 0 5px;
+            cursor: pointer;
+            }
+
+      
+        #warning-card.show {
+        transform: translate(0, 50px);
+        display: inline-block;
+        }
+    
+        @keyframes slide-in {
+        from {
+            transform: translateX(100%) translateY(-100%);
+        }
+        to {
+            transform: translateX(0) translateY(0);
+        }
+        }
+        
+@media (min-width: 1300px) and (max-width: 1690px){
+  .search-bar-container {
+    width: 1261px;
+    margin: 0 auto;
+  }
+  .search-bar-right{
+    width: 510px;
+  }
+  .search-tags{
+    width: 483px;
+  }
+  .write-tags select{
+    width: 441px;
+  }
+}
+@media (min-width: 1196px) and (max-width: 1299px) {
+  .search-bar-container {
+    width: 1153px;
+    margin: 0 auto;
+  }
+  .search-bar-right{
+    width: 484px;
+  }
+  .search-bar-left{
+    width: 426px;
+  }
+  .search-tags{
+    width: 483px;
+  }
+  .write-tags select{
+    width: 382px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1195px) {
+  .search-bar-container {
+    width: 902px;
+    margin: 0 auto;
+  }
+  .search-bar-right{
+    width: 398px;
+  }
+  .search-bar-left{
+    width: 288px;
+  }
+  .search-tags{
+    width: 267px;
+  }
+  .write-tags select{
+    width: 225px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar-container {
+    width: 746px;
+    margin: 0 auto;
+  }
+  .search-bar-right{
+    width: 294px;
+  }
+  .search-bar-left{
+    width: 212px;
+  }
+  .search-tags{
+    width: 198px;
+  }
+  .write-tags select{
+    width: 155px;
+  }
+}
+
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .search-bar-container {
+    width: 584px;
+    margin: 0 auto;
+  }
+  .search-bar-right{
+    width: 198px;
+  }
+  .search-bar-right input{
+    width: 140px;
+    font-weight: 600;
+    font-size: 10px;
+  }
+  .search-bar-middel{
+    width: 115px;
+  }
+  .search-bar-left{
+    width: 175px  ;
+  }
+  .search-tags{
+    width: 170px;
+  }
+  .write-tags{
+    width: 132px;
+  }
+  .write-tags select{
+    width: 92px;
+    font-size: 10px;
+  }
+  #selectedTags{
+    width: 170px;
+    font-size: 10px;
+  }
+  #warning-card{
+    width: 408px;
+    font-size: 11px;
+    top: 166px;
+}
+  
+}
+
+
+@media (max-width: 575px) {
+  .search-bar-container {
+    width: 415px;
+    margin: 0 auto;
+  }
+  .search-bar-right{
+    width: 145px;
+  }
+  .search-bar-right input{
+    width: 77px;
+    font-weight: 800;
+    font-size: 6px;
+  }
+  .search-bar-middel{
+    width: 115px;
+  }
+  .job-type-pick-header{
+    font-size: 11px;
+    width: 49px ;
+  }
+  .job-type-pick{
+    width: 87px;
+  }
+  .job-type-pick select{
+    font-size: 11px;    
+    appearance: none;
+    background-image: none;
+    padding-left: 0;
+  }
+  .search-bar-left{
+    width: 91px  ;
+  }
+  .search-tags{
+    width: 83px;
+  }
+  .write-tags{
+    width: 29px ;
+  }
+  .write-tags-header{
+    font-size: 11px;  
+  }
+  .write-tags select{
+    width: 52px;
+    font-size: 10px;
+  }
+  #selectedTags{
+    width: 118px;
+    font-size: 10px;
+  }
+  #warning-card{
+    width: 408px;
+    font-size: 11px;
+    top: 166px;
+}
+}
+
+        
+</style>
+
+
+<script is:inline>
+
+
+    const tags = []
+    const selectTag = document.querySelector('#selectTag');
+    const list = document.querySelector('#selectedTags');
+    const JobtypeSelect = document.querySelector('#job-type-selector');
+    const searchButton = document.querySelector('#submit-button');
+    const warningCard = document.querySelector('#warning-card');
+    
+    selectTag.addEventListener('change', (event) => {
+  const selectedOption = event.target.value;
+  
+  if (selectedOption) { 
+    tags.push(selectedOption);
+    const newTag = document.createElement('span');
+    newTag.classList.add('tag');
+    newTag.textContent = selectedOption;
+    newTag.style.backgroundColor = '#002838';
+    newTag.style.color = 'white';
+    newTag.style.padding = '6px 10px';
+    newTag.style.borderRadius = '5px';
+    newTag.style.marginRight = '10px';
+    newTag.style.marginBottom = '10px';
+    newTag.style.cursor = 'pointer';
+    if(list){
+    list.appendChild(newTag);
+    }
+    newTag.addEventListener('click', (event) => {
+      const tagIndex = tags.indexOf(event.target.textContent.trim());
+      if (tagIndex >= 0) {
+        tags.splice(tagIndex, 1);
+        event.target.remove();
+      }
+    });
+    
+  }
+});
+
+    searchButton.addEventListener('click', (event) => {
+        const jobName = document.querySelector('#job-name').value;
+        const selectedTags = tags;
+        const selectedJobType = JobtypeSelect.value;
+        if (!jobName  && selectedTags.length === 0) {
+            warningCard.classList.add('show');
+    setTimeout(() => {
+      warningCard.classList.remove('show');
+    }, 3000);
+   
+  } else {
+
+        console.log(jobName,selectedJobType , selectedTags);
+  }
+    })
+    warningCard.addEventListener('click', () => {
+        warningCard.classList.remove('show');
+    });
+</script>
