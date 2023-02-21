@@ -1,7 +1,6 @@
 name: Cron job to delete ended Jobs
 
 on:
-  workflow_dispatch:
   schedule: # "At 06:00 PM, only on Monday"
     - cron: "0 18 * * 1"
 
