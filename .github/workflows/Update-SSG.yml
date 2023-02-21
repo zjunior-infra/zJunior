@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Call the delete api
         run: |
-          response=$(curl -X POST secrets.WEBHOOK | grep '"success": true')
+          response=$(curl -X POST ${{ secrets.WEBHOOK }} | grep '"success": true')
           if [[ response ]]
           then
           return 0;
