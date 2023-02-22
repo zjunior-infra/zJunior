@@ -6,15 +6,15 @@ on:
     - cron: "0 6 * * *"
 
 jobs:
-  deleteJobs:
+  Update-ssg:
     runs-on: ubuntu-latest
     steps:
-      - name: Call the delete api
+      - name: Call the webhook
         run: |
-          response=$(curl -X POST secrets.WEBHOOK | grep '"success": true')
+          response=$(curl -X POST ${{ secrets.WEBHOOK }} | grep '"success": true')
           if [[ response ]]
           then
-          return 0;
-          else return 1;
+          echo "done"
+          exit 0
+          else echo "fail" exit 1;
           fi
-          
