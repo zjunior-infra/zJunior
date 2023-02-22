@@ -1,6 +1,7 @@
 ---
 import Newsletter from "@components/newsletter/Newsletter.astro";
 import Baselayout from "@layouts/BaseLayout.astro";
+import { test } from "@util/database";
 const navigation = [
 {
     name: "Opportunities",
@@ -28,6 +29,7 @@ const navigation = [
   },
 ]
 const pathname=Astro.url.pathname
+console.log(await test())
 ---
 
 <Baselayout title="Junior Jobs"

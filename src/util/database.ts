@@ -34,6 +34,16 @@ function formatJobs(jobs, {
    return filteredJobs;
 }
 
+export async function test(){
+  const result =await prisma.job.findMany({
+    where:{
+      title:{
+        search:'software engineer'
+      }
+    }
+  })
+}
+
 export async function cleaningJobs() {
   //construct today date in format yyyy-mm-dd
   const today=moment().format('YYYY-MM-DD')
