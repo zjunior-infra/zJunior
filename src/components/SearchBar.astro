@@ -1,7 +1,5 @@
 ---
 import skills from "@util/skills";
-
-
 ---
 
 <div class="search-bar-container">
@@ -17,6 +15,7 @@ import skills from "@util/skills";
                 Job Type
             </div>
             <select id="job-type-selector">
+                <option selected value="">Select</option>
                 <option value="entry">Entry-level</option>
                 <option value="internship">Internship</option>
             </select>
@@ -73,10 +72,8 @@ import skills from "@util/skills";
 
 <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-        html{
-            font-family: 'Montserrat', sans-serif;
-        }
         .search-bar-container {
+            font-family: 'Montserrat';
             width: 1541px;
             height:  90px;
             background: #ffff;
@@ -97,7 +94,6 @@ import skills from "@util/skills";
         .search-bar-right input{
             width: 498px;
             height: 80px;
-            font-family: 'Montserrat';
             font-weight: 400;
             font-size: 14px;
             line-height: 36px;
@@ -173,7 +169,6 @@ import skills from "@util/skills";
         .write-tags-header{
             width: 34px;
             height: 37px;
-            font-family: 'Montserrat';
             font-style: normal;
             font-weight: 600;
             font-size: 14px;
@@ -185,11 +180,8 @@ import skills from "@util/skills";
             appearance: none;
             width: 549px;
             background: #FFFFFF;
-            font-family: 'Montserrat';
             font-weight: 400;
-    
             font-size: 14px;
-            font-family: 'Montserrat';
             font-style: normal;
             font-weight: 600;
             font-size: 14px;
@@ -486,7 +478,7 @@ import skills from "@util/skills";
             warningCard.classList.add('show');
     setTimeout(() => {
       warningCard.classList.remove('show');
-    }, 3000);
+    }, 5000);
    
   } else {
 

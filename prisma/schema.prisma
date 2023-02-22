@@ -22,7 +22,7 @@ model Job {
   logo     String
   skills   String
 
-  @@fulltext([title])
+  @@fulltext(fields: [title])
 }
 model Lister{
   id      String @id @unique @default(cuid())

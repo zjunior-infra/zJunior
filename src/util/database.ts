@@ -38,10 +38,11 @@ export async function test(){
   const result =await prisma.job.findMany({
     where:{
       title:{
-        search:'software engineer'
+        search:'Software'
       }
     }
   })
+  return result;
 }
 
 export async function cleaningJobs() {
