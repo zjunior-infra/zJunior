@@ -1,15 +1,16 @@
 ---
 import Newsletter from "@components/newsletter/Newsletter.astro";
 import Baselayout from "@layouts/BaseLayout.astro";
+import { test } from "@util/database";
 const navigation = [
 {
-    name: "Internships",
-    href: "/internships",
+    name: "Opportunities",
+    href: "/opportunities",
   },
-  {
-    name: "Entry Level",
-    href: "/entry",
-  },
+  // {
+  //   name: "Entry Level",
+  //   href: "/entry",
+  // },
   {
     name: "Programs",
     href: "/programs",
@@ -28,6 +29,7 @@ const navigation = [
   },
 ]
 const pathname=Astro.url.pathname
+console.log(await test())
 ---
 
 <Baselayout title="Junior Jobs"
@@ -85,18 +87,12 @@ url="/" includeHeader={false}>
 
       <div class="mt-20 flex flex-wrap justify-center gap-4 sm:gap-28 text-center">
         <a
-          href="/internships"
+          href="/opportunities"
           class="block w-full rounded-3xl bg-white px-16 py-4 text-sm font-medium  text-[#0374E2] shadow-lg hover:bg-transparent hover:ring-2 hover:ring-white hover:text-white duration-150 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
         >
-          Internships
+        Launch Your Career
         </a>
 
-        <a
-          href="entry"
-          class="block w-full rounded-3xl bg-transparent ring-2 ring-white px-16 py-4 text-sm font-medium  text-white shadow-lg hover:bg-[#0374E2] hover:ring-0  hover:text-white duration-150 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-        >
-          Entry Level
-        </a>
       </div>
     </div>
   </div>
