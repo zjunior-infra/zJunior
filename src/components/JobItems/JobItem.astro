@@ -1,6 +1,7 @@
 ---
 import Siren from '@components/Icons/Siren.astro';
 import type { IJob } from '@util/job.interface';
+import { spawn } from 'child_process';
 
 export interface Props extends IJob{}
 const Job=Astro.props
