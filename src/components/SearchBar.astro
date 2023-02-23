@@ -1,5 +1,6 @@
 ---
 import skills from "@util/skills";
+export const query='hello'
 ---
 <div class="search-bar-component">
 
@@ -765,7 +766,7 @@ import skills from "@util/skills";
 </style>
 
 
-<script is:inline>
+<script is:inline type="module">
 
 
     const tags = []
@@ -775,7 +776,11 @@ import skills from "@util/skills";
     const searchButton = document.querySelector('#submit-button');
     const warningCard = document.querySelector('#warning-card');
     let close = true;
-    
+    export const query={
+      JobType:'',
+      Tags:[''],
+      JobName:''
+    }
     
     selectTag.addEventListener('change', (event) => {
   const selectedOption = event.target.value;
@@ -835,8 +840,7 @@ import skills from "@util/skills";
     }, 3000);
    
   } else {
-
-        console.log(jobName,selectedJobType , selectedTags);
+        query={jobName,selectedTags,selectedJobType}
   }
 
       }

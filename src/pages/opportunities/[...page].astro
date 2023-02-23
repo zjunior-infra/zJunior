@@ -8,12 +8,7 @@ import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 import Modal from "@components/Modal/Modal.astro";
 import SearchBar from "@components/SearchBar.astro";
 // Allowing Astro to prerender this page using Hybrid Mode
-export const prerender = true;
-export async function getStaticPaths({ paginate }) {
-    const jobs= await getJobs();
-    return paginate(jobs,{pageSize:12})
-}
-const {page}=Astro.props
+
 ---
 
 <BaseLayout title="Opportunities" description="Opportunities for all MEAN software engineer to start thier career"
@@ -22,14 +17,16 @@ url='/opportunities'>
     <SectionTitle title="Explore New Career Opportunities" style="mx-4 sm:mx-32 items-start" />
 </div>
 <SearchBar />
-<div class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20">
-        {page.data.map((job:IJob) => (
-            <JobItem {...job}/>
-        ))}
+<div id="jobs" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20">
+    <!-- JobItem will be rendered here -->
 </div>
 
 <Modal/>
 
-<Pagination nextUrl={page.url.next} prevUrl={page.url.prev} lastPage={page.lastPage} currentPage={page.currentPage}/>
+<!-- <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} lastPage={page.lastPage} currentPage={page.currentPage}/> -->
 
 </BaseLayout>
+<script is:inline type="module">
+    import query from '../../components/SearchBar.astro'
+    console.log(query)
+</script>
