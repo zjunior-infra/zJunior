@@ -810,15 +810,13 @@ import skills from "@util/skills";
         const jobName = document.querySelector('#job-name').value;
         const selectedTags = tags;
         const selectedJobType = JobtypeSelect.value;
-        
-        if (!jobName  && selectedTags.length === 0) {
+        if (!jobName  && selectedTags.length === 0 && selectedJobType==='') {
             warningCard.classList.add('show');
     setTimeout(() => {
       warningCard.classList.remove('show');
     }, 5000);
    
   } else {
-
         console.log(jobName,selectedJobType , selectedTags);
   }
     })
