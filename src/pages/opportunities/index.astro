@@ -29,7 +29,7 @@ url='/opportunities'>
 
 <script is:inline type="module">
     const jobsDiv = document.getElementById('jobs')
-    async function GetJobs(){
+    async function getJobs(){
         const res = await fetch('/api/jobs.json')
         const data= await res.json()
         return data;
@@ -89,7 +89,7 @@ url='/opportunities'>
         `)
     }
     async function renderJobs(){
-        const jobs=await GetJobs();
+        const jobs=await getJobs();
         
         const jobsElements=jobs.map(job=>{
             return jobElement({...job})
