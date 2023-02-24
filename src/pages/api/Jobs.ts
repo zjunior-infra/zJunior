@@ -8,7 +8,7 @@ export const get: APIRoute = async (context: APIContext) => {
         "Access-Control-Allow-Headers": "*",
     }
     try {
-        if(context.request.credentials==='same-origin'){
+        if(context.request.credentials==="same-origin"){
             const jobType = context.url.searchParams.get('jobtype')
             const tags = context.url.searchParams.get('tags')
             const query = context.url.searchParams.get('query')
@@ -21,7 +21,7 @@ export const get: APIRoute = async (context: APIContext) => {
             return new Response(JSON.stringify(jobType), { status: 200 });
         }
         else{
-            return new Response('sorry You cannot get the data',{status:402})
+            return new Response('Sorry You Cannot Get The Data',{status:401})
         }
     } catch (e: any) {
         return new Response(e.message, { status: 500 });
