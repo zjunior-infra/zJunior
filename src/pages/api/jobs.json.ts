@@ -123,6 +123,7 @@ export const get: APIRoute = async (context: APIContext) => {
         "Access-Control-Allow-Origin":"origin",
         "Access-Control-Allow-Methods": "GET",
         "Access-Control-Allow-Headers": "*",
+        "Content-type":"application/json"
     }
     
     try {
@@ -131,7 +132,7 @@ export const get: APIRoute = async (context: APIContext) => {
             const query = context.url.searchParams.has('query') ? context.url.searchParams.get('query'): ''
             
             const data=await getQueredData(query,jobtype,tags)
-            return new Response(JSON.stringify(data),{status:200})
+            return new Response(JSON.stringify(data),{status:200, headers:crosHeaders})
             
         // }
         // else{
