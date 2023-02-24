@@ -7,13 +7,12 @@ import Pagination from "@components/Pagination.astro";
 import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 import Modal from "@components/Modal/Modal.astro";
 import SearchBar from "@components/SearchBar.astro";
+
+
+
+
 // Allowing Astro to prerender this page using Hybrid Mode
-export const prerender = true;
-export async function getStaticPaths({ paginate }) {
-    const jobs= await getJobs();
-    return paginate(jobs,{pageSize:12})
-}
-const {page}=Astro.props
+
 ---
 
 <BaseLayout title="Opportunities" description="Opportunities for all MEAN software engineer to start thier career"
@@ -22,14 +21,79 @@ url='/opportunities'>
     <SectionTitle title="Explore New Career Opportunities" style="mx-4 sm:mx-32 items-start" />
 </div>
 <SearchBar />
-<div class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20">
-        {page.data.map((job:IJob) => (
-            <JobItem {...job}/>
-        ))}
-</div>
+    <div id="jobs" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20">
+        <!-- JobItem will be rendered here -->
+        
+    </div>
 
 <Modal/>
 
-<Pagination nextUrl={page.url.next} prevUrl={page.url.prev} lastPage={page.lastPage} currentPage={page.currentPage}/>
+<!-- <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} lastPage={page.lastPage} currentPage={page.currentPage}/> -->
 
 </BaseLayout>
+<script is:inline type="module">
+    const jobsDiv = document.getElementById('jobs')
+    
+    const jobs = {
+        company : 'google',
+        title : 'software engineer',
+        email : 'goole@goole.com',
+        type : 'Internship',
+        deadline : '12/12/2021',
+        skills : "google, google, google",
+        link : '',
+        logo : 'google.png',
+        close : false
+    }
+    
+    const tags = jobs.skills.split(",");
+    
+    const tagsJSx = tags.map(tag=>{
+        return `<li class="rounded-sm bg-[#002838] text-white text-start px-1 hover:bg-[#00283896] duration-150">${tag}</li>`
+    })
+    const closeJSx = jobs.close && `<span class="flex">
+                        <span class="animate-ping mx-[0.68rem] absolute inline-flex h-3 w-3 rounded-full bg-[#ED0000] opacity-75"></span>
+                        <span class="relative mx-2 -my-1"><Siren/></span>
+                    </span>`
+    
+    const alretJSx = jobs.close && 'text-[#ED0000] flex relative'
+
+    const linkJSX = jobs.link && ` <button 
+            type="button" class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
+                <a href=${jobs.link} target="_blank">Apply</a>
+            </button>`
+    
+    const emailJSx = jobs.email && ` <button 
+            type="button" onclick=${`openModal("${jobs.email}")`}  class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
+                Apply
+            </button>`
+
+    // const {company, title, email, type, deadline, skills, link, logo,close=false }=Job
+    function renderJobs(jobs ) {
+        
+        jobsDiv.innerHTML = `
+        <div class='transition ease-in-out delay-150 flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800  shadow-md duration-300 hover:border-zinc-500 hover:shadow-lg hover:scale-105'>
+        <img src=${jobs.logo} onerror="this.onerror=null; this.src='/images/joblogo.png'" alt="logo" class=" bg-white w-28 sm:w-32 object-cover object-center">
+        <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
+            <h1 class="font-bold">${jobs.title}</h1>
+            <div class="text-xs mt-1">
+                <h2 class="font-medium mt-1">${jobs.company}</h2>
+                <p class="mb-1">${jobs.type}</p>
+                <p class={${alretJSx}}>Apply before: ${jobs.deadline} {${closeJSx}}
+                </p>
+            </div>
+            <div class="flex mt-6 items-center">
+                <ul class="flex flex-wrap gap-2 text-[8px] sm:text-xs font-medium">
+                    
+                        ${tagsJSx}
+                </ul>
+            </div>
+            ${linkJSX}
+            ${emailJSx}
+            
+        </div>
+</div>
+        `
+    }
+    renderJobs(jobs)
+</script>

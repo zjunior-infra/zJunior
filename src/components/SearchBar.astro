@@ -24,7 +24,7 @@ import skills from "@util/skills";
         </g>
         </svg>
         
-        <input type="text" placeholder="What are you looking for?" id='job-name' onkeydown="search(event)">
+        <input type="text" placeholder="What are you looking for?" id='job-name' >
         <svg class= 'break-line' width="2" height="65" viewBox="0 0 2 65" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 0V65" stroke="#121214" stroke-width="0.5"/>
         </svg>
@@ -83,7 +83,7 @@ import skills from "@util/skills";
             </svg>
           </div>
             
-            <div class="small-screen-filter-option" onclick="toggleFilters()">
+            <div class="small-screen-filter-option" >
              
                  <svg class="filter-option-arrow-down" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2.45925 5.10152C2.60576 4.95501 2.83502 4.94169 2.99658 5.06157L3.04286 5.10152L6.60271 8.66118L10.1626 5.10152C10.3091 4.95501 10.5383 4.94169 10.6999 5.06157L10.7462 5.10152C10.8927 5.24803 10.906 5.4773 10.7861 5.63885L10.7462 5.68514L6.89452 9.53679C6.74801 9.6833 6.51874 9.69662 6.35719 9.57675L6.3109 9.53679L2.45925 5.68514C2.29809 5.52398 2.29809 5.26268 2.45925 5.10152Z" fill="#2E333B" stroke="#2E333B" stroke-width="0.777778"/>
@@ -92,7 +92,7 @@ import skills from "@util/skills";
                     <path d="M2.45925 9.53678C2.60576 9.68329 2.83502 9.69661 2.99658 9.57674L3.04286 9.53678L6.60271 5.97712L10.1626 9.53678C10.3091 9.68329 10.5383 9.69661 10.6999 9.57674L10.7462 9.53678C10.8927 9.39027 10.906 9.16101 10.7861 8.99945L10.7462 8.95317L6.89452 5.10151C6.74801 4.95501 6.51874 4.94169 6.35719 5.06156L6.3109 5.10151L2.45925 8.95317C2.29809 9.11433 2.29809 9.37562 2.45925 9.53678Z" fill="#2E333B" stroke="#2E333B" stroke-width="0.777778"/>
                     </svg>
 
-                    <button>
+                    <button id="fillterButtonToggle">
                       Filter
                   </button>
                     
@@ -765,7 +765,7 @@ import skills from "@util/skills";
 </style>
 
 
-<script is:inline>
+<script is:inline type="module">
 
 
     const tags = []
@@ -773,8 +773,15 @@ import skills from "@util/skills";
     const list = document.querySelector('#selectedTags');
     const JobtypeSelect = document.querySelector('#job-type-selector');
     const searchButton = document.querySelector('#submit-button');
+    const jobNameInput = document.querySelector('#job-name');
     const warningCard = document.querySelector('#warning-card');
+    const filterOption = document.querySelector('#fillterButtonToggle');
     let close = true;
+    export let query={
+      JobType:'',
+      Tags:[''],
+      JobName:''  
+    }
     
     
     selectTag.addEventListener('change', (event) => {
@@ -806,8 +813,20 @@ import skills from "@util/skills";
   }
 });
 
-    searchButton.addEventListener('click', (event) => {
-        const jobName = document.querySelector('#job-name').value;
+
+    searchButton.addEventListener('click', hanelSearch)
+    jobNameInput.addEventListener('keydown',(event) =>{
+      if(event.keyCode == 13){
+        hanelSearch();
+      }
+    })
+
+    warningCard.addEventListener('click', () => {
+        warningCard.classList.remove('show');
+    });
+
+    function hanelSearch(){
+      const jobName = document.querySelector('#job-name').value;
         const selectedTags = tags;
         const selectedJobType = JobtypeSelect.value;
         
@@ -818,32 +837,11 @@ import skills from "@util/skills";
     }, 3000);
    
   } else {
+        query={jobName,selectedTags,selectedJobType}
 
-        console.log(jobName,selectedJobType , selectedTags);
   }
-    })
-    warningCard.addEventListener('click', () => {
-        warningCard.classList.remove('show');
-    });
-    function search(event) {
-      if(event.keyCode == 13){
-        const jobName = document.querySelector('#job-name').value;
-        const selectedTags = tags;
-        const selectedJobType = JobtypeSelect.value;
-        if (!jobName  && selectedTags.length === 0) {
-            warningCard.classList.add('show');
-    setTimeout(() => {
-      warningCard.classList.remove('show');
-    }, 3000);
-   
-  } else {
-
-        console.log(jobName,selectedJobType , selectedTags);
-  }
-
-      }
     }
-    function toggleFilters(){
+    filterOption.addEventListener('click', () => {
       const searchBarMiddel = document.querySelector('.search-bar-middel');
       const searchBarLeft = document.querySelector('.search-bar-left');
       const filterOptionArrowDown = document.querySelector('.filter-option-arrow-down');
@@ -864,7 +862,7 @@ import skills from "@util/skills";
       filterOptionArrowUp.style.display = 'none'; 
       close = !close;
     }
-    }
+    })
 
 
 </script>
