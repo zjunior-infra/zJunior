@@ -8,17 +8,65 @@ export const get: APIRoute = async (context: APIContext) => {
         "Access-Control-Allow-Headers": "*",
     }
     try {
-        
             const jobType = context.url.searchParams.get('jobtype')
             const tags = context.url.searchParams.get('tags')
             const query = context.url.searchParams.get('query')
             let data=[];
-            if(!jobType && !tags && !query){
-                // data = await prisma.job.findMany();
-                return new Response (JSON.stringify(context.request.credentials),{status:200, headers:crosHeaders})
+            if(!jobType && !tags && query){
+                try{
+                    const result = await prisma.job.findMany({
+                    where:{
+                        title:{
+                            search:query
+                            }
+                        }
+                    });
+                    data = result;
+                }
+                catch(err){
+                    return new Response(err.message,{status:404,headers:crosHeaders})
+                }
             }
-            else
-            return new Response(JSON.stringify(jobType), { status: 200 });
+            if(jobType && !tags && !query){
+                try{
+                    const result = await prisma.job.findMany({
+                    where:{
+                        type:{
+                            equals:jobType
+                            }
+                        }
+                    });
+                    data = result;
+                }
+                catch(err){
+                    return new Response(err.message,{status:404,headers:crosHeaders})
+                }
+            }
+            if(jobType && tags && query){
+                try{
+                    const result = await prisma.job.findMany({
+                    where:{
+                        title:{
+                            search:query
+                            },
+                        type:{
+                            equals:jobType
+                        },
+                        skills:{
+                            contains:tags
+                        }
+                        }
+                    });
+                    data = result;
+                }
+                catch(err){
+                    return new Response(err.message,{status:404,headers:crosHeaders})
+                }
+            }
+            else{
+                return new Response('search is not done',{status:404,headers:crosHeaders})
+            }
+            return new Response(JSON.stringify(data), { status: 200 });
         // }
         // else{
             // return new Response('Sorry You Cannot Get The Data',{status:401 , headers:crosHeaders})
