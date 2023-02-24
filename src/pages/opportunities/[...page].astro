@@ -8,6 +8,13 @@ import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 import Modal from "@components/Modal/Modal.astro";
 import SearchBar from "@components/SearchBar.astro";
 // Allowing Astro to prerender this page using Hybrid Mode
+export const prerender = true;
+//@ts-ignore
+export async function getStaticPaths({ paginate }) {
+    const jobs= await getJobs();
+    return paginate(jobs,{pageSize:12})
+}
+const {page}=Astro.props
 
 ---
 

@@ -1,0 +1,20 @@
+name: Cron job to Update the SSG by redeploing
+
+on:
+  workflow_dispatch:
+  schedule: # "At 06:00 AM everyday"
+    - cron: "0 6 * * *"
+
+jobs:
+  deleteJobs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call the delete api
+        run: |
+          response=$(curl -X POST secrets.WEBHOOK | grep '"success": true')
+          if [[ response ]]
+          then
+          return 0;
+          else return 1;
+          fi
+          
