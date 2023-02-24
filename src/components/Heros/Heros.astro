@@ -38,12 +38,22 @@ const heros = [
   email : 'muhamedheba2@gmail.com',
   bg: 'bg-[#FFADAD]',
   icons:[Dog , Cat , FrontDog,Ball],
-  }
+  },
+  {
+  name: 'Adham El-Gazoly',
+  title: 'Software Engineer',
+  img:'/images/heros/hero4.png',
+  socialMedia: {linkedin:'https://www.linkedin.com/in/adham-el-gazoly-075385190/',
+  github:'https://github.com/EL-Gazoly'},
+  email:'elgazoly11@gmail.com',
+  bg:'bg-[#FFADAD]',
+  icons:[Dog,Cat,Ball]
+  },
   ]
 ---
 <div class="relative">
   <div class="absolute rounded-full bg-opacity-10 blur-3xl bg-primary w-full h-full z-0"></div>
-  <div class="grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+  <div class="grid gap-8 justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
     {
       heros?.map((hero) => {
         return <Hero {...hero} />
