@@ -21,7 +21,7 @@ export const get: APIRoute = async (context: APIContext) => {
             return new Response(JSON.stringify(jobType), { status: 200 });
         }
         else{
-            return new Response('Sorry You Cannot Get The Data',{status:401})
+            return new Response('Sorry You Cannot Get The Data',{status:401 , headers:crosHeaders})
         }
     } catch (e: any) {
         return new Response(e.message, { status: 500 });
