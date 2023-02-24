@@ -23,6 +23,7 @@ model Job {
   skills   String
 
   @@fulltext(fields: [title])
+  @@fulltext(fields: [skills])
 }
 model Lister{
   id      String @id @unique @default(cuid())

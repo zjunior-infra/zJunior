@@ -11,7 +11,7 @@ export const prisma=new PrismaClient({
 })
 
 
-function formatJobs(jobs, {
+export function formatJobs(jobs, {
   filterPriority= true,
   sortByDate=true
 }={})
@@ -34,16 +34,6 @@ function formatJobs(jobs, {
    return filteredJobs;
 }
 
-export async function test(){
-  const result =await prisma.job.findMany({
-    where:{
-      title:{
-        search:'Software'
-      }
-    }
-  })
-  return result;
-}
 
 export async function cleaningJobs() {
   //construct today date in format yyyy-mm-dd

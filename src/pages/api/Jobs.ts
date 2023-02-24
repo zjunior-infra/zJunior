@@ -1,5 +1,122 @@
-import { prisma } from "@util/database";
+import { prisma,formatJobs } from "@util/database";
 import type { APIContext, APIRoute } from "astro";
+function customizeQuery(query){
+    const split=query.split(' ')
+    const first=split[0];
+    const second=split[1];
+    return `+${first} +${second}`
+}
+
+async function getQueredData(query='',jobtype='',tags=''){
+    if(!query && !jobtype && !tags){
+        try{
+            const result= await prisma.job.findMany()
+            return formatJobs(result);
+        }
+        catch(err){
+            return err.message;
+        }
+    }
+    if(!jobtype && !tags && query){
+        try{
+            const result = await prisma.job.findMany({
+            where:{
+                title:{
+                    search:customizeQuery(query)
+                    }
+                }
+            });
+            return formatJobs(result)
+        }
+        catch(err){
+            return err.message
+        }
+    }
+    if(jobtype && !tags && !query){
+        try{
+            const result = await prisma.job.findMany({
+            where:{
+                type:{
+                    equals:jobtype
+                    }
+                }
+            });
+            return formatJobs(result)
+        }
+        catch(err){
+            return err.message
+        }
+    }
+    if(!jobtype && tags && !query){
+        try{
+            const result = await prisma.job.findMany({
+            where:{
+                skills:{
+                    search:tags
+                    }
+                }
+            });
+            return formatJobs(result)
+        }
+        catch(err){
+            return err.message
+        }
+    }
+    if(jobtype && !tags && query){
+        try{
+            const result = await prisma.job.findMany({
+            where:{
+                title:{
+                    search:customizeQuery(query)
+                    },
+                type:{
+                    equals:jobtype
+                },
+                }
+            });
+            return formatJobs(result)
+        }
+        catch(err){
+            return err.message
+        }
+    }
+    if(!jobtype && tags && query){
+        try{
+            const result = await prisma.job.findMany({
+            where:{
+                title:{
+                    search:customizeQuery(query)
+                    },
+                skills:{
+                    search:tags
+                },
+                }
+            });
+            return formatJobs(result)
+        }
+        catch(err){
+            return err.message
+        }
+    }
+    if(jobtype && tags && !query){
+        try{
+            const result = await prisma.job.findMany({
+            where:{
+                type:{
+                    equals:jobtype
+                    },
+                skills:{
+                    search:tags
+                },
+                }
+            });
+            return formatJobs(result)
+        }
+        catch(err){
+            return err.message
+        }
+    }
+}
 
 export const get: APIRoute = async (context: APIContext) => {
     const crosHeaders={
@@ -7,66 +124,15 @@ export const get: APIRoute = async (context: APIContext) => {
         "Access-Control-Allow-Methods": "GET",
         "Access-Control-Allow-Headers": "*",
     }
+    
     try {
-            const jobType = context.url.searchParams.get('jobtype')
-            const tags = context.url.searchParams.get('tags')
-            const query = context.url.searchParams.get('query')
-            let data=[];
-            if(!jobType && !tags && query){
-                try{
-                    const result = await prisma.job.findMany({
-                    where:{
-                        title:{
-                            search:query
-                            }
-                        }
-                    });
-                    data = result;
-                }
-                catch(err){
-                    return new Response(err.message,{status:404,headers:crosHeaders})
-                }
-            }
-            if(jobType && !tags && !query){
-                try{
-                    const result = await prisma.job.findMany({
-                    where:{
-                        type:{
-                            equals:jobType
-                            }
-                        }
-                    });
-                    data = result;
-                }
-                catch(err){
-                    return new Response(err.message,{status:404,headers:crosHeaders})
-                }
-            }
-            if(jobType && tags && query){
-                try{
-                    const result = await prisma.job.findMany({
-                    where:{
-                        title:{
-                            search:query
-                            },
-                        type:{
-                            equals:jobType
-                        },
-                        skills:{
-                            contains:tags
-                        }
-                        }
-                    });
-                    data = result;
-                }
-                catch(err){
-                    return new Response(err.message,{status:404,headers:crosHeaders})
-                }
-            }
-            else{
-                return new Response('search is not done',{status:404,headers:crosHeaders})
-            }
-            return new Response(JSON.stringify(data), { status: 200 });
+            const jobtype = context.url.searchParams.get('jobtype') ? context.url.searchParams.get('jobtype'): ''
+            const tags = context.url.searchParams.get('tags') ? context.url.searchParams.get('tags'): ''
+            const query = context.url.searchParams.has('query') ? context.url.searchParams.get('query'): ''
+            
+            const data=await getQueredData(query,jobtype,tags)
+            return new Response(JSON.stringify(data),{status:200})
+            
         // }
         // else{
             // return new Response('Sorry You Cannot Get The Data',{status:401 , headers:crosHeaders})
