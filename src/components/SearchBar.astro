@@ -1,7 +1,6 @@
 ---
 import skills from "@util/skills";
-
-
+export const query='hello'
 ---
 <div class="search-bar-component">
 
@@ -35,6 +34,7 @@ import skills from "@util/skills";
                 Job Type
             </div>
             <select id="job-type-selector">
+                <option selected value="">Select</option>
                 <option value="entry">Entry-level</option>
                 <option value="internship">Internship</option>
             </select>
@@ -124,6 +124,7 @@ import skills from "@util/skills";
             align-items: center;
         }
         .search-bar-container {
+            font-family: 'Montserrat';
             width: 1541px;
             height:  90px;
 
@@ -777,12 +778,14 @@ import skills from "@util/skills";
     const warningCard = document.querySelector('#warning-card');
     const filterOption = document.querySelector('#fillterButtonToggle');
     let close = true;
+
     export let query={
       JobType:'',
       Tags:[''],
       JobName:''  
     }
     
+
     
     selectTag.addEventListener('change', (event) => {
   const selectedOption = event.target.value;
@@ -819,6 +822,7 @@ import skills from "@util/skills";
       if(event.keyCode == 13){
         hanelSearch();
       }
+
     })
 
     warningCard.addEventListener('click', () => {

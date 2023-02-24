@@ -8,11 +8,6 @@ import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 import Modal from "@components/Modal/Modal.astro";
 import SearchBar from "@components/SearchBar.astro";
 
-
-
-
-// Allowing Astro to prerender this page using Hybrid Mode
-
 ---
 
 <BaseLayout title="Opportunities" description="Opportunities for all MEAN software engineer to start thier career"
@@ -31,6 +26,7 @@ url='/opportunities'>
 <!-- <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} lastPage={page.lastPage} currentPage={page.currentPage}/> -->
 
 </BaseLayout>
+
 <script is:inline type="module">
     const jobsDiv = document.getElementById('jobs')
     
@@ -96,4 +92,5 @@ url='/opportunities'>
         `
     }
     renderJobs(jobs)
+
 </script>
