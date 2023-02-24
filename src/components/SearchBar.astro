@@ -35,7 +35,7 @@ export const query='hello'
             </div>
             <select id="job-type-selector">
                 <option selected value="">Select</option>
-                <option value="entry">Entry-level</option>
+                <option value="entrylevel">Entry-level</option>
                 <option value="internship">Internship</option>
             </select>
         </div>
@@ -776,7 +776,7 @@ export const query='hello'
     const searchButton = document.querySelector('#submit-button');
     const warningCard = document.querySelector('#warning-card');
     let close = true;
-    export const query={
+    export let query={
       JobType:'',
       Tags:[''],
       JobName:''
@@ -822,7 +822,8 @@ export const query='hello'
     }, 5000);
    
   } else {
-        console.log(jobName,selectedJobType , selectedTags);
+    query={jobName,selectedTags,selectedJobType}
+    console.log(query)
   }
     })
     warningCard.addEventListener('click', () => {
@@ -841,6 +842,7 @@ export const query='hello'
    
   } else {
         query={jobName,selectedTags,selectedJobType}
+        //console.log(query)
   }
 
       }
