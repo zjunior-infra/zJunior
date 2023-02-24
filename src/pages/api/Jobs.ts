@@ -8,17 +8,21 @@ export const get: APIRoute = async (context: APIContext) => {
         "Access-Control-Allow-Headers": "*",
     }
     try {
-        
-        const jobType = context.url.searchParams.get('jobtype')
-        const tags = context.url.searchParams.get('tags')
-        const query = context.url.searchParams.get('query')
-        let data=[];
-        if(!jobType && !tags && !query){
-            data = await prisma.job.findMany();
-            return new Response (JSON.stringify(data),{status:200, headers:crosHeaders})
+        if(context.request.credentials==='same-origin'){
+            const jobType = context.url.searchParams.get('jobtype')
+            const tags = context.url.searchParams.get('tags')
+            const query = context.url.searchParams.get('query')
+            let data=[];
+            if(!jobType && !tags && !query){
+                data = await prisma.job.findMany();
+                return new Response (JSON.stringify(data),{status:200, headers:crosHeaders})
+            }
+            else
+            return new Response(JSON.stringify(jobType), { status: 200 });
         }
-        else
-        return new Response(JSON.stringify(jobType), { status: 200 });
+        else{
+            return new Response('sorry You cannot get the data',{status:402})
+        }
     } catch (e: any) {
         return new Response(e.message, { status: 500 });
     }
