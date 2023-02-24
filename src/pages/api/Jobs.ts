@@ -3,7 +3,7 @@ import type { APIContext, APIRoute } from "astro";
 
 export const get: APIRoute = async (context: APIContext) => {
     const crosHeaders={
-        "Access-Control-Allow-Origin":"Origin",
+        "Access-Control-Allow-Origin":"origin",
         "Access-Control-Allow-Methods": "GET",
         "Access-Control-Allow-Headers": "*",
     }
