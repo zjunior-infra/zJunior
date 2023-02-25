@@ -15,7 +15,14 @@ url='/opportunities'>
 <div class="mt-40 mx-4 sm:mx-10 text-[#002838] text-xl font-bold">
     <SectionTitle title="Explore New Career Opportunities" style="mx-4 sm:mx-32 items-start" />
 </div>
-<SearchBar />
+<SearchBar id="searchBar"/>
+
+    <div id="loader" class='flex items-center justify-center h-16 my-6'>
+        <div style="border-top-color:transparent" class="w-8 h-8 border-4 border-blue-200 rounded-full animate-spin"></div>
+        <p class="ml-2">Loading...</p>
+    </div>
+
+
     <div id="jobs" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20">
         <!-- JobItem will be rendered here -->
         
@@ -27,6 +34,7 @@ url='/opportunities'>
 
 </BaseLayout>
 <script is:inline type="module">
+
     import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.esm.js'
     
     const jobsDiv = document.getElementById('jobs')
@@ -72,7 +80,7 @@ url='/opportunities'>
             </button>`
         }
         return( `
-        <div class='transition ease-in-out delay-150 flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800  shadow-md duration-300 hover:border-zinc-500 hover:shadow-lg hover:scale-105'>
+        <div  class='transition ease-in-out delay-150 flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800  shadow-md duration-300 hover:border-zinc-500 hover:shadow-lg hover:scale-105'>
         <img src=${logo} onerror="this.onerror=null; this.src='/images/joblogo.png'" alt="logo" class=" bg-white w-28 sm:w-32 object-cover object-center">
         <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
             <h1 class="font-bold">${title}</h1>
@@ -92,7 +100,12 @@ url='/opportunities'>
         `)
     }
     async function renderJobs(){
-        const jobs=await getJobs();
+        const loader = document.getElementById('loader')    
+       
+        const jobs = await getJobs();
+        loader.classList.add('hidden')
+        
+       
         const options={
             shouldSort:false,
             keys:['skills']
