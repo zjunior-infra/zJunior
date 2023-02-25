@@ -766,8 +766,8 @@ export const query='hello'
 </style>
 
 
-<script is:inline type="module">
-
+<script is:inline>
+    
     const tags = []
     const selectTag = document.querySelector('#selectTag');
     const list = document.querySelector('#selectedTags');
@@ -777,12 +777,26 @@ export const query='hello'
     const warningCard = document.querySelector('#warning-card');
     const filterOption = document.querySelector('#fillterButtonToggle');
     let close = true;
-    export let query={
-      JobType:'',
-      Tags:[''],
-      JobName:''  
+    function storeQuery(jobType,tags,jobName){
+      let searchQuery=''
+      if(jobType)
+      searchQuery+=`jobtype=${jobType}`
+      if(tags){
+        let tagString=''
+        tags.forEach((tag,idx) => {
+          if(tags.length-1 ==idx)
+            tagString+=tag.trim()
+          else
+            tagString=`${tag}+`
+        });
+        searchQuery+=`&tags=${tagString}`  
+      }
+      if(jobName){
+        searchQuery+=`&query=${jobName}`
+      }
+      
+      console.log(searchQuery.trim())
     }
-    
 
     
     selectTag.addEventListener('change', (event) => {
@@ -839,8 +853,7 @@ export const query='hello'
     }, 3000);
    
   } else {
-        query={jobName,selectedTags,selectedJobType}
-        //console.log(query)
+        storeQuery(selectedJobType,selectedTags,jobName)
   }
     }
     filterOption.addEventListener('click', () => {

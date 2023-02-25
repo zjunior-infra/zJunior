@@ -26,14 +26,17 @@ url='/opportunities'>
 <!-- <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} lastPage={page.lastPage} currentPage={page.currentPage}/> -->
 
 </BaseLayout>
-
 <script is:inline type="module">
+    import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.esm.js'
+    
     const jobsDiv = document.getElementById('jobs')
     async function getJobs(){
         const res = await fetch('/api/jobs.json')
         const data= await res.json()
         return data;
     }
+
+    
     function formatDeadline(deadline,close){
         if(!close){
             return `<p>Apply before: ${deadline}</p>`
@@ -90,14 +93,19 @@ url='/opportunities'>
     }
     async function renderJobs(){
         const jobs=await getJobs();
-        
-        const jobsElements=jobs.map(job=>{
-            return jobElement({...job})
+        const options={
+            shouldSort:false,
+            keys:['skills']
+        }
+        const fuse=new Fuse(jobs,options)
+        const res=fuse.search('java script')
+        const jobsElements=res.map(job=>{
+            return jobElement({...job.item})
         })
-
         jobsElements.forEach(job=>{
             jobsDiv.innerHTML+=job
         })
+        
     }
 
     renderJobs()
