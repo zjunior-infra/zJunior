@@ -11,7 +11,7 @@ export const prisma=new PrismaClient({
 })
 
 
-function formatJobs(jobs, {
+export function formatJobs(jobs, {
   filterPriority= true,
   sortByDate=true
 }={})
@@ -33,6 +33,7 @@ function formatJobs(jobs, {
    }
    return filteredJobs;
 }
+
 
 export async function cleaningJobs() {
   //construct today date in format yyyy-mm-dd
