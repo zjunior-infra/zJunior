@@ -26,8 +26,19 @@ url='/opportunities'>
 <!-- <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} lastPage={page.lastPage} currentPage={page.currentPage}/> -->
 
 </BaseLayout>
-<script is:inline type="module">
-    import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.esm.js'
+<script>
+    import { search } from '@util/search.js'
+    import {he} from '../../util/test.js'
+    const data=await search()
+    console.log(data)
+</script>
+<script is:inline>
+    
+    
+    searchButton.addEventListener("click", ()=>{
+        hanelSearch()
+        console.log(query.textSearch)
+    });
     
     const jobsDiv = document.getElementById('jobs')
     async function getJobs(){
@@ -93,12 +104,7 @@ url='/opportunities'>
     }
     async function renderJobs(){
         const jobs=await getJobs();
-        const options={
-            shouldSort:false,
-            keys:['skills']
-        }
-        const fuse=new Fuse(jobs,options)
-        const res=fuse.search('java script')
+        const res=search(jobs)
         const jobsElements=res.map(job=>{
             return jobElement({...job.item})
         })
@@ -108,6 +114,5 @@ url='/opportunities'>
         
     }
 
-    renderJobs()
 
 </script>
