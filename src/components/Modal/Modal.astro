@@ -1,7 +1,7 @@
 ---
 import Copy from "@components/Icons/Copy.astro";
 ---
-<div  class="modal inset-0 flex fixed bg-black bg-opacity-30 items-center justify-center">
+<div  class="modal flex invisible inset-0 fixed bg-black bg-opacity-30 items-center justify-center duration-150">
     <div class="w-11/12  md:w-3/5  lg:w-2/5 h-fit bg-white rounded-md p-4 xs:p-8">
     <p class="text-xl sm:text-3xl xl:text-4xl text-center">Apply by sending mail</p>
     <p class="text-sm mt-4">Please mention the job title in the subject line.</p>
@@ -22,15 +22,14 @@ import Copy from "@components/Icons/Copy.astro";
   </div>
 <script is:inline>
     const closeBtn = document.querySelector('#closeBtn');
-    document.querySelector('.modal').classList.add('hidden');
     function closeModal(){
-        document.querySelector('.modal').classList.add('hidden');
+        document.querySelector('.modal').classList.add('invisible');
         document.querySelector("#copied").innerText="";
     }
     closeBtn.addEventListener('click', closeModal);
     function openModal(email){
         document.querySelector('#email').innerText = email;
-        document.querySelector('.modal').classList.remove('hidden');
+        document.querySelector('.modal').classList.remove('invisible');
     }
     const copyBtn = document.querySelector('#copyBtn');
     copyBtn.addEventListener('click', ()=>{

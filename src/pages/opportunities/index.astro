@@ -7,9 +7,9 @@ import Pagination from "@components/Pagination.astro";
 import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 import Modal from "@components/Modal/Modal.astro";
 import SearchBar from "@components/SearchBar.astro";
-import Loading from "@components/loading.astro";
+import Loading from "@components/Loading.astro";
 
-let isLoading: boolean = true;
+// let isLoading: boolean = true;
 ---
 
 <BaseLayout title="Opportunities" description="Opportunities for all MEAN software engineer to start thier career"
@@ -105,22 +105,23 @@ url='/opportunities'>
        const searchBar = document.getElementById('searchSeaction')
        searchBar.classList.add('hidden')
         const jobs = await getJobs();
-        loader.classList.add('hidden')
-        searchBar.classList.remove('hidden')        
+           
        
         const options={
             shouldSort:false,
             keys:['skills']
         }
         const fuse=new Fuse(jobs,options)
-        const res=fuse.search('java script')
+        const res= await fuse.search('java script')
         const jobsElements=res.map(job=>{
             return jobElement({...job.item})
         })
         jobsElements.forEach(job=>{
             jobsDiv.innerHTML+=job
         })
-        
+        loader.classList.add('hidden')
+        searchBar.classList.remove('hidden')   
+          
     }
 
     renderJobs()
