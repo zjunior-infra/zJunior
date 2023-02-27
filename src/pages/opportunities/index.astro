@@ -14,20 +14,17 @@ import Loading from "@components/Loading.astro";
 
 <BaseLayout title="Opportunities" description="Opportunities for all MEAN software engineer to start thier career"
 url='/opportunities'>
-<div id="searchSeaction">
+<div>
     <div class="mt-40 mx-4 sm:mx-10 text-[#002838] text-xl font-bold">
         <SectionTitle title="Explore New Career Opportunities" style="mx-4 sm:mx-32 items-start" />
     </div>
-
     <SearchBar />
-</div>
-    <div id="loader">  
-        <Loading />
-    </div>
-    <div id="jobs" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20">
+</div> 
+    <Loading />
+    <div id="jobContainer" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20 invisible">
         <!-- JobItem will be rendered here -->
         
-    </div>
+</div>
 
 <Modal/>
 
@@ -38,13 +35,18 @@ url='/opportunities'>
 
     import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.esm.js'
     
-    const jobsDiv = document.getElementById('jobs')
+    const jobsDiv = document.getElementById('jobContainer')
     async function getJobs(){
         const res = await fetch('/api/jobs.json')
         const data= await res.json()
         return data;
     }
-
+    async function LoadingJobs(){
+        const loader = document.getElementById('loader')    
+        const searchBar= document.querySelector('#jobContainer')
+        loader.classList.add('hidden')
+        searchBar.classList.remove('invisible')
+    }
     
     function formatDeadline(deadline,close){
         if(!close){
@@ -101,27 +103,21 @@ url='/opportunities'>
         `)
     }
     async function renderJobs(){
-        const loader = document.getElementById('loader')    
-       const searchBar = document.getElementById('searchSeaction')
-       searchBar.classList.add('hidden')
         const jobs = await getJobs();
-           
-       
         const options={
             shouldSort:false,
             keys:['skills']
         }
+
         const fuse=new Fuse(jobs,options)
-        const res= await fuse.search('java script')
+        const res= await fuse.search('java')
         const jobsElements=res.map(job=>{
             return jobElement({...job.item})
         })
         jobsElements.forEach(job=>{
             jobsDiv.innerHTML+=job
         })
-        loader.classList.add('hidden')
-        searchBar.classList.remove('hidden')   
-          
+        await LoadingJobs()
     }
 
     renderJobs()
