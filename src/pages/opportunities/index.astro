@@ -1,52 +1,40 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import JobItem from "@components/JobItems/JobItem.astro";
-import { getJobs } from "@util/database";
-import type { IJob } from "@util/job.interface";
-import Pagination from "@components/Pagination.astro";
 import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 import Modal from "@components/Modal/Modal.astro";
 import SearchBar from "@components/SearchBar.astro";
+import Loading from "@components/Loading.astro";
 
 ---
 
 <BaseLayout title="Opportunities" description="Opportunities for all MEAN software engineer to start thier career"
 url='/opportunities'>
-<div class="mt-40 mx-4 sm:mx-10 text-[#002838] text-xl font-bold">
-    <SectionTitle title="Explore New Career Opportunities" style="mx-4 sm:mx-32 items-start" />
+<div>
+        <SectionTitle title="Explore New Career Opportunities" style="mx-4 sm:mx-48"/>
+    <SearchBar />
+</div> 
+    <Loading />
+    <div id="jobContainer" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20 invisible">
 </div>
-<SearchBar />
-    <div id="jobs" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20">
-        <!-- JobItem will be rendered here -->
-        
-    </div>
 
 <Modal/>
 
-<!-- <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} lastPage={page.lastPage} currentPage={page.currentPage}/> -->
 
 </BaseLayout>
-<script>
-    import { search } from '@util/search.js'
-    import {he} from '../../util/test.js'
-    const data=await search()
-    console.log(data)
-</script>
-<script is:inline>
-    
-    
-    searchButton.addEventListener("click", ()=>{
-        hanelSearch()
-        console.log(query.textSearch)
-    });
-    
-    const jobsDiv = document.getElementById('jobs')
+<script is:inline type="module">
+    import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.esm.js'
+    const jobsDiv = document.getElementById('jobContainer')
     async function getJobs(){
         const res = await fetch('/api/jobs.json')
         const data= await res.json()
         return data;
     }
-
+    async function LoadingJobs(){
+        const loader = document.getElementById('loader')    
+        const searchBar= document.querySelector('#jobContainer')
+        loader.classList.add('hidden')
+        searchBar.classList.remove('invisible')
+    }
     
     function formatDeadline(deadline,close){
         if(!close){
@@ -83,7 +71,7 @@ url='/opportunities'>
             </button>`
         }
         return( `
-        <div class='transition ease-in-out delay-150 flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800  shadow-md duration-300 hover:border-zinc-500 hover:shadow-lg hover:scale-105'>
+        <div  class='transition ease-in-out delay-150 flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800  shadow-md duration-300 hover:border-zinc-500 hover:shadow-lg hover:scale-105'>
         <img src=${logo} onerror="this.onerror=null; this.src='/images/joblogo.png'" alt="logo" class=" bg-white w-28 sm:w-32 object-cover object-center">
         <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
             <h1 class="font-bold">${title}</h1>
@@ -103,16 +91,21 @@ url='/opportunities'>
         `)
     }
     async function renderJobs(){
-        const jobs=await getJobs();
-        const res=search(jobs)
+
+        const jobs = await getJobs();
+        const options={
+            shouldSort:false,
+            keys:['skills']
+        }
+
+        const fuse=new Fuse(jobs,options)
+        const res= await fuse.search('java')
         const jobsElements=res.map(job=>{
             return jobElement({...job.item})
         })
         jobsElements.forEach(job=>{
             jobsDiv.innerHTML+=job
-        })
-        
+        }
     }
-
 
 </script>
