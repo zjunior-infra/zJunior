@@ -1,6 +1,10 @@
 ---
 import skills from "@util/skills";
+import { query as searchQuery } from "../searchQueryStore.js";
 export const query = "hello";
+function handleSubmit() {
+  alert("hhh");
+}
 ---
 
 <div class="search-bar-component">
@@ -200,34 +204,17 @@ export const query = "hello";
             stroke-width="0.777778"></path>
         </svg>
 
-        <button id="fillterButtonToggle"> Filter</button>
+        <button id="fillterButtonToggle" onclick="alert('hey');">
+          Filter
+        </button>
       </div>
     </div>
+    <button id="new-btn">Test</button>
 
     <div id="warning-card">
       <p>Please fill in the search field or select at least one tag</p>
     </div>
   </div>
-</div>
-<div id="clear-filters" class="flex justify-between mx-4 sm:mx-40 gap-6 my-20">
-  <p><span id="results-count">0</span> Results found</p>
-  <button id="clear-results-button" class="flex content-center">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="w-5 h-5 mr-2"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M6 18L18 6M6 6l12 12"></path>
-    </svg>
-
-    <span>Clear filters</span>
-  </button>
 </div>
 
 <style>
@@ -857,9 +844,7 @@ export const query = "hello";
   }
 </style>
 
-<script>
-  import { filterJobs } from "@util/scripts/jobComponent";
-
+<script is:inline type="module">
   const tags = [];
   const selectTag = document.querySelector("#selectTag");
   const list = document.querySelector("#selectedTags");
@@ -869,22 +854,11 @@ export const query = "hello";
   const warningCard = document.querySelector("#warning-card");
   const filterOption = document.querySelector("#fillterButtonToggle");
   let close = true;
-  function storeQuery(jobType, tags, jobName) {
-    let searchQuery = "";
-    if (jobType) searchQuery += `jobtype=${jobType}`;
-    let tagString = "";
-    if (tags) {
-      tags.forEach((tag, idx) => {
-        if (tags.length - 1 == idx) tagString += tag.trim();
-        else tagString = `${tag}+`;
-      });
-      searchQuery += `&tags=${tagString}`;
-    }
-    if (jobName) {
-      searchQuery += `&query=${jobName}`;
-    }
-    filterJobs(jobName, jobType, tags);
-  }
+  export let query = {
+    JobType: "",
+    Tags: [""],
+    JobName: "",
+  };
 
   selectTag.addEventListener("change", (event) => {
     const selectedOption = event.target.value;
@@ -927,15 +901,16 @@ export const query = "hello";
 
   function hanelSearch() {
     const jobName = document.querySelector("#job-name").value;
-    const selectedTags = tags; // Array
-    const selectedJobType = JobtypeSelect.value; // String
+    const selectedTags = tags;
+    const selectedJobType = JobtypeSelect.value;
     if (!jobName && selectedTags.length === 0) {
       warningCard.classList.add("show");
       setTimeout(() => {
         warningCard.classList.remove("show");
       }, 3000);
     } else {
-      storeQuery(selectedJobType, selectedTags, jobName);
+      query = { jobName, selectedTags, selectedJobType };
+      //console.log(query)
     }
   }
   filterOption.addEventListener("click", () => {

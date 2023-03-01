@@ -4,24 +4,30 @@ import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 import Modal from "@components/Modal/Modal.astro";
 import SearchBar from "@components/SearchBar.astro";
 import Loading from "@components/Loading.astro";
-
 ---
 
-<BaseLayout title="Opportunities" description="Opportunities for all MEAN software engineer to start thier career"
-url='/opportunities'>
-<div>
-        <SectionTitle title="Explore New Career Opportunities" style="mx-4 sm:mx-48"/>
+<BaseLayout
+  title="Opportunities"
+  description="Opportunities for all MEAN software engineer to start thier career"
+  url="/opportunities"
+>
+  <div>
+    <SectionTitle
+      title="Explore New Career Opportunities"
+      style="mx-4 sm:mx-48"
+    />
     <SearchBar />
-</div> 
-    <Loading />
-    <div id="jobContainer" class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20 invisible">
-</div>
+  </div>
+  <Loading />
+  <div
+    id="jobContainer"
+    class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20 invisible"
+  >
+  </div>
 
-<Modal/>
-
-
+  <Modal />
 </BaseLayout>
 <script>
-    import {renderJobs} from '@util/scripts/jobComponent'
-    renderJobs();
+  import { renderJobs } from "@util/scripts/jobComponent";
+  renderJobs();
 </script>

@@ -1,23 +1,23 @@
-import Fuse from 'fuse.js' 
+import Fuse from "fuse.js";
 
-async function LoadingJobs(){
-    const loader = document.getElementById('loader')    
-    const searchBar= document.querySelector('#jobContainer')
-    loader.classList.add('hidden')
-    searchBar.classList.remove('invisible')
+async function LoadingJobs() {
+  const loader = document.getElementById("loader");
+  const searchBar = document.querySelector("#jobContainer");
+  loader.classList.add("hidden");
+  searchBar.classList.remove("invisible");
 }
 
-async function getJobs(){
-    const res = await fetch('/api/jobs.json')
-    const data= await res.json()
-    return data;
+async function getJobs() {
+  const res = await fetch("/api/jobs.json");
+  const data = await res.json();
+  return data;
 }
 
-function formatDeadline(deadline,close){
-    if(!close){
-        return `<p>Apply before: ${deadline}</p>`
-    }
-    return `<p class='text-[#ED0000] flex relative'}>Apply before: ${deadline} 
+function formatDeadline(deadline, close) {
+  if (!close) {
+    return `<p>Apply before: ${deadline}</p>`;
+  }
+  return `<p class='text-[#ED0000] flex relative'}>Apply before: ${deadline} 
                 <span class="flex">
                     <span class="animate-ping mx-[0.68rem] absolute inline-flex h-3 w-3 rounded-full bg-[#ED0000] opacity-75"></span>
                     <span class="relative mx-2 -my-1"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,29 +25,39 @@ function formatDeadline(deadline,close){
 </svg>
 </span>
                 </span>
-            </p>`
+            </p>`;
 }
 
-function formatTags(skills){
-    const tags=skills.split(',')
-    let tagsElements=``
-    tags.map(tag=>{
-        tagsElements+= `<li class="rounded-sm bg-[#002838] text-white text-start px-1 hover:bg-[#00283896] duration-150">${tag}</li>`
-    })
-    return tagsElements;
+function formatTags(skills) {
+  const tags = skills.split(",");
+  let tagsElements = ``;
+  tags.map((tag) => {
+    tagsElements += `<li class="rounded-sm bg-[#002838] text-white text-start px-1 hover:bg-[#00283896] duration-150">${tag}</li>`;
+  });
+  return tagsElements;
 }
-function jobElement({company,title,email,type,deadline,skills,link,logo,close=false}){
-    let button=`<button 
+function jobElement({
+  company,
+  title,
+  email,
+  type,
+  deadline,
+  skills,
+  link,
+  logo,
+  close = false,
+}) {
+  let button = `<button 
         type="button" class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
             <a href=${link} target="_blank">Apply</a>
-        </button>`
-    if(email){
-        button=`<button 
+        </button>`;
+  if (email) {
+    button = `<button 
         type="button" onclick=${`openModal("${email}")`}  class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
             Apply
-        </button>`
-    }
-    return( `
+        </button>`;
+  }
+  return `
     <div  class='transition ease-in-out delay-150 flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800  shadow-md duration-300 hover:border-zinc-500 hover:shadow-lg hover:scale-105'>
     <img src=${logo} onerror="this.onerror=null; this.src='/images/joblogo.png'" alt="logo" class=" bg-white w-28 sm:w-32 object-cover object-center">
     <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
@@ -55,7 +65,7 @@ function jobElement({company,title,email,type,deadline,skills,link,logo,close=fa
         <div class="text-xs mt-1">
             <h2 class="font-medium mt-1">${company}</h2>
             <p class="mb-1">${type}</p>
-            ${formatDeadline(deadline,close)}
+            ${formatDeadline(deadline, close)}
         </div>
         <div class="flex mt-6 items-center">
             <ul class="flex flex-wrap gap-2 text-[8px] sm:text-xs font-medium">
@@ -65,29 +75,97 @@ function jobElement({company,title,email,type,deadline,skills,link,logo,close=fa
             ${button}
     </div>
 </div>
-    `)
+    `;
 }
 
-async function renderJobs(){
-    const jobsDiv=document.querySelector('#jobContainer')
-    const jobs = await getJobs();
-    const options={
-        shouldSort:false,
-        keys:['skills']
-    }
+async function renderJobs() {
+  // Hide clear filters div
+  document.querySelector("#clear-filters").style.display = "none";
+  // Reset search bar fields
+  document.querySelector("#job-name").value = "";
+  document.querySelector("#selectTag").value = "";
+  document.querySelector("#selectedTags").innerHTML = "";
+  document.querySelector("#job-type-selector").value = "";
 
-    const fuse=new Fuse(jobs,options)
-    const res= await fuse.search('java')
-    const jobsElements=res.map(job=>{
-        return jobElement({...job.item})
-    })
-    jobsElements.forEach(job=>{
-        jobsDiv.innerHTML+=job
-    })
-    await LoadingJobs()
+  const jobsDiv = document.querySelector("#jobContainer");
+  const jobs = await getJobs();
+  const jobsElements = jobs.map((job) => {
+    return jobElement({ ...job });
+  });
+  jobsElements.forEach((job) => {
+    jobsDiv.innerHTML += job;
+  });
+  await LoadingJobs();
 }
 
-export {
-    renderJobs,
-    LoadingJobs,
+// Call when you need to retreive a filtered list of jobs
+async function filterJobs(searchTerm, jobType, tagsList) {
+  // Construct an include-match fuse query from user input
+  // First, lets remove the extra whitespaces from the search term
+  const trimmedQueryText = searchTerm.replace(/\s+/g, " ").trim();
+
+  // Now, let's replace each whitespace between between any two words with " '"
+  // "frontend engineer" becomes "'frontend 'engineer" the ' is used to perform an extendedSearch
+  const query = `'${trimmedQueryText.replace(/\s/g, " '")}`;
+
+  // Clear the jobs container from the previously fetched jobs
+  const jobsDiv = document.querySelector("#jobContainer");
+  jobsDiv.innerHTML = "";
+
+  // Request all jobs from the server
+  const jobs = await getJobs();
+
+  // Initiate fuse search
+  // Create fuse options object
+  const options = {
+    useExtendedSearch: true,
+    includeScore: false,
+    keys: ["title"],
+  };
+  const fuse = new Fuse(jobs, options);
+  const results = fuse.search(query);
+
+  // Filter results based on job type
+  let filteredJobsByType = results;
+  if (jobType) {
+    filteredJobsByType = results.filter(
+      (result) => result.item.type.toLowerCase() == jobType
+    );
+  }
+
+  // Filter results based on provided tags
+  let filteredJobsByTypeAndTags = filteredJobsByType;
+  if (tagsList.length) {
+    filteredJobsByTypeAndTags = filteredJobsByType.filter((result) => {
+      const jobTags = result.item.skills.split(",");
+      return jobTags.some((tag) => {
+        return tagsList.includes(tag);
+      });
+    });
+  }
+
+  // Render job items in the jobs container
+  const jobsElements = filteredJobsByTypeAndTags.map((job) => {
+    return jobElement({ ...job.item });
+  });
+  jobsElements.forEach((job) => {
+    jobsDiv.innerHTML += job;
+  });
+
+  // Set found results counter
+  const resultsCountElement = document.querySelector("#results-count");
+  resultsCountElement.innerHTML = filteredJobsByTypeAndTags.length;
+
+  // Show clear filters div
+  document.querySelector("#clear-filters").style.display = "flex";
+
+  // Set renderJobs() as a click event on the reset button
+  document
+    .querySelector("#clear-results-button")
+    .addEventListener("click", () => {
+      renderJobs();
+    });
+  await LoadingJobs();
 }
+
+export { renderJobs, LoadingJobs, filterJobs };
