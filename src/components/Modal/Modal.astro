@@ -1,8 +1,8 @@
 ---
 import Copy from "@components/Icons/Copy.astro";
 ---
-<div  class="modal flex invisible inset-0 fixed bg-black bg-opacity-30 items-center justify-center duration-150">
-    <div class="w-11/12  md:w-3/5  lg:w-2/5 h-fit bg-white rounded-md p-4 xs:p-8">
+<div  class="modal flex invisible transition-opacity opacity-0 inset-0 fixed bg-black bg-opacity-30 items-center justify-center duration-500">
+    <div class="inmodal w-11/12  md:w-3/5  lg:w-2/5 h-fit bg-white rounded-md p-4 xs:p-8 -translate-x-20 sm:translate-y-40 transition-transform duration-500">
     <p class="text-xl sm:text-3xl xl:text-4xl text-center">Apply by sending mail</p>
     <p class="text-sm mt-4">Please mention the job title in the subject line.</p>
     <div class="bg-gray-600 bg-opacity-30 flex justify-between items-center mt-4 p-1 px-4 rounded-md text-sm">
@@ -14,7 +14,7 @@ import Copy from "@components/Icons/Copy.astro";
     </div>
     <p class="text-center mt-2" id="copied"></p>
     <div class="flex justify-end">
-        <button type="button" id="closeBtn" class="mt-4 px-8 py-4 flex items-center justify-center text-center rounded-lg bg-[#0374E2] text-white item-center h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
+        <button type="button" id="closeBtn" class="mt-4 px-8 py-4 flex items-center justify-center text-center rounded-lg bg-[#0374E2] text-white item-center h-6 transition-colors hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
             <span>Done</span>
         </button>
     </div>
@@ -23,13 +23,15 @@ import Copy from "@components/Icons/Copy.astro";
 <script is:inline>
     const closeBtn = document.querySelector('#closeBtn');
     function closeModal(){
-        document.querySelector('.modal').classList.add('invisible');
+        document.querySelector('.modal').classList.add('invisible','opacity-0');
         document.querySelector("#copied").innerText="";
+        document.querySelector('.inmodal').classList.add('sm:translate-y-40','-translate-x-20')
     }
     closeBtn.addEventListener('click', closeModal);
     function openModal(email){
         document.querySelector('#email').innerText = email;
-        document.querySelector('.modal').classList.remove('invisible');
+        document.querySelector('.modal').classList.remove('invisible','opacity-0');
+        document.querySelector('.inmodal').classList.remove('sm:translate-y-40','-translate-x-20')
     }
     const copyBtn = document.querySelector('#copyBtn');
     copyBtn.addEventListener('click', ()=>{
