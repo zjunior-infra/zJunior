@@ -79,9 +79,9 @@ async function renderJobs(jobs='') {
   document.querySelector("#selectedTags").innerHTML = "";
   document.querySelector("#job-type-selector").value = "";
   const jobsDiv = document.querySelector("#jobContainer");
-  jobsDiv.innerHTML=''
+  jobsDiv.innerHTML = ''
   if(!jobs){
-    jobs=jobsData
+    jobs = jobsData
     const jobsElements = jobs.map((job) => {
       return jobElement({ ...job });
     });
@@ -117,8 +117,15 @@ async function filterJobs(searchTerm, jobType, tagsList) {
     keys: ["title"],
   };
   const fuse = new Fuse(jobsData, options);
-  const results = fuse.search(query);
-
+  let results = jobsData;
+  if(trimmedQueryText){
+    results = fuse.search(query);
+  }
+  else{
+    results = results.map(res=>{
+      return {item:res}
+    })
+  }
   // Filter results based on job type
   let filteredJobsByType = results;
   if (jobType) {
