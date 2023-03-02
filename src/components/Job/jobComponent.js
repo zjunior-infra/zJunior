@@ -73,8 +73,6 @@ function jobElement({
 }
 const jobsData=await getJobs()
 async function renderJobs(jobs='') {
-  // Hide clear filters div
-  document.querySelector("#clear-filters").style.display = "none";
   // Reset search bar fields
   document.querySelector("#job-name").value = "";
   document.querySelector("#selectTag").value = "";
@@ -145,20 +143,21 @@ async function filterJobs(searchTerm, jobType, tagsList) {
   }
 
   // Render job items in the jobs container
-  renderJobs(results)
+  await renderJobs(results)
 
   // Set found results counter
   const resultsCountElement = document.querySelector("#results-count");
   resultsCountElement.textContent = filteredJobsByTypeAndTags.length;
 
   // Show clear filters div
-  document.querySelector("#clear-filters").style.display = "flex";
+  document.querySelector("#clear-filters").classList.replace('hidden','flex')
 
   // Set renderJobs() as a click event on the reset button
   document
     .querySelector("#clear-results-button")
-    .addEventListener("click", () => {
-      renderJobs();
+    .addEventListener("click",async () => {
+      document.querySelector("#clear-filters").classList.replace('flex','hidden')
+      await renderJobs();
     });
 }
 
