@@ -71,8 +71,8 @@ function jobElement({
 </div>
     `;
 }
-
-async function renderJobs() {
+const jobsData=await getJobs()
+async function renderJobs(jobs='') {
   // Hide clear filters div
   document.querySelector("#clear-filters").style.display = "none";
   // Reset search bar fields
@@ -80,15 +80,25 @@ async function renderJobs() {
   document.querySelector("#selectTag").value = "";
   document.querySelector("#selectedTags").innerHTML = "";
   document.querySelector("#job-type-selector").value = "";
-
   const jobsDiv = document.querySelector("#jobContainer");
-  const jobs = await getJobs();
-  const jobsElements = jobs.map((job) => {
-    return jobElement({ ...job });
-  });
-  jobsElements.forEach((job) => {
-    jobsDiv.innerHTML += job;
-  });
+  jobsDiv.innerHTML=''
+  if(!jobs){
+    jobs=jobsData
+    const jobsElements = jobs.map((job) => {
+      return jobElement({ ...job });
+    });
+    jobsElements.forEach((job) => {
+      jobsDiv.innerHTML += job;
+    });
+  }
+  else{
+    const jobsElements = jobs.map((job) => {
+      return jobElement({ ...job.item });
+    });
+    jobsElements.forEach((job) => {
+      jobsDiv.innerHTML += job;
+    });
+  }
   await LoadingJobs();
 }
 
@@ -106,17 +116,13 @@ async function filterJobs(searchTerm, jobType, tagsList) {
   const jobsDiv = document.querySelector("#jobContainer");
   jobsDiv.innerHTML = "";
 
-  // Request all jobs from the server
-  const jobs = await getJobs();
-
-  // Initiate fuse search
-  // Create fuse options object
   const options = {
     useExtendedSearch: true,
     includeScore: false,
+    shouldSort:false,
     keys: ["title"],
   };
-  const fuse = new Fuse(jobs, options);
+  const fuse = new Fuse(jobsData, options);
   const results = fuse.search(query);
 
   // Filter results based on job type
@@ -139,16 +145,11 @@ async function filterJobs(searchTerm, jobType, tagsList) {
   }
 
   // Render job items in the jobs container
-  const jobsElements = filteredJobsByTypeAndTags.map((job) => {
-    return jobElement({ ...job.item });
-  });
-  jobsElements.forEach((job) => {
-    jobsDiv.innerHTML += job;
-  });
+  renderJobs(results)
 
   // Set found results counter
   const resultsCountElement = document.querySelector("#results-count");
-  resultsCountElement.innerHTML = filteredJobsByTypeAndTags.length;
+  resultsCountElement.textContent = filteredJobsByTypeAndTags.length;
 
   // Show clear filters div
   document.querySelector("#clear-filters").style.display = "flex";
@@ -159,7 +160,6 @@ async function filterJobs(searchTerm, jobType, tagsList) {
     .addEventListener("click", () => {
       renderJobs();
     });
-  await LoadingJobs();
 }
 
 export { renderJobs, filterJobs };
