@@ -1,11 +1,5 @@
 import Fuse from "fuse.js";
-
-async function LoadingJobs() {
-  const loader = document.getElementById("loader");
-  const searchBar = document.querySelector("#jobContainer");
-  loader.classList.add("hidden");
-  searchBar.classList.remove("invisible");
-}
+import {LoadingJobs} from '@components/Loader/Loader.js'
 
 async function getJobs() {
   const res = await fetch("/api/jobs.json");
@@ -168,4 +162,4 @@ async function filterJobs(searchTerm, jobType, tagsList) {
   await LoadingJobs();
 }
 
-export { renderJobs, LoadingJobs, filterJobs };
+export { renderJobs, filterJobs };

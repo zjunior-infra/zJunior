@@ -2,8 +2,8 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import SectionTitle from "@components/SectionTitle/SectionTitle.astro";
 import Modal from "@components/Modal/Modal.astro";
-import SearchBar from "@components/SearchBar.astro";
-import Loading from "@components/Loading.astro";
+import SearchBar from "@components/Search/SearchBar.astro";
+import Loading from "@components/Loader/Loading.astro";
 ---
 
 <BaseLayout
@@ -28,6 +28,6 @@ import Loading from "@components/Loading.astro";
   <Modal />
 </BaseLayout>
 <script>
-  import { renderJobs } from "@util/scripts/jobComponent";
+  import { renderJobs } from "@components/Job/jobComponent.js";
   renderJobs();
 </script>
