@@ -110,10 +110,6 @@ async function filterJobs(searchTerm, jobType, tagsList) {
   // "frontend engineer" becomes "'frontend 'engineer" the ' is used to perform an extendedSearch
   const query = `'${trimmedQueryText.replace(/\s/g, " '")}`;
 
-  // Clear the jobs container from the previously fetched jobs
-  const jobsDiv = document.querySelector("#jobContainer");
-  jobsDiv.innerHTML = "";
-
   const options = {
     useExtendedSearch: true,
     includeScore: false,
@@ -141,9 +137,8 @@ async function filterJobs(searchTerm, jobType, tagsList) {
       });
     });
   }
-
   // Render job items in the jobs container
-  await renderJobs(results)
+  renderJobs(filteredJobsByTypeAndTags)
 
   // Set found results counter
   const resultsCountElement = document.querySelector("#results-count");
@@ -157,7 +152,7 @@ async function filterJobs(searchTerm, jobType, tagsList) {
     .querySelector("#clear-results-button")
     .addEventListener("click",async () => {
       document.querySelector("#clear-filters").classList.replace('flex','hidden')
-      await renderJobs();
+      renderJobs();
     });
 }
 

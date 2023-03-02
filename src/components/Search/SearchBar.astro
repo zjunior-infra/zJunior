@@ -205,7 +205,7 @@ import "./SearchBar.css";
     </div>
 
     <div id="warning-card">
-      <p>Please fill in the search field or select at least one tag</p>
+      <p>Please fill any filed on search</p>
     </div>
   </div>
 </div>
@@ -241,22 +241,6 @@ import "./SearchBar.css";
   const warningCard = document.querySelector("#warning-card");
   const filterOption = document.querySelector("#fillterButtonToggle");
   let close = true;
-  function storeQuery(jobType, tags, jobName) {
-    let searchQuery = "";
-    if (jobType) searchQuery += `jobtype=${jobType}`;
-    let tagString = "";
-    if (tags) {
-      tags.forEach((tag, idx) => {
-        if (tags.length - 1 == idx) tagString += tag.trim();
-        else tagString = `${tag}+`;
-      });
-      searchQuery += `&tags=${tagString}`;
-    }
-    if (jobName) {
-      searchQuery += `&query=${jobName}`;
-    }
-    filterJobs(jobName, jobType, tags);
-  }
 
   selectTag.addEventListener("change", (event) => {
     const selectedOption = event.target.value;
@@ -301,13 +285,15 @@ import "./SearchBar.css";
     const jobName = document.querySelector("#job-name").value;
     const selectedTags = tags; // Array
     const selectedJobType = JobtypeSelect.value; // String
-    if (!jobName && selectedTags.length === 0) {
-      warningCard.classList.add("show");
-      setTimeout(() => {
-        warningCard.classList.remove("show");
-      }, 3000);
-    } else {
-      storeQuery(selectedJobType, selectedTags, jobName);
+    if(!jobName && selectedTags.length==0 && !selectedJobType)
+    {
+      warningCard.classList.add('show');
+    setTimeout(() => {
+      warningCard.classList.remove('show');
+    }, 3000);      
+    }
+    else{
+      filterJobs(jobName,selectedJobType, selectedTags );
     }
   }
   filterOption.addEventListener("click", () => {
