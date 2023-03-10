@@ -3,26 +3,40 @@ import type { IJob } from "./job.interface";
 export class pagination{
     data:IJob[]=[];
     currentPage:IJob[]=[];
+    indexedPage:Map<number,IJob[]>= new Map;
     nextPage:IJob[]=[];
     prevPage:IJob[]=[];
-    pageSize:number=0;
+    pageCount:number=0;
     paginationLimit:number=0;
-
+    globalIdx:number=1;
     constructor(data:IJob[]){
         this.data=data;
         this.nextPage;
         this.prevPage;
     }
-    paginate(size:number):IJob[]{
+    paginate(size:number):Map<number,IJob[]>{
         this.paginationLimit=size;
-        this.pageSize=Math.ceil(this.data.length/this.paginationLimit)
-        this.currentPage=this.data.slice(this.pageSize-1,this.pageSize*this.paginationLimit)
-        return this.currentPage;
+        this.pageCount=Math.ceil(this.data.length/this.paginationLimit)
+        for(let i=1;i<=this.pageCount;i++){
+            let page;
+            let prevIdx=i-1;
+            page=this.data.slice(prevIdx*this.paginationLimit,this.paginationLimit*i)
+            this.indexedPage.set(i,page)
+        }
+        return this.indexedPage;
     }
     next():IJob[]{
-
+        if(this.globalIdx<=this.pageCount){
+            const currentPage=this.indexedPage.get(this.globalIdx++)
+            return currentPage;
+        }
+        throw new Error('Cannot go forward')
     }
-    prev():Number{
-
+    prev():IJob[]{
+        if(this.globalIdx>=1){
+        const currentPage=this.indexedPage.get(this.globalIdx--)
+        return currentPage;
+        }
+        throw new Error('Cannot go back')
     }
 }
