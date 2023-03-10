@@ -28,14 +28,14 @@ export class pagination{
     next():IJob[]{
         if(this.globalIdx<=this.pageCount){
             const currentPage=this.indexedPage.get(this.globalIdx++)
-            return currentPage;
+            return currentPage ?? {...[]};
         }
         throw new Error('Cannot go forward')
     }
     prev():IJob[]{
         if(this.globalIdx>=1){
         const currentPage=this.indexedPage.get(this.globalIdx--)
-        return currentPage;
+        return currentPage ?? {...[]};
         }
         throw new Error('Cannot go back')
     }
