@@ -1,4 +1,4 @@
-import type { IJob } from "./job.interface";
+import type { IJob } from "../../util/job.interface";
 
 export class pagination{
     data:IJob[]=[];
@@ -39,4 +39,11 @@ export class pagination{
         }
         throw new Error('Cannot go back')
     }
+    currentPageNumber():number{
+        return this.globalIdx;
+    }
+    pageSize():number{
+        return this.pageCount;
+    }
+
 }
