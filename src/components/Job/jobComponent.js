@@ -1,6 +1,6 @@
 import Fuse from "fuse.js";
 import {LoadingJobs} from '@components/Loader/Loader.js'
-
+import {pagination} from '@util/pagination'
 async function getJobs() {
   const res = await fetch("/api/jobs.json");
   const data = await res.json();
@@ -73,6 +73,8 @@ function jobElement({
 }
 const jobsData=await getJobs()
 async function renderJobs(jobs='') {
+  const paginate=new pagination(jobsData);
+  console.log(paginate.paginate(10))
   // Reset search bar fields
   document.querySelector("#job-name").value = "";
   document.querySelector("#selectTag").value = "";
