@@ -1,11 +1,6 @@
 import Fuse from "fuse.js";
 import {LoadingJobs} from '@components/Loader/Loader.js'
-import {pagination} from '@util/pagination'
-async function getJobs() {
-  const res = await fetch("/api/jobs.json");
-  const data = await res.json();
-  return data;
-}
+import {pagination} from '@components/pagination/pagination.module'
 
 function formatDeadline(deadline, close) {
   if (!close) {
@@ -71,10 +66,22 @@ function jobElement({
 </div>
     `;
 }
+
+async function getJobs() {
+  const res = await fetch("/api/jobs.json");
+  const data = await res.json();
+  return data;
+}
+
+function deserialize(data){
+  const DeserializedData=data.map(element=>{
+    return {...element.item};
+  })
+  return DeserializedData;
+}
+
 const jobsData=await getJobs()
-async function renderJobs(jobs='') {
-  const paginate=new pagination(jobsData);
-  console.log(paginate.paginate(10))
+async function renderJobs(jobs=jobsData) {
   // Reset search bar fields
   document.querySelector("#job-name").value = "";
   document.querySelector("#selectTag").value = "";
@@ -82,25 +89,16 @@ async function renderJobs(jobs='') {
   document.querySelector("#job-type-selector").value = "";
   const jobsDiv = document.querySelector("#jobContainer");
   jobsDiv.innerHTML = ''
-  if(!jobs){
-    jobs = jobsData
-    const jobsElements = jobs.map((job) => {
-      return jobElement({ ...job });
-    });
-    jobsElements.forEach((job) => {
-      jobsDiv.innerHTML += job;
-    });
-  }
-  else{
-    const jobsElements = jobs.map((job) => {
-      return jobElement({ ...job.item });
-    });
-    jobsElements.forEach((job) => {
-      jobsDiv.innerHTML += job;
-    });
-  }
+  const jobsElements = jobs.map((job) => {
+    return jobElement({ ...job });
+  });
+  jobsElements.forEach((job) => {
+    jobsDiv.innerHTML += job;
+  });
+
   await LoadingJobs();
 }
+
 
 // Call when you need to retreive a filtered list of jobs
 async function filterJobs(searchTerm, jobType, tagsList) {
@@ -125,7 +123,7 @@ async function filterJobs(searchTerm, jobType, tagsList) {
   }
   else{
     results = results.map(res=>{
-      return {item:res}
+      return res;
     })
   }
   // Filter results based on job type
@@ -147,7 +145,8 @@ async function filterJobs(searchTerm, jobType, tagsList) {
     });
   }
   // Render job items in the jobs container
-  renderJobs(filteredJobsByTypeAndTags)
+  const JobsAfterDeserialized= deserialize(filteredJobsByTypeAndTags)
+  renderJobs(JobsAfterDeserialized)
 
   // Set found results counter
   const resultsCountElement = document.querySelector("#results-count");
