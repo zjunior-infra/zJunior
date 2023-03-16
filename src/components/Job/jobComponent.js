@@ -109,14 +109,14 @@ async function renderJobs(jobs) {
   await LoadingJobs();
 }
 
-export function paging(data=null){
+function paging(data=null){
   globalIdx=1;
   if(data === null){
-    pagedJobs=new pagination(jobsData,4);
+    pagedJobs=new pagination(jobsData,12);
     renderJobs(pagedJobs.page(globalIdx))
   }
   else{
-    pagedJobs=new pagination(data,4);
+    pagedJobs=new pagination(data,12);
     renderJobs(pagedJobs.page(globalIdx))
   }
 }
@@ -199,4 +199,4 @@ async function filterJobs(searchTerm, jobType, tagsList) {
     });
 }
 
-export { renderJobs, filterJobs,nextJob };
+export { renderJobs, filterJobs,nextJob,prevJob };
