@@ -199,4 +199,4 @@ async function filterJobs(searchTerm, jobType, tagsList) {
     });
 }
 
-export { renderJobs, filterJobs,nextJob,prevJob };
+export { renderJobs, filterJobs,nextJob,prevJob,pagedJobs };
