@@ -1,7 +1,6 @@
 import Fuse from "fuse.js";
 import {LoadingJobs} from '@components/Loader/Loader.js'
 import {pagination} from '@components/pagination/pagination.module'
-
 function formatDeadline(deadline, close) {
   if (!close) {
     return `<p>Apply before: ${deadline}</p>`;
@@ -80,8 +79,22 @@ function deserialize(data){
   return DeserializedData;
 }
 
+function generateJobs(jobs){
+  const jobsElements = jobs.map((job) => {
+    return jobElement({ ...job });
+  });
+  return jobsElements;
+}
+
+//? pagination variables
+
+let pagedJobs;
+let globalIdx=1;
+
+//! will be refactored soon
+
 const jobsData=await getJobs()
-async function renderJobs(jobs=jobsData) {
+async function renderJobs(jobs) {
   // Reset search bar fields
   document.querySelector("#job-name").value = "";
   document.querySelector("#selectTag").value = "";
@@ -89,14 +102,36 @@ async function renderJobs(jobs=jobsData) {
   document.querySelector("#job-type-selector").value = "";
   const jobsDiv = document.querySelector("#jobContainer");
   jobsDiv.innerHTML = ''
-  const jobsElements = jobs.map((job) => {
-    return jobElement({ ...job });
-  });
+  const jobsElements = generateJobs(jobs)
   jobsElements.forEach((job) => {
     jobsDiv.innerHTML += job;
   });
-
   await LoadingJobs();
+}
+
+export function paging(data=null){
+  globalIdx=1;
+  if(data === null){
+    pagedJobs=new pagination(jobsData,4);
+    renderJobs(pagedJobs.page(globalIdx))
+  }
+  else{
+    pagedJobs=new pagination(data,4);
+    renderJobs(pagedJobs.page(globalIdx))
+  }
+}
+
+function nextJob(){
+  if(!pagedJobs.isLast()){
+    globalIdx++;
+    renderJobs(pagedJobs.page(globalIdx));
+  }
+}
+function prevJob(){
+  if(!pagedJobs.isFirst()){
+    globalIdx--;
+    renderJobs(pagedJobs.page(globalIdx));  
+  }
 }
 
 
@@ -146,7 +181,7 @@ async function filterJobs(searchTerm, jobType, tagsList) {
   }
   // Render job items in the jobs container
   const JobsAfterDeserialized= deserialize(filteredJobsByTypeAndTags)
-  renderJobs(JobsAfterDeserialized)
+  paging(JobsAfterDeserialized)
 
   // Set found results counter
   const resultsCountElement = document.querySelector("#results-count");
@@ -160,8 +195,8 @@ async function filterJobs(searchTerm, jobType, tagsList) {
     .querySelector("#clear-results-button")
     .addEventListener("click",async () => {
       document.querySelector("#clear-filters").classList.replace('flex','hidden')
-      renderJobs();
+      paging();
     });
 }
 
-export { renderJobs, filterJobs };
+export { renderJobs, filterJobs,nextJob };
