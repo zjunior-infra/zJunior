@@ -13,6 +13,10 @@ function navigate(where){
 function toggleButtons(){
     pages.textContent = pagedJobs.pageCount;
     current.textContent = pagedJobs.globalIdx;
+    window.scroll({
+        top:250,
+        behavior:"smooth"
+    })
     if(pagedJobs.isLast()){
         nextBtn.disabled = true;
         nextBtn.classList.remove("hover:ring-zinc-700","hover:ring-2", "hover:shadow-md")
