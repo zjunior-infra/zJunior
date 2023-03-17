@@ -1,53 +1,18 @@
 ---
-const {prevUrl, nextUrl, currentPage,lastPage} = Astro.props
+
 ---
 
-<nav role="navigation" aria-label="Pagination Navigation" class="flex gap-4 justify-center">
-    {
-        prevUrl && (
-            <a href={prevUrl} class="rounded-sm hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md">Prev</a>
-        )
-    }    
-    {
-        !prevUrl && (
-            <p class="text-zinc-700/70 rounded-sm">
-                Prev
-            </p>
-        )
-    }
+<nav role="navigation" id="navigation" aria-label="Pagination Navigation" class="flex gap-4 justify-center">
+    <button role="link" tabindex="0" id="prev" class="rounded-sm p-1 hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md disabled:text-zinc-700/70">Prev</button>
     <div class="flex">
-        {
-            currentPage && (
-                <p class="text-zinc-700 px-2 rounded-sm">
-                    {currentPage}
-                </p>
-            )
-        }
-        {
-            lastPage && (
-                <p class="text-zinc-700/70 px-2 rounded-sm">
-                    of <span class="pl-2">{lastPage}</span>
-                </p>
-            )
-        }
+        <p id="currentPage" class="text-zinc-700 px-1 rounded-sm my-auto">
+            1
+        </p>
+        <p class="text-zinc-700/70 px-1 my-auto rounded-sm">
+            of <span id="pageCount"></span>
+        </p>
     </div>
-    
-
-    {
-        !nextUrl && (
-            <p class="text-zinc-700/70  rounded-sm">
-                    Next
-            </p>
-        )
-    }
-    {
-        nextUrl && (
-                <a href={nextUrl} class="rounded-sm hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md">Next</a>
-            )
-    }
-        
+    <button role="link" tabindex="0" id="next" class="rounded-sm p-1 hover:ring-zinc-700 hover:ring-2 duration-150 hover:shadow-md disabled:text-zinc-700/70">Next</button>
 </nav>
 
-<script>
-    import {pagination} from './pagination.module'
-</script>
+<script src="./pagination"></script>

@@ -4,15 +4,14 @@ export class pagination{
     data:IJob[]=[];
     currentPage:IJob[]=[];
     indexedPage:Map<number,IJob[]>= new Map;
-    nextPage:IJob[]=[];
-    prevPage:IJob[]=[];
     pageCount:number=0;
     paginationLimit:number=0;
     globalIdx:number=1;
-    constructor(data:IJob[]){
+    constructor(data:IJob[],size:number){
         this.data=data;
-        this.nextPage;
-        this.prevPage;
+        this.paginate(size);
+        //@ts-ignore
+        this.currentPage = this.indexedPage.get(1);
     }
     paginate(size:number):Map<number,IJob[]>{
         this.paginationLimit=size;
@@ -25,25 +24,16 @@ export class pagination{
         }
         return this.indexedPage;
     }
-    next():IJob[]{
-        if(this.globalIdx<=this.pageCount){
-            const currentPage=this.indexedPage.get(this.globalIdx++)
-            return currentPage ?? {...[]};
-        }
-        throw new Error('Cannot go forward')
+    page(number:number):IJob[]{
+        this.globalIdx=number;
+        //@ts-ignore
+        return this.indexedPage.get(number);
     }
-    prev():IJob[]{
-        if(this.globalIdx>=1){
-        const currentPage=this.indexedPage.get(this.globalIdx--)
-        return currentPage ?? {...[]};
-        }
-        throw new Error('Cannot go back')
+    isFirst():boolean{
+        return this.globalIdx === 1 ? true : false;
     }
-    currentPageNumber():number{
-        return this.globalIdx;
-    }
-    pageSize():number{
-        return this.pageCount;
+    isLast():boolean{
+        return this.globalIdx === this.pageCount ? true : false;
     }
 
 }
