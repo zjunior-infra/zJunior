@@ -5,7 +5,7 @@ import { IJob } from "./job.interface";
 export const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: "prisma://aws-eu-central-1.prisma-data.com/?api_key=1ZfEXhBqRQ6bV0titoM9OPNeqdb2mv6rMqtfLryxjgDqKQOXplPxei1r3hXEFVVf",
+      url: "process.env.DATABASE_URL",
     },
   },
 });
