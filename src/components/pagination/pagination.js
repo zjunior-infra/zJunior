@@ -4,7 +4,6 @@ const nextBtn = document.querySelector("#next");
 const prevBtn = document.querySelector("#prev");
 const pages = document.querySelector("#pageCount");
 const current = document.querySelector("#currentPage");
-const navigation = document.querySelector('#navigation');
 pages.textContent = pagedJobs.pageCount;
 
 function navigate(where){
