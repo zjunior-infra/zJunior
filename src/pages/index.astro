@@ -1,14 +1,11 @@
 ---
 import Newsletter from "@components/newsletter/Newsletter.astro";
 import Baselayout from "@layouts/BaseLayout.astro";
+
 const navigation = [
 {
-    name: "Internships",
-    href: "/internships",
-  },
-  {
-    name: "Entry Level",
-    href: "/entry",
+    name: "Opportunities",
+    href: "/opportunities",
   },
   {
     name: "Programs",
@@ -28,6 +25,7 @@ const navigation = [
   },
 ]
 const pathname=Astro.url.pathname
+
 ---
 
 <Baselayout title="Junior Jobs"
@@ -85,79 +83,16 @@ url="/" includeHeader={false}>
 
       <div class="mt-20 flex flex-wrap justify-center gap-4 sm:gap-28 text-center">
         <a
-          href="/internships"
+          href="/opportunities"
           class="block w-full rounded-3xl bg-white px-16 py-4 text-sm font-medium  text-[#0374E2] shadow-lg hover:bg-transparent hover:ring-2 hover:ring-white hover:text-white duration-150 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
         >
-          Internships
+        Launch Your Career
         </a>
 
-        <a
-          href="entry"
-          class="block w-full rounded-3xl bg-transparent ring-2 ring-white px-16 py-4 text-sm font-medium  text-white shadow-lg hover:bg-[#0374E2] hover:ring-0  hover:text-white duration-150 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-        >
-          Entry Level
-        </a>
       </div>
     </div>
   </div>
 </section>
-
-<!-- <section class="bg-[#0374E2] mt-5">
-  <div class="mx-auto max-w-screen-xl py-6">
-    <div class="mb-10 py-8">
-      <dl class="grid grid-cols-1 gap-20 sm:grid-cols-3">
-        <div
-          class="flex flex-col px-4 text-center"
-        >
-          <dt class="relative top-14 text-sm text-white">
-            Entry-level Opportunities
-          </dt>
-
-          <dd class="text-4xl font-extrabold text-white md:text-5xl">
-            <div class="relative left-24 sm:left-16 py-2 w-52 z-10 bg-gradient-to-r rounded-3xl from-yellow-300 to-transparent">
-              <div class="absolute z-20 left-16 sm:left-12 -bottom-2">
-                <p>780+</p>
-              </div>
-            </div>
-          </dd>
-        </div>
-        
-
-        <div
-          class="flex flex-col px-4 text-center"
-        >
-          <dt class="relative top-14 text-sm text-white">
-            Internships Opportunities
-          </dt>
-
-          <dd class="text-4xl font-extrabold text-white md:text-5xl">
-            <div class="relative left-24 sm:left-16 py-2 w-52 z-10 bg-gradient-to-r rounded-3xl from-yellow-300 to-transparent">
-              <div class="absolute z-20 left-16 sm:left-12 -bottom-2">
-                <p>420+</p>
-              </div>
-            </div>
-          </dd>
-        </div>
-
-        <div
-          class="flex flex-col px-4 text-center"
-        >
-          <dt class="relative top-14 text-sm text-white">
-            Users
-          </dt>
-
-          <dd class="text-4xl font-extrabold text-white md:text-5xl">
-            <div class="relative left-24 sm:left-16 py-2 w-52 z-10 bg-gradient-to-r rounded-3xl from-yellow-300 to-transparent">
-              <div class="absolute z-20 left-16 sm:left-12 -bottom-2">
-                <p>1500+</p>
-              </div>
-            </div>
-          </dd>
-        </div>
-      </dl>
-    </div>
-  </div>
-</section> -->
 
 <section>
   <div class="mx-auto max-w-screen-xl px-20 sm:pb-44 my-24">
@@ -178,5 +113,4 @@ url="/" includeHeader={false}>
 </section>
 
 </Baselayout>
-
 
