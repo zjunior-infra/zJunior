@@ -1,6 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "allowJs": true,
     "types": [
       "vite/client"
     ],
@@ -13,8 +14,7 @@
       ],
       "@layouts/*": [
         "src/layouts/*"
-      ]
-      ,
+      ],
       "@util/*":[
         "src/util/*"
       ],
