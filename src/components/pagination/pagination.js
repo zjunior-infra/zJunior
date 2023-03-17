@@ -34,7 +34,7 @@ function toggleButtons(){
 document.querySelector('#clear-filters').addEventListener('click',toggleButtons);
 document.querySelector('#submit-button').addEventListener('click',toggleButtons);
 document.querySelector('#job-name').addEventListener("keydown",event => {
-    if(event.code == "Enter")
+    if(event.keyCode === 13)
     toggleButtons();
 });
 
