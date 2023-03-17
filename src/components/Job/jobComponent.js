@@ -1,6 +1,7 @@
 import Fuse from "fuse.js";
 import {LoadingJobs} from '@components/Loader/Loader.js'
 import {pagination} from '@components/pagination/pagination.module'
+
 function formatDeadline(deadline, close) {
   if (!close) {
     return `<p>Apply before: ${deadline}</p>`;
@@ -94,6 +95,7 @@ let globalIdx=1;
 //! will be refactored soon
 
 const jobsData=await getJobs()
+
 async function renderJobs(jobs) {
   // Reset search bar fields
   document.querySelector("#job-name").value = "";
@@ -114,6 +116,7 @@ function paging(data=null){
   if(data === null){
     pagedJobs=new pagination(jobsData,12);
     renderJobs(pagedJobs.page(globalIdx))
+    
   }
   else{
     pagedJobs=new pagination(data,12);
@@ -121,13 +124,13 @@ function paging(data=null){
   }
 }
 
-function nextJob(){
+function nextPage(){
   if(!pagedJobs.isLast()){
     globalIdx++;
     renderJobs(pagedJobs.page(globalIdx));
   }
 }
-function prevJob(){
+function prevPage(){
   if(!pagedJobs.isFirst()){
     globalIdx--;
     renderJobs(pagedJobs.page(globalIdx));  
@@ -199,4 +202,4 @@ async function filterJobs(searchTerm, jobType, tagsList) {
     });
 }
 
-export { renderJobs, filterJobs,nextJob,prevJob,pagedJobs };
+export { filterJobs,nextPage,prevPage, paging,pagedJobs };
