@@ -1,5 +1,5 @@
 ---
-const { name,discription,link,starts,img } = Astro.props
+const { name,description,link,starts,img } = Astro.props
 ---
 <div id="program" class="snap-center bg-white shadow-lg rounded-md w-[21rem] delay-500 sm:delay-300 duration-150 opacity-70">
     <div class="object-cover object-center">
@@ -8,7 +8,7 @@ const { name,discription,link,starts,img } = Astro.props
     <div class="text-start mx-6 my-6 font-sans text-secondary">
         <h1 class="my-2 font-bold">{name}</h1>
         <p class="font-bold text-[12px]">Description</p>
-        <p class="my-4 text-[11px] leading-5">{discription}</p>
+        <p class="my-4 text-[11px] leading-5">{description}</p>
         <p class="text-[11px] font-bold">Applying Starts: {starts}</p>
     </div>
     <div class="m-4">
