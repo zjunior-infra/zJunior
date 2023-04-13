@@ -1,17 +1,35 @@
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("MAIN_DATABASE_URL")
   relationMode = "prisma"
 }
 
-
 model Job {
-  id       String    @id @unique @default(cuid())
+  id       String @id @unique @default(cuid())
+  company  String
+  title    String
+  link     String
+  email    String
+  type     String
+  deadline String
+  logo     String
+  skills   String
+
+  @@index([title])
+}
+
+model Lister {
+  id    String @id @unique @default(cuid())
+  name  String
+  token String
+}
+
+model ArchivedJob {
+  id       String @id @unique
   company  String
   title    String
   link     String
@@ -21,9 +39,15 @@ model Job {
   logo     String
   skills   String
 }
-model Lister{
-  id      String @id @unique @default(cuid())
-  name    String
-  token   String
-}
 
+model CrawledJob {
+  id       String @id @unique
+  company  String
+  title    String
+  link     String
+  email    String
+  type     String
+  deadline String
+  logo     String
+  skills   String
+}
