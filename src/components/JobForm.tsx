@@ -46,23 +46,23 @@ export const JobForm = () => {
     onBlurHandler: onBlurDeadLineHandler,
     resetInputHandler: resetDeadLineInput
   } = useInput((value) => !!value, '2023-02-01');
-  const {
-    value: enteredLogo,
-    isValid: enteredLogoIsValid,
-    hasError: logoHasError,
-    onChangeHandler: onChangeLogoHandler,
-    onBlurHandler: onBlurLogoHandler,
-    resetInputHandler: resetLogoInput
-  } = useInput((value) => true,null);
-  const {
-    value: enteredSkills,
-    isValid: enteredSkillsIsValid,
-    hasError: skillsHasError,
-    onChangeHandler: onChangeSkillsHandler,
-    onBlurHandler: onBlurSkillsHandler,
-    setValueHandler: setSkillsValueHandler,
-    resetInputHandler: resetSkillsInput
-  } = useInput((value) => true, []);
+  // const {
+  //   value: enteredLogo,
+  //   isValid: enteredLogoIsValid,
+  //   hasError: logoHasError,
+  //   onChangeHandler: onChangeLogoHandler,
+  //   onBlurHandler: onBlurLogoHandler,
+  //   resetInputHandler: resetLogoInput
+  // } = useInput((value) => true,null);
+  // const {
+  //   value: enteredSkills,
+  //   isValid: enteredSkillsIsValid,
+  //   hasError: skillsHasError,
+  //   onChangeHandler: onChangeSkillsHandler,
+  //   onBlurHandler: onBlurSkillsHandler,
+  //   setValueHandler: setSkillsValueHandler,
+  //   resetInputHandler: resetSkillsInput
+  // } = useInput((value) => true, []);
   const {
     value: enteredLink,
     isValid: enteredLinkIsValid,
@@ -101,8 +101,8 @@ export const JobForm = () => {
     resetTitleInput()
     resetTypeInput()
     resetDeadLineInput()
-    resetSkillsInput()
-    resetLogoInput()
+    // resetSkillsInput()
+    // resetLogoInput()
     resetEmailInput()
     resetLinkInput()
   }
@@ -112,8 +112,8 @@ export const JobForm = () => {
     onBlurTitleHandler()
     onBlurTypeHandler()
     onBlurDeadLineHandler()
-    onBlurSkillsHandler()
-    onBlurLogoHandler()
+    // onBlurSkillsHandler()
+    // onBlurLogoHandler()
     onBlurEmailHandler()
     onBlurLinkHandler()
   }
@@ -126,8 +126,8 @@ export const JobForm = () => {
           title: enteredTitle,
           type: enteredType,
           deadline: enteredDeadLine,
-          skills: enteredSkills.map((el: any) => el.skill).join(),
-          logo: enteredLogo,
+          skills: '',
+          logo: '',
           email: enteredEmail,
           link: enteredLink
         })
@@ -258,7 +258,7 @@ export const JobForm = () => {
           />
         </InputWrapper>
 
-        <InputWrapper
+        {/* <InputWrapper
           title="Logo"
           name="logo"
         >
@@ -270,11 +270,11 @@ export const JobForm = () => {
             value={enteredLogo}
             onChange={onChangeLogoHandler}
             className={`block w-full p-2 shadow-md text-gray-900 border-gray-300 rounded-md bg-white sm:text-xs border-[1px] hover:border-[#40a9ff] focus:border-[#40a9ff] outline-none duration-100 ${logoHasError ?  'border-red-700': ''}`}/>
-        </InputWrapper>
+        </InputWrapper> */}
 
-        <CustomizedHook
+        {/* <CustomizedHook
           setSkillsHandler={syncSkillsHandler}
-        />
+        /> */}
 
         {/* <Test /> */}
 
