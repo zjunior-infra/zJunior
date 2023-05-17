@@ -53,7 +53,7 @@ export const JobForm = () => {
     onChangeHandler: onChangeLogoHandler,
     onBlurHandler: onBlurLogoHandler,
     resetInputHandler: resetLogoInput
-  } = useInput((value) => !!value.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*\.(jpg|jpeg|svg|png|jfif|bmp|webp|tiff|ico))/gi), null);
+  } = useInput((value) => value.match(null, null);
   const {
     value: enteredSkills,
     isValid: enteredSkillsIsValid,
@@ -62,7 +62,7 @@ export const JobForm = () => {
     onBlurHandler: onBlurSkillsHandler,
     setValueHandler: setSkillsValueHandler,
     resetInputHandler: resetSkillsInput
-  } = useInput((value) => value.length > 0, []);
+  } = useInput((value) => value.length >= 0, []);
   const {
     value: enteredLink,
     isValid: enteredLinkIsValid,
