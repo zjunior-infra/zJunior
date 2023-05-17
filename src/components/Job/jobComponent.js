@@ -97,11 +97,6 @@ let globalIdx=1;
 const jobsData=await getJobs()
 
 async function renderJobs(jobs) {
-  // Reset search bar fields
-  document.querySelector("#job-name").value = "";
-  document.querySelector("#selectTag").value = "";
-  document.querySelector("#selectedTags").innerHTML = "";
-  document.querySelector("#job-type-selector").value = "";
   const jobsDiv = document.querySelector("#jobContainer");
   jobsDiv.innerHTML = ''
   const jobsElements = generateJobs(jobs)
@@ -114,12 +109,12 @@ async function renderJobs(jobs) {
 function paging(data=null){
   globalIdx=1;
   if(data === null){
-    pagedJobs=new pagination(jobsData,12);
+    pagedJobs=new pagination(jobsData,15);
     renderJobs(pagedJobs.page(globalIdx))
     
   }
   else{
-    pagedJobs=new pagination(data,12);
+    pagedJobs=new pagination(data,15);
     renderJobs(pagedJobs.page(globalIdx))
   }
 }
@@ -139,7 +134,7 @@ function prevPage(){
 
 
 // Call when you need to retreive a filtered list of jobs
-async function filterJobs(searchTerm, jobType, tagsList) {
+async function filterJobs(searchTerm) {
   // Construct an include-match fuse query from user input
   // First, lets remove the extra whitespaces from the search term
   const trimmedQueryText = searchTerm.replace(/\s+/g, " ").trim();
@@ -164,31 +159,13 @@ async function filterJobs(searchTerm, jobType, tagsList) {
       return res;
     })
   }
-  // Filter results based on job type
-  let filteredJobsByType = results;
-  if (jobType) {
-    filteredJobsByType = results.filter(
-      (result) => result.item.type.toLowerCase() == jobType
-    );
-  }
-
-  // Filter results based on provided tags
-  let filteredJobsByTypeAndTags = filteredJobsByType;
-  if (tagsList.length) {
-    filteredJobsByTypeAndTags = filteredJobsByType.filter((result) => {
-      const jobTags = result.item.skills.split(",");
-      return jobTags.some((tag) => {
-        return tagsList.includes(tag);
-      });
-    });
-  }
   // Render job items in the jobs container
-  const JobsAfterDeserialized= deserialize(filteredJobsByTypeAndTags)
+  const JobsAfterDeserialized= deserialize(results)
   paging(JobsAfterDeserialized)
 
   // Set found results counter
   const resultsCountElement = document.querySelector("#results-count");
-  resultsCountElement.textContent = filteredJobsByTypeAndTags.length;
+  resultsCountElement.textContent = results.length;
 
   // Show clear filters div
   document.querySelector("#clear-filters").classList.replace('hidden','flex')
