@@ -7,6 +7,26 @@ import "./SearchBar.css";
   <div id='search-tags' class="flex lg:flex-wrap gap-4 overflow-auto">
   </div>
 </div>
+<div id="clear-filters" class="hidden justify-between mx-4 sm:mx-40 my-10">
+  <p><span id="results-count">0</span> Results found</p>
+  <button id="clear-results-button" class="flex content-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-5 h-5 mr-2"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+    <span>Clear filters</span>
+  </button>
+</div>
+
 <script>
   import './filtersTags.ts'
   
