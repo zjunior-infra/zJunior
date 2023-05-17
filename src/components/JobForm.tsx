@@ -92,8 +92,6 @@ export const JobForm = () => {
     enteredTitleIsValid &&
     enteredTypeIsValid &&
     enteredDeadLineIsValid &&
-    enteredSkillsIsValid &&
-    enteredLogoIsValid &&
     (enteredEmailIsValid || enteredLinkIsValid)
   )
     formIsValid = true;
