@@ -8,8 +8,7 @@ const tags:string[] = [
     'DevOps',
     'Android Developer',
     'Flutter',
-    'Mobile Developer',
-    'Other'
+    'Mobile Developer'
 ];
 
 const level:string[] = ['Internship','EntryLevel'];
@@ -24,13 +23,14 @@ createElements();
 
 const btns = document.querySelectorAll('#tags');
 btns.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-        if(btn.textContent === 'Other'){
-            paging();
-        }
-        else filterJobs(btn.textContent,'','');
+    btn.addEventListener('click', (e)=>{
+        filterJobs(btn.textContent);
+        btns.forEach(bb=>{
+            if(bb.classList.contains('bg-primary')){
+                bb.classList.remove('bg-primary')
+            }
+        })
+        btn.classList.add('bg-primary')
     });
 })
-
-
 
