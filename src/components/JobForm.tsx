@@ -53,7 +53,7 @@ export const JobForm = () => {
     onChangeHandler: onChangeLogoHandler,
     onBlurHandler: onBlurLogoHandler,
     resetInputHandler: resetLogoInput
-  } = useInput((value) => value.match(null, null);
+  } = useInput((value) => value.match(null),null);
   const {
     value: enteredSkills,
     isValid: enteredSkillsIsValid,
