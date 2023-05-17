@@ -176,7 +176,7 @@ export default function CustomizedHook({setSkillsHandler} : IProps) {
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    defaultValue: [skills[91]],
+    defaultValue: [],
     multiple: true,
     options: skills,
     getOptionLabel: (option) => option.skill,
