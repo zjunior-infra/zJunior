@@ -3,7 +3,7 @@ import { filterJobs, paging } from "@components/Job/jobComponent";
 const tags:string[] = [
     'Backend',
     'Frontend',
-    'Software engineer',
+    'Software Engineer',
     'FullStack',
     'DevOps',
     'Android Developer',
