@@ -2,6 +2,7 @@ import Fuse from "fuse.js";
 import {LoadingJobs} from '@components/Loader/Loader.js'
 import {pagination} from '@components/pagination/pagination.module'
 
+
 function formatDeadline(deadline, close) {
   if (!close) {
     return `<p>Apply before: ${deadline}</p>`;
@@ -25,6 +26,7 @@ function formatTags(skills) {
   });
   return tagsElements;
 }
+
 function jobElement({
   company,
   title,
