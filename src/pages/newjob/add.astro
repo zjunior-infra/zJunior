@@ -19,5 +19,5 @@ if (Astro.cookies.has('token')){
 ---
 <BaseLayout title="Job form" url="/newjob">
   <DefaultHeader title={auths.name.toUpperCase()} description="Thanks for helping our community"/>
-<JobForm client:load></JobForm>
+<JobForm client:only="React"></JobForm>
 </BaseLayout> 
