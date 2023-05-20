@@ -1,6 +1,7 @@
 import { filterJobs, paging } from "@components/Job/jobComponent";
 
 const tags:string[] = [
+    'Summer Intern 23',
     'Backend',
     'Frontend',
     'Software Engineer',
