@@ -149,7 +149,7 @@ async function filterJobs(searchTerm) {
     useExtendedSearch: true,
     includeScore: false,
     shouldSort:false,
-    keys: ["title"],
+    keys: ["title","company","type","skills"],
   };
   const fuse = new Fuse(jobsData, options);
   let results = jobsData;
