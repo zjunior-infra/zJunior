@@ -34,7 +34,7 @@ if (Astro.cookies.has('token')){
         const token=document.getElementById("secret");
         if(token.value){
             d.setTime(d.getTime()+ (30*24*60*60*1000))
-            let expire=`expires=${d.toUTCString}`
+            let expire=`expires=${d.toUTCString()}`
             document.cookie=`token=${token.value};${expire};path=/ ;SameSite=None;Secure`
             location.reload()
         }
