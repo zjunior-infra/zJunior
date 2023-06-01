@@ -1,3 +1,4 @@
+
 # Stay tuned
 Preparing our, new vision
-[zJunior-infra](https://github.com/zjunior-infra)
+for other projects check [zJunior-infra](https://github.com/zjunior-infra)
