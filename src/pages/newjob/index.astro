@@ -24,18 +24,16 @@ if (Astro.cookies.has('token')){
     <button class="ring-2 place-self-center ring-white rounded-md p-2 m-2 w-36 bg-slate-800 text-zinc-300 hover:bg-slate-800/70">Grant Access</button>
 </div>
 </div>
-<script is:inline>
-    const btn=document.querySelector('button')
-    btn.addEventListener('click',grantAccess)
-    const cookie=document.cookie
-    const d=new Date()
-    const url=new URL(location)
-    function grantAccess(){
-        const token=document.getElementById("secret");
-        if(token.value){
-            d.setTime(d.getTime()+ (30*24*60*60*1000))
-            let expire=`expires=${d.toUTCString}`
-            document.cookie=`token=${token.value};${expire};path=/ ;SameSite=None;Secure`
+<script>
+    const btn = document.querySelector('button')
+    btn!.addEventListener('click', grantAccess)
+    const date = new Date()
+    function grantAccess() {
+        const token = document.getElementById('secret') as HTMLInputElement
+        if (token.value) {
+            date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000))
+            let expire = `expires=${date.toUTCString()}`
+            document.cookie = `token=${token.value};${expire};path=/ ;SameSite=None;Secure`
             location.reload()
         }
         else alert("Enter your token")
