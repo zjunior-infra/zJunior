@@ -1,9 +1,7 @@
 name: Deployment Status
 
 on:
-  status:
-    branches:
-       - main
+  status
 
 jobs:
   report_status:
