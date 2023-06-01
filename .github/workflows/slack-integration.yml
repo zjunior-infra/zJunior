@@ -14,7 +14,7 @@ jobs:
         id: slack_notification
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: "CHANNEL_ID"
+          channel-id: "C05AF58H1S9"
           payload: |
             {
               "text": "Deployment status: Deploying",
@@ -43,7 +43,7 @@ jobs:
         id: slack_failure
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: "CHANNEL_ID"
+          channel-id: "C05AF58H1S9"
           update-ts: ${{ steps.slack_notification.outputs.ts }}
           payload: |
             {
@@ -63,7 +63,7 @@ jobs:
         id: slack_success
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: "CHANNEL_ID"
+          channel-id: "C05AF58H1S9"
           update-ts: ${{ steps.slack_notification.outputs.ts }}
           payload: |
             {
