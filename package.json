@@ -2,6 +2,10 @@
   "name": "juniorjobs",
   "type": "module",
   "version": "1.2.0",
+  "author": {
+    "name": "Mahmoud Galal",
+    "email": "mahmoud@zjunior.com"
+  },
   "scripts": {
     "dev": "astro dev",
     "dev:phone": "astro dev --host",
