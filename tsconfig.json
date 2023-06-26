@@ -5,7 +5,6 @@
     "types": [
       "vite/client"
     ],
-    "importsNotUsedAsValues": "error",
     "allowImportingTsExtensions" : true,
     "baseUrl": ".",
     "paths": {
