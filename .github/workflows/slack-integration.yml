@@ -1,7 +1,7 @@
 name: Deployment Status
 
 on:
-  status
+    status
 
 jobs:
   report_status:
