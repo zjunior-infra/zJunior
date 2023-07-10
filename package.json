@@ -10,8 +10,8 @@
     "dev": "astro dev",
     "dev:phone": "astro dev --host",
     "start": "astro dev",
-    "gen": "prisma generate --data-proxy",
-    "build": "npx prisma generate --data-proxy && astro build",
+    "gen": "prisma generate --data-proxy --schema=./ORM/prisma/schema.prisma",
+    "build": "npx prisma generate --data-proxy --schema=./ORM/prisma/schema.prisma && astro build",
     "preview": "wrangler pages dev ./dist --compatibility-date=2023-01-27",
     "astro": "astro"
   },
