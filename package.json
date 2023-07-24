@@ -24,16 +24,21 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.6",
     "@prisma/client": "^5.0.0",
+    "@supabase/supabase-js": "^2.26.0",
     "@types/react-dom": "^18.0.10",
     "astro": "^2.8.1",
     "astro-compress": "^1.1.29",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "cookie": "^0.5.0",
     "fuse.js": "^6.6.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-toastify": "^9.1.1",
-    "tailwindcss": "^3.2.4"
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "^3.2.4",
+    "tailwindcss-animate": "^1.0.6"
   },
   "devDependencies": {
     "@types/cookie": "^0.5.1",
@@ -43,6 +48,7 @@
     "@typescript-eslint/parser": "^5.48.1",
     "eslint": "^8.32.0",
     "eslint-plugin-astro": "^0.21.1",
-    "prisma": "^5.0.0"
+    "prisma": "^5.0.0",
+    "supabase": ">=1.8.1"
   }
 }

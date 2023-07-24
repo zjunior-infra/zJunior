@@ -8,6 +8,9 @@
     "allowImportingTsExtensions" : true,
     "baseUrl": ".",
     "paths": {
+      "@lib/*":[
+        "src/lib/*"
+      ],
       "@components/*": [
         "src/components/*"
       ],
@@ -22,6 +25,5 @@
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "react",
   }
 }

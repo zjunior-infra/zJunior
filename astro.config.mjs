@@ -9,7 +9,7 @@ export default defineConfig({
   adapter: cloudflare({
     mode: 'directory'
   }),
-  integrations: [tailwind(), react(), compress(
+  integrations: [tailwind({applyBaseStyles: false}), react(), compress(
     {
       css: false,
       js: false,
@@ -20,6 +20,8 @@ export default defineConfig({
       "process.env.DATABASE_URL": process.env.DATABASE_URL,
       "process.env.DEV_DATABASE_URL": process.env.DEV_DATABASE_URL,
       "process.env.DEL_TOKEN": process.env.DEL_TOKEN,
+      "process.env.SUPABASE_URL": process.env.SUPABASE_URL,
+      "process.env.SUPABASE_KEY": process.env.SUPABASE_KEY
     }
   }
 });
