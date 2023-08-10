@@ -1,9 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
 	darkMode: ["class"],
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}',"./src/components/**/*.{ts,tsx,js,jsx,astro"
-	],
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
 	theme: {
 		container: {
 		  center: true,
@@ -54,7 +52,6 @@ module.exports = {
 			sm: "calc(var(--radius) - 4px)",
 		  },
 		  fontFamily: {
-			sans: ["var(--font-sans)"],
 		  },
 		  keyframes: {
 			"accordion-down": {

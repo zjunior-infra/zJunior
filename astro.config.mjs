@@ -3,13 +3,12 @@ import cloudflare from '@astrojs/cloudflare';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import compress from "astro-compress";
-
 export default defineConfig({
   output: 'server',
   adapter: cloudflare({
     mode: 'directory'
   }),
-  integrations: [tailwind({applyBaseStyles: false}), react(), compress(
+  integrations: [tailwind({applyBaseStyles: true}), react(), compress(
     {
       css: false,
       js: false,

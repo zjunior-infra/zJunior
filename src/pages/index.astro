@@ -1,7 +1,9 @@
 ---
 import Newsletter from "@components/newsletter/Newsletter.astro";
 import Baselayout from "@layouts/BaseLayout.astro";
-
+import '../styles/globals.scss'
+import Footer from "@components/Footer.astro";
+import { ArrowRight, Github, Twitter } from "lucide-react";
 const navigation = [
 {
     name: "Opportunities",
@@ -11,84 +13,78 @@ const navigation = [
     name: "Programs",
     href: "/programs",
   },
-  // {
-  //   name:"Hackathons",
-  //   href:"/hackathons"
-  // },
-  // {
-  //   name: "Blog",
-  //   href: "/blog",
-  // },
   {
     name: "About",
     href: "/about",
   },
 ]
+const links = [
+  {
+    href: 'https://github.com/zjunior-infra'
+  },
+  {
+    href: 'https://x.com/zjuniorsh'
+  }
+]
 const pathname=Astro.url.pathname
-
+ 
 ---
 
 <Baselayout title="zJunior"
 description='Internships and Entry-level jobs for all students and fresh-graduates'
 url="/" includeHeader={false}>
 
-<header class="top-0 z-30 w-full px-1 xs:px-4 bg-white sm:absolute bg-transparent">
+<header class=" top-0 z-30 w-full px-1 xs:px-4 sm:absolute bg-transparent">
   <div class="container mx-auto">
-    <div class="flex flex-col items-center justify-between gap-2 pt-6 sm:h-20 sm:flex-row sm:pt-0">
-      <img src="/images/logo.png" alt="Logo" class="w-9">
-      <a href="/" class="text-sm font-medium duration-150 sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50">
-        Junior Jobs
+    <div class="flex items-center justify-between gap-2 pt-6 sm:h-20 sm:pt-0">
+      <a href="/" class="text-xl font-medium duration-150 sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50">
+        <img src="/images/logo.svg" alt="Logo" class="w-[6rem] hover:drop-shadow-xl">
       </a>
       {/* Desktop navigation */}
       <nav class="flex items-center grow">
         <ul class="flex flex-wrap items-center justify-end sm:gap-4 grow">
-          {navigation.map((item) => (
-            <li class="">
+            <li class="flex gap-4">
               <a
-                class={`flex items-center px-2 xs:px-3 py-2 duration-150 text-sm sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50
-                ${pathname === item.href ? "text-blue-600" : "text-zinc-700"}`}
-                href={item.href}
-                // target={item.external ? "_blank" : undefined}
-                // rel={item.external ? "noopener noreferrer" : undefined}
-              >
-                {item.name}
+                class='flex items-center px-2 xs:px-3 py-2 duration-150 text-sm sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50'
+                href='https://github.com/zjunior-infra' target="_blank">
+                <Github/>
+              </a>
+              <a
+                class='flex items-center px-2 xs:px-3 py-2 duration-150 text-sm sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50'
+                href='https://x.com/zjuniorsh' target="_blank">
+                <Twitter/>
               </a>
             </li>
-          ))}
         </ul>
       </nav>
     </div>
   </div>
 </header>
 
-<section
-  class="relative bg-[url(/images/banner.jpg)] bg-cover bg-center bg-no-repeat"
->
-  <div
-    class="absolute inset-0 bg-black bg-opacity-60 bg-gradient-to-t from-[#0374E2] to-transparent"
-  ></div>
-
+<section>
   <div
     class="relative mx-auto justify-center max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
   >
+  <img class="absolute z-[-1] top-28 sm:right-48 right-0" src="/images/Ellipse-home.svg">
     <div class="max-w-xl text-left">
-      <h1 class="text-3xl text-center text-white font-extrabold sm:text-7xl">
+      <div class="flex">
+        <img class=" max-sm:sr-only absolute left-56 top-48" src="/images/arrow1-home.svg">
+      <h1 class=" text-3xl text-center text-white font-extrabold sm:text-7xl">
         Gain Your Work
         Experience Now
       </h1>
+      <img class=" max-sm:sr-only absolute right-[18rem] top-[20rem]" src="/images/arrow2-home.svg">
+      </div>
+      
 
       <p class="mt-4 text-white text-center max-w-xl sm:text-md sm:leading-relaxed">
-        We have collected Software Engineering related programs, jobs and internships in a one place, stop searching just <strong>Apply.</strong>
+        Stop hunting for software engineering opportunities! We've got you covered with a hub of programs, jobs, and internships all in one place. take your career to the next level! stop searching just <span class="capitalize font-bold">apply</span>.
       </p>
 
       <div class="mt-20 flex flex-wrap justify-center gap-4 sm:gap-28 text-center">
-        <a
-          href="/opportunities"
-          class="block w-full rounded-3xl bg-white px-16 py-4 text-sm font-medium  text-[#0374E2] shadow-lg hover:bg-transparent hover:ring-2 hover:ring-white hover:text-white duration-150 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-        >
-        Launch Your Career
-        </a>
-
+        <button onclick="window.location.replace('/login')" class="btn-3d actions flex">
+          Apply for Jobs Now <ArrowRight className="ml-2"/>
+      </button>
       </div>
     </div>
   </div>
@@ -111,6 +107,6 @@ url="/" includeHeader={false}>
       <Newsletter/>
   </div>
 </section>
-
+<Footer/>
 </Baselayout>
 

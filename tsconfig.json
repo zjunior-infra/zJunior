@@ -22,6 +22,9 @@
       ],
       "@api/*":[
         "src/pages/api/*"
+      ],
+      "@style/*":[
+        "src/styles/*"
       ]
     },
     "jsx": "react-jsx",

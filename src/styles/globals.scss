@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "custom";
+
+@layer base {
+  :root {
+    --background: 0, 0%, 12%;
+    --foreground: 222.2 47.4% 11.2%; /* need to change*/
+
+    --muted: 210 40% 96.1%; /* need to change*/
+    --muted-foreground: 215.4 16.3% 46.9%; /* need to change*/
+
+    --popover: 0 0% 100%; /* need to change*/
+    --popover-foreground: 222.2 47.4% 11.2%; /* need to change*/
+
+    --border: 214.3 31.8% 91.4%; /* need to change*/
+    --input: 214.3 31.8% 91.4%; /* need to change*/
+
+    --card: 0 0% 100%; /* need to change*/
+    --card-foreground: 222.2 47.4% 11.2%; /* need to change*/
+    --rer: hsl(148,100,42,100%);
+    --primary: 148, 100, 42, 100%; /* need to change*/
+    --primary-foreground: 0, 0%, 100%; /* need to change*/
+ 
+    --secondary: 210 40% 96.1%; /* need to change*/
+    --secondary-foreground: 222.2 47.4% 11.2%; /* need to change*/
+
+    --accent: 210 40% 96.1%; /* need to change*/
+    --accent-foreground: 222.2 47.4% 11.2%; /* need to change*/
+
+    --destructive: 0 100% 50%; /* need to change*/
+    --destructive-foreground: 210 40% 98%; /* need to change*/
+
+    --ring: 215 20.2% 65.1%; /* need to change*/
+
+    --radius: 0.5rem; /* need to change*/
+  }
+
+  .dark {
+    --background: 0, 0%, 12%;
+    --foreground: 0 0% 89% 1;
+
+    --muted: 223 47% 11%; /* need to change*/
+    --muted-foreground: 215.4 16.3% 56.9%; /* need to change*/
+
+    --accent: 216 34% 17%; /* need to change*/
+    --accent-foreground: 210 40% 98%; /* need to change*/
+
+    --popover: 224 71% 4%; /* need to change*/
+    --popover-foreground: 215 20.2% 65.1%; /* need to change*/
+
+    --border: 216 34% 17%; /* need to change*/
+    --input: 216 34% 17%; /* need to change*/
+
+    --card: 224 71% 4%; /* need to change*/
+    --card-foreground: 213 31% 91%; /* need to change*/
+
+    --primary: 122 76% 44% 1; /* need to change*/
+    --primary-foreground: 222.2 47.4% 1.2%; /* need to change*/
+
+    --secondary: 222.2 47.4% 11.2%; /* need to change*/
+    --secondary-foreground: 210 40% 98%; /* need to change*/
+
+    --destructive: 0 63% 31%; /* need to change*/
+    --destructive-foreground: 210 40% 98%; /* need to change*/
+
+    --ring: 216 34% 17%; /* need to change*/
+
+    --radius: 0.5rem; /* need to change*/
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+}
+
