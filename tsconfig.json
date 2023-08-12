@@ -5,10 +5,12 @@
     "types": [
       "vite/client"
     ],
-    "importsNotUsedAsValues": "error",
     "allowImportingTsExtensions" : true,
     "baseUrl": ".",
     "paths": {
+      "@lib/*":[
+        "src/lib/*"
+      ],
       "@components/*": [
         "src/components/*"
       ],
@@ -20,9 +22,11 @@
       ],
       "@api/*":[
         "src/pages/api/*"
+      ],
+      "@style/*":[
+        "src/styles/*"
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "react",
   }
 }

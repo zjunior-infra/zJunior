@@ -1,0 +1,23 @@
+---
+import DropColor from "@components/UI/dropColor.astro";
+import { Input } from "@components/UI/input";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+---
+<BaseLayout title="zJunior - Report Issue" description="Report issue that you have faced using zJunior" url="/issue">  
+    <DropColor/>
+    <div class="flex mx-20 justify-center h-screen items-center">
+        <section class="w-[20rem]">
+            <div>
+                <h1 class="font-bold text-3xl my-2">Report a Problem</h1>
+                <p>We're committed to providing you with the best possible experience on Zjunior. If you encounter any issues or problems while using our platform, we want to hear about it. Your feedback helps us improve and ensure a smooth browsing and job search experience for everyone.</p>
+            </div>
+    
+        </section>
+        <section class="">
+            <Input className="flex" client:visible type="email"/>
+        </section>
+    </div>
+    
+
+</BaseLayout>

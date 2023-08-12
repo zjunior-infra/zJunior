@@ -1,0 +1,70 @@
+name: Deployment Status
+
+on:
+    status
+
+jobs:
+  report_status:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send initial Slack notification
+        id: slack_notification
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: "C05AF58H1S9"
+          payload: |
+            {
+              "text": "Deployment status: Deploying",
+              "attachments": [
+                {
+                  "pretext": "Deployment is in progress.",
+                  "color": "#ffa500"
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+      - name: Update Slack notification on failure
+        if: >- 
+            github.event.state == 'error' ||
+            github.event.state == 'failure' 
+        id: slack_failure
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: "C05AF58H1S9"
+          update-ts: ${{ steps.slack_notification.outputs.ts }}
+          payload: |
+            {
+              "text": "Deployment status: Failure",
+              "attachments": [
+                {
+                  "pretext": "Deployment has failed.",
+                  "color": "#ff0000"
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+      - name: Update Slack notification on success
+        if: >- 
+            github.event.state == 'success' 
+        id: slack_success
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: "C05AF58H1S9"
+          update-ts: ${{ steps.slack_notification.outputs.ts }}
+          payload: |
+            {
+              "text": "Deployment status: Success",
+              "attachments": [
+                {
+                  "pretext": "Deployment has succeeded.",
+                  "color": "#00ff00"
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

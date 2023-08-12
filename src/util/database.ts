@@ -1,16 +1,26 @@
 import { PrismaClient } from "@prisma/client/edge";
 import moment from "moment";
-import { IJob } from "./job.interface";
 
 export const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: "process.env.DATABASE_URL",
-      
+      url: import.meta.env.PUBLIC_DATABASE_URL,
     },
   },
 });
 
+export async function getUser(username:string){
+  const data = await prisma.user.findUnique({
+    where:{
+          username:username
+    },
+    include:{
+      opportunities:true,
+      profile: true,
+    }
+})
+return data
+}
 export function formatJobs(
   jobs,
   { filterPriority = true, sortByDate = true } = {}

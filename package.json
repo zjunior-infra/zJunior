@@ -2,34 +2,48 @@
   "name": "juniorjobs",
   "type": "module",
   "version": "1.2.0",
+  "author": {
+    "name": "Mahmoud Galal",
+    "email": "mahmoud@zjunior.com"
+  },
   "scripts": {
     "dev": "astro dev",
     "dev:phone": "astro dev --host",
     "start": "astro dev",
-    "gen": "prisma generate --data-proxy",
-    "build": "npx prisma generate --data-proxy && astro build",
+    "gen": "prisma generate --data-proxy --schema=./ORM/prisma/schema.prisma",
+    "build": "npx prisma generate --data-proxy --schema=./ORM/prisma/schema.prisma && astro build",
     "preview": "wrangler pages dev ./dist --compatibility-date=2023-01-27",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^6.1.1",
-    "@astrojs/react": "^2.0.2",
-    "@astrojs/tailwind": "^3.0.1",
+    "@astrojs/cloudflare": "^6.6.0",
+    "@astrojs/react": "^2.2.1",
+    "@astrojs/tailwind": "^4.0.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@hookform/resolvers": "^3.2.0",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.6",
-    "@prisma/client": "^4.9.0",
+    "@prisma/client": "^5.0.0",
+    "@supabase/supabase-js": "^2.26.0",
     "@types/react-dom": "^18.0.10",
-    "astro": "^2.0.5",
+    "astro": "^2.8.1",
     "astro-compress": "^1.1.29",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "cookie": "^0.5.0",
     "fuse.js": "^6.6.2",
+    "lucide": "^0.263.0",
+    "lucide-react": "^0.263.1",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.4",
     "react-toastify": "^9.1.1",
-    "tailwindcss": "^3.2.4"
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "^3.2.4",
+    "tailwindcss-animate": "^1.0.6",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/cookie": "^0.5.1",
@@ -39,6 +53,8 @@
     "@typescript-eslint/parser": "^5.48.1",
     "eslint": "^8.32.0",
     "eslint-plugin-astro": "^0.21.1",
-    "prisma": "^4.9.0"
+    "prisma": "^5.0.0",
+    "sass": "^1.64.1",
+    "supabase": ">=1.8.1"
   }
 }

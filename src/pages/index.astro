@@ -1,116 +1,29 @@
 ---
-import Newsletter from "@components/newsletter/Newsletter.astro";
-import Baselayout from "@layouts/BaseLayout.astro";
-
-const navigation = [
-{
-    name: "Opportunities",
-    href: "/opportunities",
-  },
-  {
-    name: "Programs",
-    href: "/programs",
-  },
-  // {
-  //   name:"Hackathons",
-  //   href:"/hackathons"
-  // },
-  // {
-  //   name: "Blog",
-  //   href: "/blog",
-  // },
-  {
-    name: "About",
-    href: "/about",
-  },
-]
-const pathname=Astro.url.pathname
-
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Modal from "@components/Modal/Modal.astro";
+import SearchBar from "@components/Search/SearchBar.astro";
+import Loading from "@components/Loader/Loading.astro";
+import Pagination from "@components/pagination/Pagination.astro";
 ---
 
-<Baselayout title="Junior Jobs"
-description='Internships and Entry-level jobs for all students and fresh-graduates'
-url="/" includeHeader={false}>
-
-<header class="top-0 z-30 w-full px-1 xs:px-4 bg-white sm:absolute bg-transparent">
-  <div class="container mx-auto">
-    <div class="flex flex-col items-center justify-between gap-2 pt-6 sm:h-20 sm:flex-row sm:pt-0">
-      <img src="/images/logo.png" alt="Logo" class="w-9">
-      <a href="/" class="text-sm font-medium duration-150 sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50">
-        Junior Jobs
-      </a>
-      {/* Desktop navigation */}
-      <nav class="flex items-center grow">
-        <ul class="flex flex-wrap items-center justify-end sm:gap-4 grow">
-          {navigation.map((item) => (
-            <li class="">
-              <a
-                class={`flex items-center px-2 xs:px-3 py-2 duration-150 text-sm sm:text-white hover:text-zinc-600/70 text-zinc-600  sm:hover:text-white/50
-                ${pathname === item.href ? "text-blue-600" : "text-zinc-700"}`}
-                href={item.href}
-                // target={item.external ? "_blank" : undefined}
-                // rel={item.external ? "noopener noreferrer" : undefined}
-              >
-                {item.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-
-<section
-  class="relative bg-[url(/images/banner.jpg)] bg-cover bg-center bg-no-repeat"
+<BaseLayout
+  title="Opportunities"
+  description="Opportunities for all MENA software engineer to start thier career"
+  url="/opportunities"
 >
+  <div class="mt-[6rem]">
+    <SearchBar />
+  </div>
+  <Loading />
   <div
-    class="absolute inset-0 bg-black bg-opacity-60 bg-gradient-to-t from-[#0374E2] to-transparent"
-  ></div>
-
-  <div
-    class="relative mx-auto justify-center max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
+    id="jobContainer"
+    class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center mx-4 sm:mx-40 gap-6 my-20 invisible"
   >
-    <div class="max-w-xl text-left">
-      <h1 class="text-3xl text-center text-white font-extrabold sm:text-7xl">
-        Gain Your Work
-        Experience Now
-      </h1>
-
-      <p class="mt-4 text-white text-center max-w-xl sm:text-md sm:leading-relaxed">
-        We have collected Software Engineering related programs, jobs and internships in a one place, stop searching just <strong>Apply.</strong>
-      </p>
-
-      <div class="mt-20 flex flex-wrap justify-center gap-4 sm:gap-28 text-center">
-        <a
-          href="/opportunities"
-          class="block w-full rounded-3xl bg-white px-16 py-4 text-sm font-medium  text-[#0374E2] shadow-lg hover:bg-transparent hover:ring-2 hover:ring-white hover:text-white duration-150 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-        >
-        Launch Your Career
-        </a>
-
-      </div>
-    </div>
   </div>
-</section>
-
-<section>
-  <div class="mx-auto max-w-screen-xl px-20 sm:pb-44 my-24">
-      <h1 class="font-bold text-xl tracking-wider">What is Junior Jobs?
-        <div class="py-1 w-28 bg-[#0374E2] rounded-md"></div>
-      </h1>
-      <p class="leading-9 tracking-wide text-clip sm:max-w-lg mt-12">
-        In our first release junior jobs offers you all of the entry-level and internships opportunities of MENA region. Wait us on the coming releases with more stuff to help you in software<br> engineering field.  
-      </p>
-  </div>
-  <div class="flex flex-col items-center justify-center px-4 py-20 bg-[#FBC252]">
-    <div class="px-8 max-sm:p-10 text-center mb-10">
-      <h1 class="text-white tracking-wide text-clip font-bold text-3xl">Get New Jobs Notification!</h1>
-      <p class="text-sm tracking-wide text-clip text-white font-normal">Subscribe & get all related jobs notification.</p>
-    </div>
-      <Newsletter/>
-  </div>
-</section>
-
-</Baselayout>
-
+  <Pagination/>
+  <Modal />
+</BaseLayout>
+<script>
+  import { paging } from "@components/Job/jobComponent.js";
+  paging();
+</script>

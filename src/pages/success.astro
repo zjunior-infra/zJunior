@@ -1,0 +1,18 @@
+---
+import SuccessIcon from "@components/Icons/SuccessIcon.astro";
+import DropColor from "@components/UI/dropColor.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+<BaseLayout title="zJunior - we care" url="/success">
+    <div class="mx-auto flex min-h-screen w-[34rem] items-center justify-center">
+        <div class="h-[34rem] flex w-full mx-auto rounded-2xl  bg-gradient-to-bl from-accent/50 via-primary/60 to-accent/50 p-[2px]">
+            <div class="flex flex-col h-full w-[34rem] rounded-2xl items-center gap-[2.625rem] bg-background py-10">
+                <SuccessIcon/>
+                <h1 class="text-3xl font-extrabold leading-7">Thank you!</h1>
+                <p class="text-3xl ">Your Idea Matters</p>
+                <p class="text-center text-lg mx-20 leading-5">Thank you for taking the time to contribute your ideas and for helping us create a platform that meets the needs of job seekers and employers alike.</p>
+                <p class=" relative top-16 text-foreground/30">You can also email us directly at <a class="underline" href="mailto:help@zjunior.com">help@zjunior.com</a></p>
+            </div>
+        </div>
+      </div>
+</BaseLayout>

@@ -106,7 +106,7 @@ select:focus {
   flex-direction: column;
 }
 .write-tags {
-  widht: 630px;
+  width: 630px;
   height: 37px;
 
   display: flex;

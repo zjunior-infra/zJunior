@@ -4,6 +4,7 @@ const nextBtn = document.querySelector("#next");
 const prevBtn = document.querySelector("#prev");
 const pages = document.querySelector("#pageCount");
 const current = document.querySelector("#currentPage");
+const tags = document.querySelectorAll('#tags');
 pages.textContent = pagedJobs.pageCount;
 
 function navigate(where){
@@ -33,13 +34,13 @@ function toggleButtons(){
         prevBtn.disabled = true;
         prevBtn.classList.remove("hover:ring-zinc-700","hover:ring-2", "hover:shadow-md") 
     }
+    tags.forEach(tag => {
+        if(tag.classList.contains('bg-primary')){
+            tag.classList.remove('bg-primary')
+        }
+    });
 }
 document.querySelector('#clear-filters').addEventListener('click',toggleButtons);
-document.querySelector('#submit-button').addEventListener('click',toggleButtons);
-document.querySelector('#job-name').addEventListener("keydown",event => {
-    if(event.keyCode === 13)
-    toggleButtons();
-});
 
 nextBtn.addEventListener("click",()=>{navigate(nextPage)});
 prevBtn.addEventListener('click',()=>{navigate(prevPage)});
