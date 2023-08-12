@@ -30,41 +30,36 @@ function formatTags(skills) {
 function jobElement({
   company,
   title,
-  email,
-  type,
-  deadline,
+  level,
+  role,
   skills,
   link,
   logo,
-  close = false,
+  promoted
 }) {
-  let button = `<button 
-        type="button" class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
-            <a href=${link} target="_blank">Apply</a>
-        </button>`;
-  if (email) {
-    button = `<button 
-        type="button" onclick=${`openModal("${email}")`}  class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
+  let button = `<a href=${link} target="_blank"
+         class="self-end mr-4 mb-4 flex items-center text-foreground font-medium h-8 btn-3d actions">
             Apply
-        </button>`;
-  }
+        </a>`;
   return `
-    <div  class='transition ease-in-out delay-150 flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800  shadow-md duration-300 hover:border-zinc-500 hover:shadow-lg hover:scale-105'>
-    <img src=${logo} onerror="this.onerror=null; this.src='/images/joblogo.png'" alt="logo" class=" bg-white w-28 sm:w-32 object-cover object-center">
-    <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
-        <h1 class="font-bold">${title}</h1>
+    <div class='flex overflow-hidden bg-card rounded-lg'>
+    <div class="flex text-primary gap-4 mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
+        <img src=${logo} onerror="this.onerror=null; this.src='/images/logo.svg'" alt="company's logo" class=" bg-white rounded-lg w-12 sm:w-16 object-cover object-center">
+        <div class="flex flex-col">
+        <h1 class=" font-extrabold">${title}</h1>
         <div class="text-xs mt-1">
             <h2 class="font-medium mt-1">${company}</h2>
-            <p class="mb-1">${type}</p>
-            ${formatDeadline(deadline, close)}
+            <p class="mb-1">${level}</p>
+            
+        </div>
         </div>
         <div class="flex mt-6 items-center">
             <ul class="flex flex-wrap gap-2 text-[8px] sm:text-xs font-medium">
                     ${formatTags(skills)}
             </ul>
         </div>
-            ${button}
-    </div>
+        </div>
+        ${button}
 </div>
     `;
 }

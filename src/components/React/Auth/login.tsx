@@ -18,7 +18,6 @@ export function Auth(){
     <Fragment>
         <div className='flex  w-[15rem] my-10 mx-auto'>
         <Input type='email' placeholder='Email'/>
-
         </div>
     </Fragment>
     )
