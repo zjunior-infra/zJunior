@@ -1,0 +1,61 @@
+---
+import Newsletter from "@components/newsletter/Newsletter.astro";
+import Baselayout from "@layouts/BaseLayout.astro";
+import Footer from "@components/Footer.astro";
+import { ArrowRight } from "lucide-react";
+
+ 
+---
+
+<Baselayout title="zJunior"
+description='Internships and Entry-level jobs for all students and fresh-graduates'
+url="/" includeHeader={false}>
+<section>
+  <div
+    class="relative mx-auto justify-center max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
+  >
+  <img class="absolute z-[-1] top-28 sm:right-48 right-0" src="/images/Ellipse-home.svg">
+    <div class="max-w-xl text-left">
+      <div class="flex">
+        <img class=" max-sm:sr-only absolute left-56 top-48" src="/images/arrow1-home.svg">
+      <h1 class=" text-3xl text-center  font-extrabold sm:text-7xl">
+        Gain Your Work
+        Experience Now
+      </h1>
+      <img class=" max-sm:sr-only absolute right-[18rem] top-[20rem]" src="/images/arrow2-home.svg">
+      </div>
+      
+
+      <p class="mt-4 text-white text-center max-w-xl sm:text-md sm:leading-relaxed">
+        Stop hunting for software engineering opportunities! We've got you covered with a hub of programs, jobs, and internships all in one place. take your career to the next level! stop searching just <span class="capitalize font-bold">apply</span>.
+      </p>
+
+      <div class="mt-20 flex flex-wrap justify-center gap-4 sm:gap-28 text-center">
+        <button onclick="window.location.replace('/login')" class="btn-3d actions flex">
+          Apply for Jobs Now <ArrowRight className="ml-2"/>
+      </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="mx-auto max-w-screen-xl px-20 sm:pb-44 my-24">
+      <h1 class="font-bold text-xl tracking-wider">What is Junior Jobs?
+        <div class="py-1 w-28 bg-[#0374E2] rounded-md"></div>
+      </h1>
+      <p class="leading-9 tracking-wide text-clip sm:max-w-lg mt-12">
+        In our first release junior jobs offers you all of the entry-level and internships opportunities of MENA region. Wait us on the coming releases with more stuff to help you in software<br> engineering field.  
+      </p>
+  </div>
+  <div class="flex flex-col items-center justify-center px-4 py-20 bg-[#FBC252]">
+    <div class="px-8 max-sm:p-10 text-center mb-10">
+      <h1 class="text-white tracking-wide text-clip font-bold text-3xl">Get New Jobs Notification!</h1>
+      <p class="text-sm tracking-wide text-clip text-white font-normal">Subscribe & get all related jobs notification.</p>
+    </div>
+      <Newsletter/>
+  </div>
+</section>
+<Footer/>
+</Baselayout>
+

@@ -1,7 +1,8 @@
 ---
 import { siteConfig } from '../util/siteConfig'
 import Analytics from '@components/Analytics/Analytics.astro'
-import '@style/globals.scss'
+import Navigation from '@components/Navigation.astro'
+import '../styles/globals.scss'
 export interface Props{
     title: string,
     description?:string
@@ -97,6 +98,7 @@ const currentAbsoluteLink=`${DomainURL}${url}`
     <Analytics/>
 </head>
 <body class={`relative  ${style}`}>
+    <Navigation/>
     <slot/>
 </body>
 </html>

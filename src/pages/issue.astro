@@ -1,0 +1,27 @@
+---
+import Issues from "@components/React/Form/Issues";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+---
+<BaseLayout title="zJunior - Report Issue" description="Report issue that you have faced using zJunior" url="/issue">  
+    <div class="flex mx-20 justify-center h-screen gap-20 items-center">
+        <section class="w-[20rem]">
+            <div>
+                <h1 class="font-bold text-3xl my-2">Report a Problem</h1>
+                <p>We're committed to providing you with the best possible experience on Zjunior. If you encounter any issues or problems while using our platform, we want to hear about it. Your feedback helps us improve and ensure a smooth browsing and job search experience for everyone.</p>
+            </div>
+    
+        </section>
+        <section >
+            <div class="mx-auto flex min-h-screen w-[38rem] items-center justify-center">
+                <div class="h-[32rem] flex w-full mx-auto rounded-2xl  bg-gradient-to-bl from-accent/50 via-primary/60 to-accent/50 p-[2px]">
+                    <div class="flex flex-col h-full w-[38rem] rounded-2xl items-center gap-[2.625rem] bg-background py-10">
+                        <Issues client:load/>
+                    </div>
+                </div>
+              </div>
+        </section>
+    </div>
+    
+
+</BaseLayout>
