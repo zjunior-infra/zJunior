@@ -4,7 +4,7 @@ import moment from "moment";
 export const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: import.meta.env.PUBLIC_DATABASE_URL,
+      url: process.env.NODE_ENV === "PRODUCTION" ? "process.env.DATABASE_URL" : import.meta.env.PUBLIC_DATABASE_URL,
     },
   },
 });
@@ -64,16 +64,8 @@ export async function cleaningJobs() {
   return `Deleted ${result.count} jobs`;
 }
 export async function getJobs() {
-  const result = await prisma.job.findMany({});
+  const result = await prisma.opportunity.findMany({});
   return formatJobs(result);
 }
 
-export async function auth(prvToken: any) {
-  const Token = prvToken.value;
-  const result = await prisma.lister.findFirst({
-    where: {
-      token: Token,
-    },
-  });
-  return result;
-}
+
