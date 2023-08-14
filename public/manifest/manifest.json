@@ -1,10 +1,10 @@
 {
     "dir": "ltr",
     "lang": "en",
-    "name": "Junior Jobs",
+    "name": "zJunior",
     "scope": "/",
     "display": "standalone",
-    "short_name": "Juniors",
+    "short_name": "zJunior",
     "theme_color": "#fff",
     "description": "Opprtunities for Juniors and fresh-graduates to get their first job.",
     "orientation": "any",

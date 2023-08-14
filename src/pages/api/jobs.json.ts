@@ -12,7 +12,7 @@ export const get: APIRoute = async (context: APIContext) => {
     }
     
     try {
-        const result= await prisma.job.findMany()
+        const result= await prisma.opportunity.findMany()
         return new Response(JSON.stringify(formatJobs(result)),{status:200, headers:crosHeaders})
     }
     catch (e: any) {

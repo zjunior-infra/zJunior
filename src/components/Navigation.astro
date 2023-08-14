@@ -1,58 +1,71 @@
 ---
+import { Button } from "./UI/Button";
 const navigation = [
 {
-    name: "Opportunities",
-    href: "/opportunities",
+    name: "Home",
+    href: "/",
   },
   {
-    name: "Programs",
-    href: "/programs",
+    name: "Add Suggestion",
+    href: "/suggestion",
   },
-  // {
-  //   name:"Hackathons",
-  //   href:"/hackathons"
-  // },
-  // {
-  //   name: "Blog",
-  //   href: "/blog",
-  // },
   {
-    name: "About",
-    href: "/about",
+    name: "Report a Problem",
+    href: "/issue",
   },
 ]
 const pathname=Astro.url.pathname
 ---
-
-<header class="top-0 z-30 w-full px-1 xs:px-4 bg-white shadow-lg fixed sm:static">
-  <div class="container mx-auto">
-    <div class="flex flex-col items-center justify-between gap-2 pt-6 sm:h-20 sm:flex-row sm:pt-0">
-      <img src="/images/logo.png" alt="Logo" class="w-9">
-      <a href="/" class="text-sm font-medium duration-150 text-zinc-600  hover:text-zinc-600/70">
-        Junior Jobs
-      </a>
-      {/* Desktop navigation */}
-      <nav class="flex items-center grow">
-        <ul class="flex flex-wrap items-center justify-end sm:gap-4 grow">
-          {navigation.map((item) => (
+<nav class="fixed w-full z-40 top-0 left-0 transition-all duration-200">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="/" class="flex items-center">
+        <img src="images/logo.svg" class="h-10 mr-3" alt="zJunior Logo">
+    </a>
+    <div class="flex md:order-2">
+        <Button type="button" className="bg-accent text-foreground" >Sign Up</Button>
+        <button id="menuToggle" data-collapse-target="#navbar-sticky" data-collapse-toggle="navbar-sticky" type="button" class="inline-flex ml-4 items-center p-2 w-10 h-10  justify-center text-sm text-gray-500 rounded-lg md:hidden" aria-controls="navbar-sticky" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5 text-accent" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          </svg>
+      </button>
+    </div>
+    <div class="items-center max-sm:bg-background justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg md:flex-row md:space-x-8 md:mt-0">
+        {navigation.map((item) => (
             <li class="">
               <a
-                class={`flex items-center px-2 xs:px-3 py-2 duration-150 text-sm text-zinc-600  hover:text-zinc-600/70
-                ${pathname === item.href ? "text-blue-600" : "text-zinc-700"}`}
+                class={`flex px-2 xs:px-3 py-2 duration-150 text-sm hover:text-primary
+                ${pathname === item.href ? "text-primary" : ""}`}
                 href={item.href}
-                // target={item.external ? "_blank" : undefined}
-                // rel={item.external ? "noopener noreferrer" : undefined}
               >
                 {item.name}
               </a>
             </li>
           ))}
-        </ul>
-      </nav>
+      </ul>
     </div>
-  </div>
-</header>
+    </div>
+</nav>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.getElementById("menuToggle");
+  const menuTarget = document.querySelector(menuToggle?.getAttribute("data-collapse-target")||'null');
 
-
-
+  menuToggle?.addEventListener("click", function () {
+    menuTarget?.classList.toggle("hidden");
+    const expanded = menuToggle.getAttribute("aria-expanded") === "true" || false;
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+window.addEventListener('scroll',(event) => {
+  let toggle = scrollY >= 60 ? true:false  
+  if(toggle){
+    document.querySelector('nav')?.classList.add('bg-background')
+  }
+  else{
+    document.querySelector('nav')?.classList.remove('bg-background')
+  }
+});
+</script>

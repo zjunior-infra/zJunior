@@ -1,15 +1,16 @@
 ---
-import skills from "@util/skills";
 import "./SearchBar.css";
 ---
 
-<div class="flex-col mx-[10rem] max-sm:mx-8">
-  <div class="flex my-10">
-    <input id="search-text" enterkeyhint="search" type="text" value="" placeholder="Internship" class="shrink-0 flex-grow-0 border-2 border-primary p-2 w-64 rounded-xl mx-10">
-    <button id="search" class="shrink-0 max-sm:hidden flex-grow-0 relative right-20 bg-primary p-2 rounded-r-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z"/></svg></button>
+<div class="relative  mx-[40rem] max-xl:mx-[25rem] max-lg:mx-[20rem] max-sm:mx-8">
+  <div class="absolute inset-x-0 h-full -bottom-1 -right-1 left-1 bg-foreground border border-gray-500 rounded-lg">
+  </div>  
+  <div class="flex relative">
+    <input id="search-text" enterkeyhint="search" type="text" value="" placeholder="Search" 
+    class=" w-full rounded-lg text-foreground border-2 border-foreground p-2  bg-input">
   </div>
-  <div id='search-tags' class="flex lg:flex-wrap gap-4 overflow-auto">
-  </div>
+</div>
+<div id='search-tags' class="flex  justify-center mt-8 lg:flex-wrap gap-4 overscroll-contain overflow-auto">
 </div>
 <div id="clear-filters" class="hidden justify-between mx-4 sm:mx-40 my-10">
   <p><span id="results-count">0</span> Results found</p>
@@ -33,5 +34,4 @@ import "./SearchBar.css";
 
 <script>
   import './filtersTags.ts'
-  
 </script>

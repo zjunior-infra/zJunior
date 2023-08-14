@@ -27,45 +27,39 @@ function formatTags(skills) {
   return tagsElements;
 }
 
+
+
+        
+
+
 function jobElement({
   company,
   title,
-  email,
-  type,
-  deadline,
+  level,
+  role,
   skills,
   link,
   logo,
-  close = false,
+  promoted
 }) {
-  let button = `<button 
-        type="button" class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
-            <a href=${link} target="_blank">Apply</a>
-        </button>`;
-  if (email) {
-    button = `<button 
-        type="button" onclick=${`openModal("${email}")`}  class="self-end mt-4 rounded-lg bg-[#0374E2] text-white w-16 sm:w-20 item-center text-md h-6 hover:text-zinc-800 hover:bg-accent duration-150 hover:shadow-md">
-            Apply
-        </button>`;
-  }
+  let button = ``;
   return `
-    <div  class='transition ease-in-out delay-150 flex overflow-hidden border border-zinc-300 rounded-md ring-slate-800  shadow-md duration-300 hover:border-zinc-500 hover:shadow-lg hover:scale-105'>
-    <img src=${logo} onerror="this.onerror=null; this.src='/images/joblogo.png'" alt="logo" class=" bg-white w-28 sm:w-32 object-cover object-center">
-    <div class="flex flex-col text-[#002838] mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
-        <h1 class="font-bold">${title}</h1>
-        <div class="text-xs mt-1">
-            <h2 class="font-medium mt-1">${company}</h2>
-            <p class="mb-1">${type}</p>
-            ${formatDeadline(deadline, close)}
+<div class="card relative w-[22rem] h-[22rem] sm:w-[24rem] sm:h-[24rem] px-7 py-7">
+                <div class="flex">
+                    <img src=${logo} onerror="this.onerror=null; this.src='/images/logo.svg'" class="bg-white rounded-lg w-[5rem] h-[5rem] object-fill object-center"/>
+                    <h1 class="my-2 text-xl mx-4">${company}</h1>
+                </div>
+                <div>
+                    <p class="font-bold text-xl my-7">${title}</p>
+                    <p class="mt-5">${level}</p>
+                </div>
+                <ul class="flex gap-4 my-6 sm:my-10 items-center">
+                ${formatTags(skills)}
+                </ul>
+                <div class="flex absolute m-8 right-0 bottom-0">
+                  <a href=${link} target="_blank" class=" bg-accent relative h-9 py-1 px-10 inline-block justify-center items-center text-foreground font-bold rounded-lg">Apply</a>
+                </div>
         </div>
-        <div class="flex mt-6 items-center">
-            <ul class="flex flex-wrap gap-2 text-[8px] sm:text-xs font-medium">
-                    ${formatTags(skills)}
-            </ul>
-        </div>
-            ${button}
-    </div>
-</div>
     `;
 }
 
