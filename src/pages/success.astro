@@ -2,11 +2,34 @@
 import SuccessIcon from "@components/Icons/SuccessIcon.astro";
 import DropColor from "@components/UI/dropColor.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import CustomTransition from "@layouts/CustomTransition.astro";
+import { fade } from 'astro:transitions';
+
+const anim = {
+  old: {
+    name: 'fadeIn',
+    duration: '0.4s',
+    easing: 'linear',
+    fillMode: 'forwards',
+  },
+  new: {
+    name: 'fadeOut',
+    duration: '0.4s',
+    easing: 'linear',
+    fillMode: 'backwards',
+  }
+};
+
+const myFade = {
+  forwards: anim,
+  backwards: anim,
+};
 ---
+<CustomTransition slot="transition"/>
 <BaseLayout title="zJunior - we care" url="/success">
-    <div class="mx-auto flex min-h-screen w-[34rem] items-center justify-center">
+    <div class="mx-auto flex min-h-screen w-[34rem] items-center justify-center" transition:animate={myFade}>
         <div class="h-[34rem] flex w-full mx-auto rounded-2xl  bg-gradient-to-bl from-accent/50 via-primary/60 to-accent/50 p-[2px]">
-            <div class="flex flex-col h-full w-[34rem] rounded-2xl items-center gap-[2.625rem] bg-background py-10">
+            <div class="flex flex-col h-full w-[34rem] rounded-2xl items-center gap-[2.625rem] bg-background py-10" >
                 <SuccessIcon/>
                 <h1 class="text-3xl font-extrabold leading-7">Thank you!</h1>
                 <p class="text-3xl ">Your Idea Matters</p>

@@ -27,6 +27,11 @@ function formatTags(skills) {
   return tagsElements;
 }
 
+
+
+        
+
+
 function jobElement({
   company,
   title,
@@ -37,30 +42,24 @@ function jobElement({
   logo,
   promoted
 }) {
-  let button = `<a href=${link} target="_blank"
-         class="self-end mr-4 mb-4 flex items-center text-foreground font-medium h-8 btn-3d actions">
-            Apply
-        </a>`;
+  let button = ``;
   return `
-    <div class='flex overflow-hidden bg-card rounded-lg'>
-    <div class="flex text-primary gap-4 mx-2 my-2 sm:mx-4 sm:my-4 text-sm w-full">
-        <img src=${logo} onerror="this.onerror=null; this.src='/images/logo.svg'" alt="company's logo" class=" bg-white rounded-lg w-12 sm:w-16 object-cover object-center">
-        <div class="flex flex-col">
-        <h1 class=" font-extrabold">${title}</h1>
-        <div class="text-xs mt-1">
-            <h2 class="font-medium mt-1">${company}</h2>
-            <p class="mb-1">${level}</p>
-            
+<div class="card relative w-[22rem] h-[22rem] sm:w-[24rem] sm:h-[24rem] px-7 py-7">
+                <div class="flex">
+                    <img src=${logo} onerror="this.onerror=null; this.src='/images/logo.svg'" class="bg-white rounded-lg w-[5rem] h-[5rem] object-fill object-center"/>
+                    <h1 class="my-2 text-xl mx-4">${company}</h1>
+                </div>
+                <div>
+                    <p class="font-bold text-xl my-7">${title}</p>
+                    <p class="mt-5">${level}</p>
+                </div>
+                <ul class="flex gap-4 my-6 sm:my-10 items-center">
+                ${formatTags(skills)}
+                </ul>
+                <div class="flex absolute m-8 right-0 bottom-0">
+                  <a href=${link} target="_blank" class=" bg-accent relative h-9 py-1 px-10 inline-block justify-center items-center text-foreground font-bold rounded-lg">Apply</a>
+                </div>
         </div>
-        </div>
-        <div class="flex mt-6 items-center">
-            <ul class="flex flex-wrap gap-2 text-[8px] sm:text-xs font-medium">
-                    ${formatTags(skills)}
-            </ul>
-        </div>
-        </div>
-        ${button}
-</div>
     `;
 }
 
