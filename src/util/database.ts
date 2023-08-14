@@ -4,7 +4,7 @@ import moment from "moment";
 export const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: process.env.NODE_ENV === "PRODUCTION" ? import.meta.env.DATABASE_URL : import.meta.env.PUBLIC_DATABASE_URL,
+      url: import.meta.env.DATABASE_URL
     },
   },
 });
@@ -22,7 +22,7 @@ export async function getUser(username:string){
 return data
 }
 export function formatJobs(
-  jobs,
+  jobs: any[],
   { filterPriority = true, sortByDate = true } = {}
 ) {
   // add a close property to the job with true
@@ -44,25 +44,26 @@ export function formatJobs(
   // filter by priority
   if (sortByDate) {
     filteredJobs.sort(
-      (a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime()
+      (a: { deadline: string | number | Date; }, b: { deadline: string | number | Date; }) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime()
     );
   }
   return filteredJobs;
 }
 
-export async function cleaningJobs() {
-  //construct today date in format yyyy-mm-dd
-  const today = moment().format("YYYY-MM-DD");
-  // delete all jobs that are older than today
-  const result = await prisma.job.deleteMany({
-    where: {
-      deadline: {
-        lt: today,
-      },
-    },
-  });
-  return `Deleted ${result.count} jobs`;
-}
+// export async function cleaningJobs() {
+//   //construct today date in format yyyy-mm-dd
+//   const today = moment().format("YYYY-MM-DD");
+//   // delete all jobs that are older than today
+//   const result = await prisma.opportunity.deleteMany({
+//     where: {
+//       createdAt: {
+//         lt: today,
+//       },
+//     },
+//   });
+//   return `Deleted ${result.count} jobs`;
+// }
+
 export async function getJobs() {
   const result = await prisma.opportunity.findMany({});
   return formatJobs(result);
