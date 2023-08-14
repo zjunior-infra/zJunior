@@ -4,7 +4,7 @@ import moment from "moment";
 export const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: "process.env.DATABASE_URL"
+      url: process.env.NODE_ENV === "PRODUCTION" ? import.meta.env.DATABASE_URL : import.meta.env.PUBLIC_DATABASE_URL,
     },
   },
 });
