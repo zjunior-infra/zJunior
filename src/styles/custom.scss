@@ -128,6 +128,11 @@ $pink-shadow: #2f2f2f1b;
   background: radial-gradient(50% 50.00% at 50% 50.00%, rgba(0, 193, 6, 0.14) 5.68%, rgba(54, 53, 53, 0.14) 100%);
 }
 
+.card{
+  border-radius: 1.875rem;
+  background: linear-gradient(135deg, #4A4A4A 0%, rgba(74, 74, 74, 0.42) 64.33%, rgba(74, 74, 74, 0.00) 100%);
+}
+
 #z-bg-gradient {
   font-size: 12px;
   font-family: sans-serif;

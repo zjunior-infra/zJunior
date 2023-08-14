@@ -1,0 +1,27 @@
+---
+import { Button } from "@components/UI/Button";
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+<BaseLayout url="/test" title="Test">
+    <div class="grid grid-cols-4 relative mx-20 justify-center h-screen gap-[2rem] items-center">
+        <div class="card w-[24rem] h-[24rem] px-7 py-7">
+                <div class="flex">
+                    <img src="/images/favicon.svg" class="bg-white rounded-lg w-[5rem] h-[5rem] object-fill object-center"/>
+                    <h1 class="my-2 text-xl mx-4">zJunior</h1>
+                </div>
+                <div>
+                    <p class="font-bold text-xl my-7">Software Engineer</p>
+                    <p class="mt-5">Internship</p>
+                </div>
+                <ul class="flex gap-4 my-10 items-center">
+                    <li class="bg-background text-xs px-4 py-1 rounded-lg hover:bg-accent duration-200">React</li>
+                    <li class="bg-background text-xs px-4 py-1 rounded-lg hover:bg-accent duration-200">Astro</li>
+                    <li class="bg-background text-xs px-4 py-1 rounded-lg hover:bg-accent duration-200">Nodejs</li>
+                </ul>
+                <div class="flex justify-end">
+                    <Button className=" bg-accent text-foreground h-9 px-10 justify-center flex">Apply</Button>
+                </div>
+        </div>
+    </div>
+    
+</BaseLayout>
