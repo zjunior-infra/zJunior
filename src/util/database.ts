@@ -4,7 +4,7 @@ import moment from "moment";
 export const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: import.meta.env.DATABASE_URL
+      url: 'prisma://aws-eu-central-1.prisma-data.com/?api_key=GE3pF59sE51MfL1Mv6AVl0mtqfS15FeCtMyFGVcnfAPLqHCupePAfhyX9TOiziuL'
     },
   },
 });

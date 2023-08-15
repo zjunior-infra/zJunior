@@ -44,7 +44,7 @@ function jobElement({
 }) {
   let button = ``;
   return `
-<div class="card relative w-[22rem] h-[22rem] sm:w-[24rem] sm:h-[24rem] px-7 py-7">
+<div class="card relative max-w-2xl max-h-xl px-7 py-7">
                 <div class="flex">
                     <img src=${logo} onerror="this.onerror=null; this.src='/images/logo.svg'" class="bg-white rounded-lg w-[5rem] h-[5rem] object-fill object-center"/>
                     <h1 class="my-2 text-xl mx-4">${company}</h1>
