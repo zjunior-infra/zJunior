@@ -16,7 +16,7 @@ type suggestionSchema = z.infer<typeof suggestionSchema>
 
 const Suggest = () => {
   const [Loading,isLoading] = React.useState<boolean>(false)
-  const successLink = React.useRef<HTMLAnchorElement>()
+  const successLink = React.useRef<HTMLAnchorElement>(null)
   const { 
     register, 
     handleSubmit,
@@ -61,7 +61,7 @@ return (
           <Button className='bg-primary/60' disabled><Loader2 className='animate-spin'/></Button> 
           : <Button className='' type="submit">Suggest</Button>
         }
-        <a href="/success" ref={successLink} className='sr-only' id='dis'></a>
+        <a title='success-redirection-link' href="/success" ref={successLink} className='sr-only' id='dis'></a>
       </div>
     </form>
   );
