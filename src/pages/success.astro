@@ -27,15 +27,22 @@ const myFade = {
 ---
 <CustomTransition slot="transition"/>
 <BaseLayout title="zJunior - we care" url="/success">
-    <div class="mx-auto flex min-h-screen w-[34rem] items-center justify-center" transition:animate={myFade}>
-        <div class="h-[34rem] flex w-full mx-auto rounded-2xl  bg-gradient-to-bl from-accent/50 via-primary/60 to-accent/50 p-[2px]">
-            <div class="flex flex-col h-full w-[34rem] rounded-2xl items-center gap-[2.625rem] bg-background py-10" >
-                <SuccessIcon/>
-                <h1 class="text-3xl font-extrabold leading-7">Thank you!</h1>
-                <p class="text-3xl ">Your Idea Matters</p>
-                <p class="text-center text-lg mx-20 leading-5">Thank you for taking the time to contribute your ideas and for helping us create a platform that meets the needs of job seekers and employers alike.</p>
-                <p class=" relative top-16 text-foreground/30">You can also email us directly at <a class="underline" href="mailto:help@zjunior.com">help@zjunior.com</a></p>
-            </div>
-        </div>
+  <DropColor/>
+  <div class="flex min-h-screen items-center justify-center">
+    <div class="w-[28rem] bg-gradient-to-bl from-accent/50 via-primary/60 to-accent/50 p-[2px] rounded-2xl shadow-lg">
+      <div class="flex flex-col items-center gap-5 sm:gap-[2.625rem] bg-background py-10 rounded-2xl">
+        <SuccessIcon class="w-12 h-12 md:w-16 md:h-16" />
+        <h1 class="text-2xl md:text-3xl font-extrabold leading-7">Thank you!</h1>
+        <p class="text-lg md:text-xl">Your Idea Matters</p>
+        <p class="text-center text-sm md:text-base mx-4 md:mx-20 leading-6">
+          Thank you for taking the time to contribute your ideas and for helping us create a platform that meets the needs of job seekers and employers alike.
+        </p>
+        <p class="relative top-2 md:top-5 text-xs md:text-sm text-foreground/30">
+          You can also email us directly at <a class="underline" href="mailto:help@zjunior.com">help@zjunior.com</a>
+        </p>
       </div>
+    </div>
+  </div>
+  
+  
 </BaseLayout>
