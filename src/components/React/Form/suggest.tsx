@@ -16,7 +16,7 @@ type suggestionSchema = z.infer<typeof suggestionSchema>
 
 const Suggest = () => {
   const [Loading,isLoading] = React.useState<boolean>(false)
-  const successLink = React.useRef<HTMLAnchorElement>()
+  const successLink = React.useRef<HTMLAnchorElement>(null)
   const { 
     register, 
     handleSubmit,
@@ -47,13 +47,13 @@ return (
     <form onSubmit= {handleSubmit(onSubmit)} className='flex flex-col gap-4 z-50'>
       <div>
         <label>Email</label>
-        <Input id='email' placeholder='Enter your email address' type="email" {...register('email')} />
-        {errors.email && <p>{errors.email?.message}</p>}
+        <Input variant={errors.email ? 'error' : 'default'} id='email' placeholder='Enter your email address' className='mt-1' type="email" {...register('email')} />
+        {errors.email && <p className="text-red-600">{errors.email.message}</p>}
       </div>
       <div>
         <label>What is your Idea</label>
-        <Textarea id='description' placeholder="We're excited to hear your suggestions!" className='h-[17rem] text-start' {...register('description')} />
-        {errors.description && <p>{errors.description.message}</p>}
+        <Textarea id='description' placeholder="We're excited to hear your suggestions!" className='mt-1 h-[17rem] text-start' {...register('description')} error={errors.description ? true : false}/>
+        {errors.description && <p className="text-red-600">{errors.description.message}</p>}
       </div>
       <div className='flex items-center gap-16 my-6'>
         <p className='text-xs text-input'>You can also email us directly at <a href="mailto:help@zjunior.com" className='underline'>help@zjunior.com</a></p>
@@ -61,7 +61,7 @@ return (
           <Button className='bg-primary/60' disabled><Loader2 className='animate-spin'/></Button> 
           : <Button className='' type="submit">Suggest</Button>
         }
-        <a href="/success" ref={successLink} className='sr-only' id='dis'></a>
+        <a title='success-redirection-link' href="/success" ref={successLink} className='sr-only' id='dis'></a>
       </div>
     </form>
   );

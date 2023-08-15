@@ -11,6 +11,8 @@ const InputVariants = cva(
             "border-transparent bg-muted ",
           secondary:
             "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          error:
+            "border-transparent bg-muted ring-2 ring-red-600 focus-visible:ring-red-600",
         },
       },
       defaultVariants: {
