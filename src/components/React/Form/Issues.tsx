@@ -16,7 +16,7 @@ type IssueSchema = z.infer<typeof IssueSchema>
 
 const Reports = () => {
   const [Loading, isLoading] = React.useState<boolean>(false)
-  const successLink = React.useRef<HTMLAnchorElement>()
+  const successLink = React.useRef<HTMLAnchorElement>(null)
   const {
     register,
     handleSubmit,
@@ -57,7 +57,7 @@ const Reports = () => {
           <Button disabled><Loader2 className='animate-spin' /></Button>
           : <Button className='' type="submit">Report</Button>
         }
-        <a href="/success" ref={successLink} className='sr-only' id='dis'></a>
+        <a title='success-redirection-link' href="/success" ref={successLink} className='sr-only' id='dis'></a>
       </div>
     </form>
   );
