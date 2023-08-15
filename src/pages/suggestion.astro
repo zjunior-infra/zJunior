@@ -6,13 +6,14 @@ import CustomTransition from "@layouts/CustomTransition.astro";
 ---
 <CustomTransition slot="transition"/>
 <BaseLayout title="zJunior - Report Issue" description="Report issue that you have faced using zJunior" url="/issue">  
-    <div class="flex relative mx-20 justify-center h-screen gap-[15rem] items-center">
+    <DropColor/>
+    <div class="flex mx-20 justify-center h-screen gap-[15rem] items-center " >
         <section class="w-[20rem]">
             <div>
-                <h1 class="font-bold text-3xl my-2">Add Suggestion</h1>
-                <p>We value your insights and ideas for making Zjunior platform even better. Your suggestions can help us enhance the user experience, add new features, and improve the overall functionality of our platform.</p>
+                <h1 class="font-bold text-3xl my-2">Report a Problem</h1>
+                <p>We're committed to providing you with the best possible experience on Zjunior. If you encounter any issues or problems while using our platform, we want to hear about it. Your feedback helps us improve and ensure a smooth browsing and job search experience for everyone.</p>
             </div>
-            
+    
         </section>
         <section >
             <div class="mx-auto flex min-h-screen w-[38rem] items-center justify-center">
@@ -21,10 +22,10 @@ import CustomTransition from "@layouts/CustomTransition.astro";
                         <Suggest client:load/>
                     </div>
                 </div>
-            </div>
+              </div>
         </section>
     </div>
-    <DropColor/>
+    
     
 
 </BaseLayout>

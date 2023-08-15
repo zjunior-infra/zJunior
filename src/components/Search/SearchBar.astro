@@ -2,36 +2,39 @@
 import "./SearchBar.css";
 ---
 
-<div class="relative mx-auto w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
-  <div class="absolute inset-x-0 h-full -bottom-1 -right-1 left-1 bg-foreground border border-gray-500 rounded-lg"></div>
-  <div class="flex relative">
-    <input
-      id="search-text"
-      enterkeyhint="search"
-      type="text"
-      value=""
-      placeholder="Search"
-      class="w-full rounded-lg text-foreground border-2 border-foreground p-2 bg-input"
-    />
+<div class="mx-auto w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+  <div class="sm:mx-4 relative mx-auto w-full sm:mt-4">
+    <div class="absolute inset-x-0 h-full -bottom-1 -right-1 left-1 bg-foreground border border-gray-500 rounded-lg"></div>
+    <div class="flex relative">
+      <input
+        id="search-text"
+        enterkeyhint="search"
+        type="text"
+        value=""
+        placeholder="Search"
+        class="w-full rounded-lg text-foreground border-2 border-foreground p-2 bg-input"
+      />
+    </div>
   </div>
+  <div id="search-tags" class="flex justify-center mt-8 lg:flex-wrap gap-4 overscroll-contain overflow-auto"></div>
+  <div id="clear-filters" class="hidden justify-between mx-4 sm:mx-40 my-10">
+    <p><span id="results-count">0</span> Results found</p>
+    <button id="clear-results-button" class="flex content-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-5 h-5 mr-2"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+      <span>Clear filters</span>
+    </button>
+  </div>
+  <script>
+    import './filtersTags.ts';
+  </script>
 </div>
-<div id="search-tags" class="flex justify-center mt-8 lg:flex-wrap gap-4 overscroll-contain overflow-auto"></div>
-<div id="clear-filters" class="hidden justify-between mx-4 sm:mx-40 my-10">
-  <p><span id="results-count">0</span> Results found</p>
-  <button id="clear-results-button" class="flex content-center">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="w-5 h-5 mr-2"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-    </svg>
-    <span>Clear filters</span>
-  </button>
-</div>
-<script>
-  import './filtersTags.ts';
-</script>
+
