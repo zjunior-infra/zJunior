@@ -48,7 +48,7 @@ const Reports = () => {
       </div>
       <div>
         <label>What is the problem ?</label>
-        <Textarea id='description' placeholder="We're excited to hear your suggestions!" className='mt-1 h-[17rem] text-start' {...register('description')} error={errors.description ? true : false} />
+        <Textarea id='description' placeholder="Let us know what went wrong!" className='mt-1 h-[17rem] text-start' {...register('description')} error={errors.description ? true : false} />
         {errors.description && <p className="text-red-600">{errors.description.message}</p>}
       </div>
       <div className='flex items-center gap-16 my-4'>
