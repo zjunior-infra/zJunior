@@ -1,6 +1,11 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
-import 'dotenv/config'
+
+process.env && process.env.NODE_ENV === "development" ?
+  import('dotenv/config')
+  .then(()=> console.log("Loaded env from .env"))
+  .catch(()=>console.log("Please create .env file"))
+  : console.log("Production by default")
 
 
 export const prisma = new PrismaClient({
