@@ -1,13 +1,15 @@
 import { PrismaClient } from "@prisma/client/edge";
-import moment from "moment";
+import { withAccelerate } from "@prisma/extension-accelerate";
+import 'dotenv/config'
+
 
 export const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: 'prisma://aws-eu-central-1.prisma-data.com/?api_key=GE3pF59sE51MfL1Mv6AVl0mtqfS15FeCtMyFGVcnfAPLqHCupePAfhyX9TOiziuL'
+      url: process.env.DATABASE_URL_PROXY
     },
   },
-});
+}).$extends(withAccelerate())
 
 export async function getUser(username:string){
   const data = await prisma.user.findUnique({
