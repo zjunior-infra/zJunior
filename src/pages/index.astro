@@ -5,31 +5,52 @@ import SearchBar from "@components/Search/SearchBar.astro";
 import Loading from "@components/Loader/Loading.astro";
 import Pagination from "@components/pagination/Pagination.astro";
 ---
-<style>
+<style is:global>
   a{
     color: aquamarine;
   }
+  .bullet-indigo::before {
+    content: '';
+    display: inline-block;
+    width: 8px; /* Adjust the size of the circle */
+    height: 8px;
+    border-radius: 50%;
+    background-color: #6366F1; /* Use the color of your URL here */
+    margin-right: 8px; /* Adjust the space between the circle and the text */
+}
 </style>
 <BaseLayout
   title="Opportunities"
   description="Opportunities for all MENA software engineer to start thier career"
   url="/opportunities"
 >
-  <div class="mt-[6rem]">
-    <!-- <SearchBar /> -->
-  </div>
-  <div class="flex flex-col container md:ml-[2rem] xl:ml-[36vw] lg:ml-[4rem] sm:ml-[32rem] items-start justify-center h-[60vh]">
-    <h1 class=" font-bold 
-    bg-gradient-to-r from-slate-200/80 to-indigo-700/90 text-4xl text-transparent bg-clip-text
-    ">We are currently moving to better soultion ! 
+  <!-- <div class="mt-[6rem]">
+    <SearchBar />
+  </div> -->
+  <div class="flex flex-col mx-4 items-center justify-center h-screen">
+    <h1 class="font-bold text-4xl bg-gradient-to-r from-slate-200/80 to-indigo-700/90 text-transparent bg-clip-text">
+        We are currently moving to a better solution!
     </h1>
     <ul class="my-5 bg-indigo-300/20 py-6 px-4 hover:bg-indigo-300/10 duration-300 rounded-lg space-y-4">
-      <li>zjunior is a community product that helps juniors find their first step.</li>
-      <!-- <li>- Public roadmap for the zjunior coming soon!</li> -->
-      <li>Help us by mentioning the zjunior on <a href="https://x.com/zjuniosh">@twitter</a>, <a href="https://linkedin.com/company/zjunior">@linkedin</a><br>  whenever you meet Internship or Entrylevel Job</li>
-      <li>Feel free to reach out <a href="https://x.com/eitmg">@Kroking</a> , <a href="https://x.com/xaaksw">@xaaksw</a> for collaboration we belive that we can make it work together !</li>
+        <li>
+            <span class="bullet-indigo"></span>
+            zjunior is a community product that helps juniors find their first step.
+        </li>
+        <li>
+            <span class="bullet-indigo"></span>
+            Help us by mentioning zjunior on <a href="https://x.com/zjuniosh">@twitter</a>,
+            <a href="https://linkedin.com/company/zjunior">@linkedin</a>
+            whenever you meet an Internship or Entry-level Job
+        </li>
+        <li>
+            <span class="bullet-indigo"></span>
+            Feel free to reach out <a href="https://x.com/eitmg">@Kroking</a>,
+            <a href="https://x.com/xaaksw">@xaaksw</a> for collaboration. We believe that we can make it work together!
+        </li>
     </ul>
-  </div>
+</div>
+
+
   <!-- <Loading /> -->
   <!-- <div
   id="jobContainer"
